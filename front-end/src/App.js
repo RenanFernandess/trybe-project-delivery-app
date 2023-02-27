@@ -1,15 +1,16 @@
 import React from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
-import rockGlass from './images/rockGlass.svg';
+import Login from './pages/Login';
 
 function App() {
   return (
-    <div className="App">
-      <span className="logo">TRYBE</span>
-      <object className="rocksGlass" type="image/svg+xml" data={ rockGlass }>
-        Glass
-      </object>
-    </div>
+    <main>
+      <Routes>
+        <Route path="/" element={ <Navigate to="/login" replace /> } />
+        <Route path="/login" element={ <Login /> } />
+      </Routes>
+    </main>
   );
 }
 
