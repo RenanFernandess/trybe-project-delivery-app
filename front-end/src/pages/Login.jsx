@@ -1,11 +1,24 @@
 import React, { useState } from 'react';
 
-export default function Login() {
-  const [login, setLogin] = useState({ email: '', password: '' });
+const EMAIL_REGEXP = /^\w+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
+const passwordMinLength = 6;
 
-  const handleChange = ({ target: { name, value } }) => {
-    setLogin((prevState) => ({ ...prevState, [name]: value }));
+export default function Login() {
+  const [login, setLogin] = useState({ email: '', password: '', disabled: true });
+  const loginChange = ({ target: { name, value } }) => {
+    setLogin((prevState) => {
+      const { email, password } = { ...prevState, [name]: value };
+      return {
+        email,
+        password,
+        disabled: !(
+          (password.length >= passwordMinLength)
+          && (EMAIL_REGEXP.test(email))
+        ) };
+    });
   };
+
+  const { email, password, disabled } = login;
 
   return (
     <div>
@@ -19,8 +32,8 @@ export default function Login() {
           <input
             type="email"
             name="email"
-            value={ login.email }
-            onChange={ handleChange }
+            value={ email }
+            onChange={ loginChange }
             id="login-input-email"
             data-test-id="common_login__input-email"
           />
@@ -30,14 +43,15 @@ export default function Login() {
           <input
             type="password"
             name="password"
-            value={ login.password }
-            onChange={ handleChange }
+            value={ password }
+            onChange={ loginChange }
             id="login-input-password"
             data-test-id="common_login__input-password"
           />
         </label>
         <button
           type="button"
+          disabled={ disabled }
           data-test-id="common_login__button-login"
         >
           LOGIN
