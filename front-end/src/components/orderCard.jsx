@@ -1,4 +1,4 @@
-export default function OrdersCard({ route, order }) {
+export default function OrdersCard({ route, order, index }) {
   // const ROUTE = 'customer_orders';
   const ROUTE = route;
   return (
@@ -7,22 +7,30 @@ export default function OrdersCard({ route, order }) {
         <div>
           pedido
           <p data-testid={ `${ROUTE}__element-order-id-${order.id}` }>
-            {order.id}
-            {/* numero do pedido */}
+            {index}
+            {/* numero do pedido - vai ser o index ou o id? */}
           </p>
         </div>
         <div>
-          status
+          {order.status}
         </div>
         <div>
           data
           <p data-testid={ `${ROUTE}__element-order-id-${order.id}` }>
-            {dateNow(order.saleDate)}
+            {order.saleDate}
           </p>
         </div>
         <div>
-          valor
+          <p>R$</p>
+          <p>
+            {order.totalPrice.replace('.', ',')}
+          </p>
         </div>
+        {
+          ROUTE === 'seller_orders' && (
+            <p>{order.deliveryAddress}</p>
+          )
+        }
       </div>
     </div>
   );

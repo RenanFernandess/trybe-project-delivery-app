@@ -14,8 +14,6 @@ export default function navBar({ name, route }) {
       <Link to="/customer/orders">
         <div data-testid={ `${ROUTE}__element-navbar-link-orders` }>
           {ROUTE === 'customer_products' ? 'meus pedidos' : 'pedidos'}
-          {/* meus pedidos */}
-          {/* pedidos - quando estiver no fluxo da pessoa desenvolvedora */}
         </div>
       </Link>
       <div data-testid={ `${ROUTE}__element-navbar-user-full-name` }>
