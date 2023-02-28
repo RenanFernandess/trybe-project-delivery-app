@@ -24,6 +24,10 @@ class SaleService extends AbstractService {
     const { productsSold: _, ...remain } = result.dataValues;
     return { ...remain, products };
   }
+
+  // async createSale(body) {
+
+  // }
 }
 
 module.exports = SaleService;
