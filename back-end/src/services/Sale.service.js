@@ -11,15 +11,18 @@ class SaleService extends AbstractService {
     const result = await this.sale.findOne({
       where: { id },
       include: [
-        {
-          model: SaleProduct,
-          as: 'saleProduct',
-          through: { attributes: { exclude: ['password'] } },
-        },
-      ],
+        { model: SaleProduct, as: 'productsSold', attributes: { exclude: ['saleId'] } },
+        { model: Product, as: 'products', through: { attributes: [] } },
+    ],
     });
-    console.log('específico');
-    return result;
+
+    const products = result.products.map((item, index) => ({
+      productName: item.name,
+      price: item.price,
+      quantity: result.productsSold[index].quantity,
+    }));
+    const { productsSold: _, ...remain } = result.dataValues;
+    return { ...remain, products };
   }
 }
 
