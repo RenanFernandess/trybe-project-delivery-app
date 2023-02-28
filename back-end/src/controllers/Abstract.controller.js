@@ -13,6 +13,7 @@ class AbstractController {
 
   async getAll() {
     try {
+      console.log(__dirname);
       const result = await this.service.getAll();
       return this.res.status(200).json(result);
     } catch (error) {
