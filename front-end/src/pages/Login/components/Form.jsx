@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import userContext from '../../../context';
+import { postAPI } from '../../../utils';
 
 const EMAIL_REGEXP = /^\w+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
 const passwordMinLength = 6;
@@ -10,15 +11,12 @@ export default function Form() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const disabled = !(
+  const disabled = (
     (password.length >= passwordMinLength)
     && (EMAIL_REGEXP.test(email)));
 
-  console.log(disabled);
-
   const login = () => {
-    const options = {};
-    fetchAPI('', (user) => setUser(user), options);
+    postAPI('/login', (user) => setUser(user), { email, password });
   };
 
   return (
