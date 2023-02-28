@@ -9,7 +9,7 @@ export default function Form() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const disabled = (
+  const disabled = !(
     (password.length >= MIN_PASSWORD_CHARACTERS)
     && (EMAIL_REGEXP.test(email)));
 
