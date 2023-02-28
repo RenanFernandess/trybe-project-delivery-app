@@ -12,23 +12,27 @@ export default function OrdersCard({ route, order, index }) {
           </p>
         </div>
         <div>
-          {order.status}
+          <p data-testid={ `${ROUTE}__element-delivery-status-${order.id}` }>
+            {order.status}
+          </p>
         </div>
         <div>
           data
-          <p data-testid={ `${ROUTE}__element-order-id-${order.id}` }>
+          <p data-testid={ `${ROUTE}__element-order-date-${order.id}` }>
             {order.saleDate}
           </p>
         </div>
         <div>
           <p>R$</p>
-          <p>
+          <p data-testid={ `${ROUTE}__element-card-price-${order.id}` }>
             {order.totalPrice.replace('.', ',')}
           </p>
         </div>
         {
           ROUTE === 'seller_orders' && (
-            <p>{order.deliveryAddress}</p>
+            <p data-testid={ `${ROUTE}__element-card-address-${order.id}` }>
+              {order.deliveryAddress}
+            </p>
           )
         }
       </div>
