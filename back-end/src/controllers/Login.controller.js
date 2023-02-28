@@ -21,6 +21,16 @@ class LoginController extends AbstractController {
       this.next(error);
     }
   }
+
+  async getByRole() {
+    const { role } = this.req.params;
+    try {
+      const result = await this.loginService.getByRole(role);
+      return this.res.status(200).json(result);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
 
 module.exports = LoginController;

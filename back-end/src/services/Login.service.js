@@ -10,6 +10,11 @@ class LoginService extends AbstractService {
     this.user = User;
   }
 
+  async getByRole(role) {
+    const result = await super.model.findAll({ where: { role } });
+    return result;
+  }
+
   async getByEmail(email) {
     const result = await this.user.findOne({
       where: { email },
