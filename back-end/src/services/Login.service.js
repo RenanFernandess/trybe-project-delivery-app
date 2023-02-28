@@ -33,7 +33,6 @@ class LoginService extends AbstractService {
     const result = await this.getByEmail(email);
     if (result) throw new HttpException(409, 'User already exists');
     const newUser = await super.create({ ...user, password: hashMd5Encrypt(password) });
-    console.log(newUser);
     const { password: _, ...userWithoutPassword } = newUser.dataValues;
     return userWithoutPassword;
   }
