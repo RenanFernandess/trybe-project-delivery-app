@@ -1,6 +1,5 @@
+import { TOKEN_KEY } from '../constants';
 import localStorageHandling from './localStorageHandling';
-
-const TOKEN_KEY = 'token';
 
 export default function saveToken(token) {
   localStorageHandling.setItem(TOKEN_KEY, token);
