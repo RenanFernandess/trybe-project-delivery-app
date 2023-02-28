@@ -39,7 +39,7 @@ class LoginService extends AbstractService {
     if (result) throw new HttpException(409, 'User already exists');
     const newUser = await super.create({ ...user, password: hashMd5Encrypt(password) });
     const { password: _, ...userWithoutPassword } = newUser.dataValues;
-    return userWithoutPassword;
+    return { ...userWithoutPassword, token: getToken(userWithoutPassword) };
   }
 }
 
