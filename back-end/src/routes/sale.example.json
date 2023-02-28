@@ -1,0 +1,17 @@
+{
+  "userId": 1,
+  "sellerId": 2,
+  "totalPrice": 150.50,
+  "deliveryAddress": "Rua XXX",
+  "deliveryNumber": "740",
+  "products": [
+    {
+      "productId": 1,
+      "quantity": 5
+    },
+    {
+      "productId": 7,
+      "quantity": 1
+    }
+  ]
+}
