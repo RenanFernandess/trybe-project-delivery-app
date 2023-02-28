@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 export default function navBar({ name, route }) {
   const ROUTE = route;
@@ -30,3 +31,8 @@ export default function navBar({ name, route }) {
     </nav>
   );
 }
+
+navBar.propTypes = {
+  name: PropTypes.string,
+  route: PropTypes.string,
+}.isRequired;

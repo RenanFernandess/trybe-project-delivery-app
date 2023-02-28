@@ -1,4 +1,6 @@
-export default function OrdersCard({ route, order, index }) {
+import PropTypes from 'prop-types';
+
+export default function OrderCard({ route, order, index }) {
   // const ROUTE = 'customer_orders';
   const ROUTE = route;
   return (
@@ -17,7 +19,7 @@ export default function OrdersCard({ route, order, index }) {
           </p>
         </div>
         <div>
-          data
+          {/* data */}
           <p data-testid={ `${ROUTE}__element-order-date-${order.id}` }>
             {order.saleDate}
           </p>
@@ -40,8 +42,9 @@ export default function OrdersCard({ route, order, index }) {
   );
 }
 
-OrdersCard.propTypes = {
+OrderCard.propTypes = {
   route: PropTypes.string,
+  index: PropTypes.string,
   order: PropTypes.shape({
     id: PropTypes.number,
     totalPrice: PropTypes.string,
