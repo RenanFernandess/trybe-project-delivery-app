@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 
 const { User } = require('../../../../database/models');
 const LoginService = require('../../../../services/Login.service');
-const { usersMock, userSeller } = require('./mocks/users.mock');
+const { usersMock, userSeller } = require('../../../mocks/users.mock');
 
 const MD5 = { md5 };
 

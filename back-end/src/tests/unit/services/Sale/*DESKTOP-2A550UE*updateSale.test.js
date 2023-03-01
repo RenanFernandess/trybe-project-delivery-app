@@ -3,7 +3,7 @@ const sinon = require('sinon');
 
 const { Sale } = require('../../../../database/models');
 const SaleService = require('../../../../services/Sale.service');
-const { findOneSaleMock, getByIdMock, createdSaleMock } = require('./mocks/sales.mock')
+const { findOneSaleMock, getByIdMock, createdSaleMock } = require('../../../mocks/sales.mock')
 
 describe('Tests SaleService update function', function () {
   beforeEach(sinon.restore);

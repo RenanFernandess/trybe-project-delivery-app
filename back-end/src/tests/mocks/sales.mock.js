@@ -100,6 +100,29 @@ const createdSaleMock = {
   }
 }
 
+const getAllSalesMock = [
+  {
+    "id": 1,
+    "userId": 3,
+    "sellerId": 2,
+    "totalPrice": 100,
+    "deliveryAddress": "rua xxx",
+    "deliveryNumber": "150",
+    "saleDate": "2023-03-01T13:53:36.000Z",
+    "status": "Pendente"
+  },
+  {
+    "id": 2,
+    "userId": 3,
+    "sellerId": 2,
+    "totalPrice": 50,
+    "deliveryAddress": "rua AAA",
+    "deliveryNumber": "15012",
+    "saleDate": "2023-03-01T13:53:36.000Z",
+    "status": "Pendente"
+  }
+]
+
 const createdSaleProductMock = {
   saleId: 1,
   productId: 1,
@@ -111,5 +134,6 @@ module.exports = {
   findOneSaleMock,
   saleBodyMock,
   createdSaleMock,
-  createdSaleProductMock
+  createdSaleProductMock,
+  getAllSalesMock
 }

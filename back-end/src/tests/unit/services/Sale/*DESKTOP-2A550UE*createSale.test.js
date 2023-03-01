@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const { Sale, SaleProduct } = require('../../../../database/models');
 const SaleService = require('../../../../services/Sale.service');
 const { getByIdMock, saleBodyMock,
-  createdSaleMock, createdSaleProductMock } = require('./mocks/sales.mock')
+  createdSaleMock, createdSaleProductMock } = require('../../../mocks/sales.mock')
 
 describe('Tests SaleService getById function', function () {
   beforeEach(sinon.restore);
