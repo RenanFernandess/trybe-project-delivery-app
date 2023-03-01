@@ -6,33 +6,17 @@ export default function RegisterForms() {
   const nameMinLength = 12;
   const EMAIL_REGEXP = /^\w+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
 
-  const [client, setClient] = useState(
-    { clientName: '', email: '', password: '' },
-  );
-  const saveInfo = ({ target: { name, value } }) => {
-    setClient((prevState) => {
-      const { clientName, email, password } = { ...prevState, [name]: value };
-      return {
-        clientName,
-        email,
-        password,
-      };
-    });
-  };
-
+  const [clientName, setClientName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const { clientName, email, password } = client;
-  const habilitateBtn = () => !(
-    (password.length >= passwordMinLength)
-          && (EMAIL_REGEXP.test(email)
-          && clientName.length >= nameMinLength));
 
   useEffect(() => {
-    setDisabled(habilitateBtn());
-    console.log(disabled);
+    setDisabled(!(
+      password.length >= passwordMinLength
+        && EMAIL_REGEXP.test(email)
+         && clientName.length >= nameMinLength));
   }, [clientName, email, password]);
-
-
   return (
     <div>
       <p>Cadastro</p>
@@ -45,7 +29,7 @@ export default function RegisterForms() {
             type="text"
             placeholder="Seu nome"
             value={ clientName }
-            onChange={ saveInfo }
+            onChange={ ({ target: { value } }) => setClientName(value) }
           />
         </div>
         <div>
@@ -56,7 +40,7 @@ export default function RegisterForms() {
             type="email"
             placeholder="seu-email@site.com.br"
             value={ email }
-            onChange={ saveInfo }
+            onChange={ ({ target: { value } }) => setEmail(value) }
           />
         </div>
         <div>
@@ -66,7 +50,7 @@ export default function RegisterForms() {
             name="password"
             type="password"
             value={ password }
-            onChange={ saveInfo }
+            onChange={ ({ target: { value } }) => setPassword(value) }
           />
         </div>
         <div>
@@ -86,6 +70,5 @@ export default function RegisterForms() {
         </span>
       </div>
     </div>
-
   );
 }
