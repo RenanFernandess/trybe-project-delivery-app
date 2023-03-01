@@ -1,12 +1,12 @@
 import fetchAPI from './fetchAPI';
 import postAPI from './postAPI';
 import localStorageHandling from './localStorageHandling';
-import saveToken, { getToken } from './token';
+import saveUser, { getUser } from './saveUser';
 
 export default fetchAPI;
 export {
   postAPI,
   localStorageHandling,
-  saveToken,
-  getToken,
+  saveUser,
+  getUser,
 };
