@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function RegisterForms() {
   const ROUTE = 'customer_products';
@@ -19,14 +19,19 @@ export default function RegisterForms() {
       };
     });
   };
-  const { clientName, email, password } = client;
 
-  const disabled = () => !(
+  const [disabled, setDisabled] = useState(true);
+  const { clientName, email, password } = client;
+  const habilitateBtn = () => !(
     (password.length >= passwordMinLength)
           && (EMAIL_REGEXP.test(email)
           && clientName.length >= nameMinLength));
 
-  console.log(disabled);
+  useEffect(() => {
+    setDisabled(habilitateBtn());
+    console.log(disabled);
+  }, [clientName, email, password]);
+
 
   return (
     <div>
@@ -68,7 +73,6 @@ export default function RegisterForms() {
           <button
             type="submit"
             data-testid={ `${ROUTE}__button-register` }
-            onChange={ disabled }
             disabled={ disabled }
           >
             Cadastrar
