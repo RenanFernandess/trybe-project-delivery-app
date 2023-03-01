@@ -27,7 +27,7 @@ class SaleService extends AbstractService {
     return { ...remain, products };
   }
 
-  async createSale(body) {
+  async create(body) {
     const { products, ...saleData } = body;
     try {
       const newSaleId = await sequelize.transaction(async (t) => {
