@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { postAPI } from '../utils';
 
 export default function RegisterForms() {
-  const [clientName, setClientName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
@@ -15,14 +16,18 @@ export default function RegisterForms() {
   const isAble = () => !(
     password.length >= passwordMinLength
       && (EMAIL_REGEXP.test(email))
-       && (clientName.length >= nameMinLength));
+       && (name.length >= nameMinLength));
 
   useEffect(() => {
     setDisabled(isAble());
-  }, [clientName, email, password]);
+  }, [name, email, password]);
 
   const register = () => {
-    postAPI('/register', (data) => setClient(data), { clientName, email, password });
+    postAPI(
+      '/register',
+      (data) => setClient(data),
+      { name, email, password, role: 'customer' },
+    );
   };
 
   console.log(client);
@@ -34,11 +39,11 @@ export default function RegisterForms() {
           <p>Nome</p>
           <input
             data-testid={ `${ROUTE}__input-name` }
-            name="clientName"
+            name="name"
             type="text"
             placeholder="Seu nome"
-            value={ clientName }
-            onChange={ ({ target: { value } }) => setClientName(value) }
+            value={ name }
+            onChange={ ({ target: { value } }) => setName(value) }
           />
         </div>
         <div>
@@ -64,7 +69,7 @@ export default function RegisterForms() {
         </div>
         <div>
           <button
-            type="submit"
+            type="button"
             data-testid={ `${ROUTE}__button-register` }
             disabled={ disabled }
             onClick={ register }
