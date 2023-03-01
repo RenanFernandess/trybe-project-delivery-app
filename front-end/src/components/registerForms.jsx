@@ -5,6 +5,7 @@ export default function RegisterForms() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [client, setClient] = useState({});
 
   const EMAIL_REGEXP = /^\w+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
   const ROUTE = 'customer_products';
@@ -20,6 +21,11 @@ export default function RegisterForms() {
     setDisabled(isAble());
   }, [clientName, email, password]);
 
+  const register = () => {
+    postAPI('/register', (data) => setClient(data), { clientName, email, password });
+  };
+
+  console.log(client);
   return (
     <div>
       <p>Cadastro</p>
@@ -61,6 +67,7 @@ export default function RegisterForms() {
             type="submit"
             data-testid={ `${ROUTE}__button-register` }
             disabled={ disabled }
+            onClick={ register }
           >
             Cadastrar
           </button>
