@@ -36,6 +36,7 @@ module.exports = {
         }
       ])
   },
+
   async down(queryInterface, Sequelize) {
     await queryInterface.bulkDelete('sales_products', null, {});
   }
