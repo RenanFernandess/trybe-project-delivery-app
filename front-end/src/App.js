@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Login from './pages/Login';
+import Login from './pages';
 import CustomerOrder from './pages/CustomerOrder';
 import Register from './pages/Register';
 
@@ -21,3 +21,5 @@ function App() {
     </main>
   );
 }
+
+export default App;
