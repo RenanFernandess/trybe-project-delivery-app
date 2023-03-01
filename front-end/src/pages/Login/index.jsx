@@ -23,7 +23,7 @@ export default function Login() {
       <Form />
       {
         message
-        && <p data-test-id="common_login__element-invalid-email">{ message }</p>
+        && <p data-testid="common_login__element-invalid-email">{ message }</p>
       }
     </div>
   );
