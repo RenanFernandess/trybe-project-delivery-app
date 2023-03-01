@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
-const EMAIL_REGEXP = /^\w+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
-const ROUTE = 'customer_products';
-const passwordMinLength = 6;
-const nameMinLength = 12;
-
 export default function RegisterForms() {
   const [clientName, setClientName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+
+  const EMAIL_REGEXP = /^\w+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
+  const ROUTE = 'customer_products';
+  const passwordMinLength = 6;
+  const nameMinLength = 12;
 
   const isAble = () => !(
     password.length >= passwordMinLength
@@ -19,6 +19,7 @@ export default function RegisterForms() {
   useEffect(() => {
     setDisabled(isAble());
   }, [clientName, email, password]);
+
   return (
     <div>
       <p>Cadastro</p>
