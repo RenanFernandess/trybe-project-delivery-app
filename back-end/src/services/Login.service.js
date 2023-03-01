@@ -11,7 +11,7 @@ class LoginService extends AbstractService {
   }
 
   async getByRole(role) {
-    const result = await super.model.findAll({ where: { role } });
+    const result = await this.user.findAll({ where: { role } });
     return result;
   }
 
