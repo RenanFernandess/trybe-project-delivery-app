@@ -11,6 +11,15 @@ class SaleController extends AbstractController {
       next,
     );
   }
+
+  async create() {
+    try {
+      const newObj = await this.service.createSale(this.req.body);
+      return this.res.status(201).json(newObj);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
 
 module.exports = SaleController;
