@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-import CustomerOrder from './pages/CustomerOrder';
 import Login from './pages/Login';
+import CustomerOrder from './pages/CustomerOrder';
 import Register from './pages/Register';
 
 function App() {
@@ -21,5 +21,3 @@ function App() {
     </main>
   );
 }
-
-export default App;
