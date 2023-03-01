@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    status: DataTypes.STRING,
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: 'Pendente',
+    },
   },
   {
     timestamps: false,
@@ -23,6 +26,8 @@ module.exports = (sequelize, DataTypes) => {
       { foreignKey: 'userId', as: 'user' });
     Sale.belongsTo(models.User,
       { foreignKey: 'sellerId', as: 'seller' });
+    Sale.hasMany(models.SaleProduct,
+      {foreignKey: 'saleId', as: 'productsSold'});
   };
 
   return Sale;

@@ -11,7 +11,7 @@ class LoginService extends AbstractService {
   }
 
   async getByRole(role) {
-    const result = await super.model.findAll({ where: { role } });
+    const result = await this.user.findAll({ where: { role } });
     return result;
   }
 
@@ -39,7 +39,7 @@ class LoginService extends AbstractService {
     if (result) throw new HttpException(409, 'User already exists');
     const newUser = await super.create({ ...user, password: hashMd5Encrypt(password) });
     const { password: _, ...userWithoutPassword } = newUser.dataValues;
-    return userWithoutPassword;
+    return { ...userWithoutPassword, token: getToken(userWithoutPassword) };
   }
 }
 
