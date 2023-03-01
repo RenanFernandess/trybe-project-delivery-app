@@ -21,12 +21,12 @@ export default function RegisterForms() {
   };
   const { clientName, email, password } = client;
 
-  const disabled = !(
+  const disabled = () => !(
     (password.length >= passwordMinLength)
           && (EMAIL_REGEXP.test(email)
           && clientName.length >= nameMinLength));
 
-  console.log(client);
+  console.log(disabled);
 
   return (
     <div>
@@ -68,6 +68,7 @@ export default function RegisterForms() {
           <button
             type="submit"
             data-testid={ `${ROUTE}__button-register` }
+            onChange={ disabled }
             disabled={ disabled }
           >
             Cadastrar
