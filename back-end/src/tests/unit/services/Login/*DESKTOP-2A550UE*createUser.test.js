@@ -32,11 +32,5 @@ describe('Tests LoginService create function', function () {
     } catch (error) {
       expect(error.message).to.equal('User already exists');
     }
-
-
   });
-
-  // it('', async function () {
-
-  // });
 });
