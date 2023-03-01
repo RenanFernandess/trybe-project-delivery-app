@@ -16,11 +16,7 @@ export default function RegisterForms() {
         clientName,
         email,
         password,
-        disabled: !(
-          (password.length >= passwordMinLength)
-          && (EMAIL_REGEXP.test(email)
-          && clientName.length >= nameMinLength)
-        ) };
+      };
     });
   };
   const { clientName, email, password } = client;
