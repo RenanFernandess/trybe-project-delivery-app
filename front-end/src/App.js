@@ -12,7 +12,7 @@ function App() {
         <Route
           exact
           path="/"
-          render={ () => <Redirect to="/login" /> }
+          render={ (props) => <Redirect to="/login" { ...props } /> }
         />
         <Route exact path="/login" component={ Login } />
         <Route exact path="/register" component={ Register } />
