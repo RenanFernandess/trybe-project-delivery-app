@@ -1,17 +1,24 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { EMAIL_REGEXP, MIN_PASSWORD_CHARACTERS } from '../../../constants';
 import userContext from '../../../context';
 import { postAPI } from '../../../utils';
 
 export default function Form() {
   const { setUser } = useContext(userContext);
+  const history = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [disabled, setDisabled] = useState(true);
 
-  const disabled = !(
-    (password.length >= MIN_PASSWORD_CHARACTERS)
-    && (EMAIL_REGEXP.test(email)));
+  useEffect(() => {
+    setDisabled(!(
+      (password.length >= MIN_PASSWORD_CHARACTERS)
+      && (EMAIL_REGEXP.test(email))));
+  }, [email, password]);
+
+  console.log(disabled);
 
   const login = () => {
     postAPI('/login', (user) => setUser(user), { email, password });
@@ -51,6 +58,7 @@ export default function Form() {
       </button>
       <button
         type="button"
+        onClick={ () => history.push('/register') }
         data-test-id="common_login__button-register"
       >
         Ainda não tenho conta

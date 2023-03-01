@@ -1,9 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
+import { useHistory } from 'react-router-dom';
 import userContext from '../../context';
 import Logo, { Form } from './components';
 
+const REDIRECT_PATHS = {
+  customer: '/customer/products',
+  seller: '/seller/orders',
+  administrator: '/administrator/manage',
+};
+
 export default function Login() {
-  const { message } = useContext(userContext);
+  const { message, role } = useContext(userContext);
+  const history = useHistory();
+
+  useMemo(() => {
+    history.push(REDIRECT_PATHS[role]);
+  }, [role, history]);
 
   return (
     <div>
