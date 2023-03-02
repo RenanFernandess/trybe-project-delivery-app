@@ -1,7 +1,7 @@
 import Login from './Login';
 import Register from './Register';
-import CustomerOrder from './CustomerOrder';
+import CustomerOrders from './CustomerOrders';
 import Products from './Products';
 
 export default Login;
-export { Register, CustomerOrder, Products };
+export { Register, CustomerOrders, Products };

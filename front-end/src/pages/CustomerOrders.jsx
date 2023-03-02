@@ -1,7 +1,7 @@
 import NavBar from '../components/navBar';
 import OrderCard from '../components/orderCard';
 
-export default function CustomerOrder() {
+export default function CustomerOrders() {
   const orderMock = {
     id: 8921912,
     totalPrice: '100.00',
