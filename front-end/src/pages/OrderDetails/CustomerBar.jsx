@@ -20,7 +20,7 @@ export default function CustomerBar({ order, seller }) {
         {order?.id}
       </h3>
       <p data-testid={ `${DATATESTID}-seller-name` }>
-        {seller.name}
+        {`P. Vend: ${seller.name}`}
       </p>
       <p data-testid={ `${DATATESTID}-order-date` }>
         {new Date(order?.saleDate.split('T')[0]).toLocaleDateString()}
