@@ -30,6 +30,16 @@ class AbstractController {
     }
   }
 
+  async getByUserId() {
+    try {
+      const { id } = this.req.params;
+      const result = await this.service.getByUserId(id);
+      return this.res.status(200).json(result);
+    } catch (error) {
+      this.next(error);
+    }
+  }
+
   async create() {
     try {
       const newObj = await this.service.create(this.req.body);
