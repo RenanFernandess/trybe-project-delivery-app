@@ -9,7 +9,6 @@ export default function OrderCard({ route, order, index }) {
         pedido
         <p data-testid={ `${ROUTE}__element-order-id-${order.id}` }>
           {index}
-          {/* numero do pedido - vai ser o index ou o id? */}
         </p>
       </div>
       <div>
