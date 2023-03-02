@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../styles/productCard.css';
+// import '../styles/productCard.css';
 
 const BASE = 'customer_products';
 
@@ -55,10 +55,12 @@ class ProductCard extends Component {
               </button>
 
               <input
-                type="number"
+                type="text"
                 data-testid={ `${BASE}__input-card-quantity-${id}` }
                 className="card-quantity-input"
                 name="quantity"
+                inputMode="numeric"
+                pattern="[0-9]*"
                 value={ quantity }
               />
 
