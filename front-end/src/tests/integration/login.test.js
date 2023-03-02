@@ -5,8 +5,9 @@ import App from '../../App';
 import renderWithRouter from '../utils/renderWithRouter';
 
 describe('Testa a tela de Login', () => {
+  let history;
   beforeEach(() => {
-    renderWithRouter(<App />);
+    history = renderWithRouter(<App />).history;
   });
 
   it('Verifica se possui um formulario de login', () => {
@@ -71,6 +72,19 @@ describe('Testa a tela de Login', () => {
           expect(login).not.toBeDisabled();
         },
       );
+    },
+  );
+
+  it(
+    'Verifica se o botão "ainda não tenho conta" redireciona para tela de registro.',
+    () => {
+      const register = screen.getByRole('button', { name: /ainda não tenho conta/i });
+
+      userEvent.click(register);
+      console.log(history);
+      const { location: { pathname } } = history;
+
+      expect(pathname).toBe('/register');
     },
   );
 });
