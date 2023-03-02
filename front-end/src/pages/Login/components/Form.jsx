@@ -34,7 +34,7 @@ export default function Form() {
           value={ email }
           onChange={ ({ target: { value } }) => setEmail(value) }
           id="login-input-email"
-          data-test-id="common_login__input-email"
+          data-testid="common_login__input-email"
         />
       </label>
       <label htmlFor="login-input-password">
@@ -45,14 +45,14 @@ export default function Form() {
           value={ password }
           onChange={ ({ target: { value } }) => setPassword(value) }
           id="login-input-password"
-          data-test-id="common_login__input-password"
+          data-testid="common_login__input-password"
         />
       </label>
       <button
         type="button"
         disabled={ disabled }
         onClick={ login }
-        data-test-id="common_login__button-login"
+        data-testid="common_login__button-login"
       >
         LOGIN
       </button>

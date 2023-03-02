@@ -53,8 +53,5 @@
       "__TESTDESC__": true,
       "__TESTFILE__": true
     }
-  },
-  "dependencies": {
-    "react-router-dom": "^5.3.4"
   }
 }
