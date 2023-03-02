@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getAPI } from '../../utils';
 
-const TABLE_HEADERS = ['Item', 'Descrição', 'Quantidade', 'Valor Unidade', 'Sub-total'];
+const TABLE_HEADERS = ['Item', 'Descrição', 'Valor Unitário', 'Quantidade', 'Sub-total'];
+const TESTIDVALUE = ['name', 'unit-price', 'quantity', 'sub-total'];
+const DATATESTID = 'customer_order_details__element-order-table';
 
 export default function OrderDetails({ match: { path, params: { id } } }) {
   const [order, setOrder] = useState();
@@ -32,13 +34,29 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
         <tbody>
           { order && order.products.map((p, index) => (
             <tr key={ `${index} - ${p.productName}` }>
-              <td>{ index + 1 }</td>
+              <td
+                data-testid={ `${DATATESTID}-item-number-${index}` }
+              >
+                { index + 1 }
+
+              </td>
               {
                 Object.values(p).map((value, ind) => (
-                  <td key={ `${ind} - ${value}` }>{ value }</td>
+                  <td
+                    key={ `${ind} - ${value}` }
+                    data-testid={ `${DATATESTID}-${TESTIDVALUE[ind]}-${index}` }
+                  >
+                    { value }
+
+                  </td>
                 ))
               }
-              <td>{ `R$ ${(p.price * p.quantity).toFixed(2)}` }</td>
+              <td
+                data-testid={ `${DATATESTID}-${TESTIDVALUE[3]}-${index}` }
+              >
+                { `R$ ${(p.price * p.quantity).toFixed(2)}` }
+
+              </td>
             </tr>
           ))}
         </tbody>
