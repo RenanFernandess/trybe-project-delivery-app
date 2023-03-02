@@ -2,15 +2,13 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import { getAPI } from '../../utils';
-import CustomerBar from './CustomerBar';
-import SellerBar from './SellerBar';
+import CustomerBar, { CUSTOMER_TESTID } from './CustomerBar';
+import SellerBar, { SELLER_TESTID } from './SellerBar';
 import userContext from '../../context';
 import NavBar from '../../components/navBar';
 
 const TABLE_HEADERS = ['Item', 'Descrição', 'Valor Unitário', 'Quantidade', 'Sub-total'];
 const IDVALUE = ['name', 'unit-price', 'quantity', 'sub-total'];
-const CUSTOMER_TESTID = 'customer_order_details';
-const SELLER_TESTID = 'seller_order_details';
 const TABLEID = '__element-order-table';
 
 export default function OrderDetails({ match: { path, params: { id } } }) {
@@ -99,7 +97,7 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
               </tbody>
             </table>
             <h3
-              data-testid="customer_order_details__element-order-total-price"
+              data-testid={ `${testId}__element-order-total-price` }
             >
               { `R$ ${total?.toFixed(2)}` }
 

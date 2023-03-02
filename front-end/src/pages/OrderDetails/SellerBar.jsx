@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { patchAPI } from '../../utils';
 
-const DATATESTID = 'seller_order_details__element-order-details-label';
+export const SELLER_TESTID = 'seller_order_details';
 export const PADNUMBER = 4;
+const DATATESTID = `${SELLER_TESTID}__element-order-details-label`;
 
 export default function SellerBar({ order }) {
   const [status, setStatus] = useState(order?.status);

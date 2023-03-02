@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { patchAPI } from '../../utils';
 import { PADNUMBER } from './SellerBar';
 
-const DATATESTID = 'customer_order_details__element-order-details-label';
+export const CUSTOMER_TESTID = 'customer_order_details';
+const DATATESTID = `${CUSTOMER_TESTID}__element-order-details-label`;
 const DELIVERED = 'Entregue';
 
 export default function CustomerBar({ order, seller }) {
