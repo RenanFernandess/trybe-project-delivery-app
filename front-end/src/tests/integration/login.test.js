@@ -57,6 +57,20 @@ describe('Testa a tela de Login', () => {
           expect(login).toBeDisabled();
         },
       );
+
+      it(
+        'O botão deve habilitar com um email e senha no formato válido.',
+        () => {
+          const email = screen.getByRole('textbox', { name: /login/i });
+          const password = screen.getByLabelText(/senha/i);
+          const login = screen.getByRole('button', { name: /login/i });
+
+          userEvent.type(email, 'zebirita@email.com');
+          userEvent.type(password, '123456');
+
+          expect(login).not.toBeDisabled();
+        },
+      );
     },
   );
 });
