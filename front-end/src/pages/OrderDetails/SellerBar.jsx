@@ -11,7 +11,9 @@ export default function SellerBar({ order }) {
 
   const handleStatusChange = async (value, setter) => {
     setter(value);
-    await patchAPI(`/sales/status/${order?.id}`, console.log, { status });
+    if (status !== value) {
+      await patchAPI(`/sales/status/${order?.id}`, console.log, { status: value });
+    }
   };
 
   return (

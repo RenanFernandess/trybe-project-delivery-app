@@ -13,7 +13,7 @@ export default function CustomerBar({ order, seller }) {
   const handleStatusChange = async (value, setter) => {
     setter(value);
     if (status !== DELIVERED) {
-      await patchAPI(`/sales/status/${order?.id}`, console.log, { status });
+      await patchAPI(`/sales/status/${order?.id}`, console.log, { status: DELIVERED });
     }
   };
   return (
