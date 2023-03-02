@@ -2,6 +2,7 @@ import { useState } from 'react';
 import NavBar from '../components/navBar';
 import OrderCard from '../components/orderCard';
 import { getAPI } from '../utils';
+import getUserId from '../utils/getUserId';
 
 export default function CustomerOrders() {
   // const orderMock = {
@@ -16,6 +17,10 @@ export default function CustomerOrders() {
 
   const route = `'/user/:${id}'`;
 
+  const getId = async () => {
+    const userId = await getUserId();
+    setId(userId);
+  };
 
   const getOrders = async () => {
     await getAPI(
@@ -24,7 +29,9 @@ export default function CustomerOrders() {
     );
   };
 
-  getOrders();
+  getId();
+  console.log(id);
+  // getOrders();
 
   return (
     <div>
