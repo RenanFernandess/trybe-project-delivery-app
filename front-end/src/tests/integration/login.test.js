@@ -5,12 +5,9 @@ import App from '../../App';
 import renderWithRouter from '../utils/renderWithRouter';
 
 describe('Testa a tela de Login', () => {
-  let history;
-  beforeEach(() => {
-    history = renderWithRouter(<App />).history;
-  });
-
   it('Verifica se possui um formulario de login', () => {
+    renderWithRouter(<App />);
+
     const email = screen.getByRole('textbox', { name: /login/i });
     const password = screen.getByLabelText(/senha/i);
     const login = screen.getByRole('button', { name: /login/i });
@@ -25,6 +22,10 @@ describe('Testa a tela de Login', () => {
   describe(
     'Testa se o botão de LOGIN ativa somente com email e senha no formato válido:',
     () => {
+      beforeEach(() => {
+        renderWithRouter(<App />);
+      });
+
       it('O botão deve inicia desativado', () => {
         const login = screen.getByRole('button', { name: /login/i });
         expect(login).toBeDisabled();
@@ -66,7 +67,7 @@ describe('Testa a tela de Login', () => {
           const password = screen.getByLabelText(/senha/i);
           const login = screen.getByRole('button', { name: /login/i });
 
-          userEvent.type(email, 'zebirita@email.com');
+          userEvent.type(email, 'ze.birita@email.com');
           userEvent.type(password, '123456');
 
           expect(login).not.toBeDisabled();
@@ -78,10 +79,10 @@ describe('Testa a tela de Login', () => {
   it(
     'Verifica se o botão "ainda não tenho conta" redireciona para tela de registro.',
     () => {
+      const { history } = renderWithRouter(<App />);
       const register = screen.getByRole('button', { name: /ainda não tenho conta/i });
 
       userEvent.click(register);
-      console.log(history);
       const { location: { pathname } } = history;
 
       expect(pathname).toBe('/register');
