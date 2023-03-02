@@ -20,21 +20,28 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
   const [seller, setSeller] = useState({});
   const [testId, setTestId] = useState('');
 
+  // checa se este usuario pode acessar está pagina.
   useEffect(() => {
     if (!path.includes(role)) {
       history.push(`/${role}/orders`);
     }
   }, []);
 
+  // coloca em testId a parte do datatestid definida através do path
+  useEffect(() => {
+    if (path.includes('customer')) setTestId(CUSTOMER_TESTID);
+    else setTestId(SELLER_TESTID);
+  }, []);
+
+  // fetch inicial em sales pelo id da venda
   useEffect(() => {
     const fetchs = async () => {
       await getAPI(`/sales/${id}`, setOrder);
     };
     fetchs();
-    if (path.includes('customer')) setTestId(CUSTOMER_TESTID);
-    else setTestId(SELLER_TESTID);
   }, []);
 
+  // calculo do valor total da venda e fetch da info do vendedor
   useEffect(() => {
     const tot = order?.products
       .reduce((acc, { price, quantity }) => acc + (price * quantity), 0);
