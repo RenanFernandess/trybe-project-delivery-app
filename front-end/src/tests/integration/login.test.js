@@ -28,6 +28,20 @@ describe('Testa a tela de Login', () => {
         const login = screen.getByRole('button', { name: /login/i });
         expect(login).toBeDisabled();
       });
+
+      it(
+        'O botão deve estar desativado com um email no formato incorreto e senha válida.',
+        () => {
+          const email = screen.getByRole('textbox', { name: /login/i });
+          const password = screen.getByLabelText(/senha/i);
+          const login = screen.getByRole('button', { name: /login/i });
+
+          userEvent.type(email, 'test@gmail');
+          userEvent.type(password, '123456');
+
+          expect(login).toBeDisabled();
+        },
+      );
     },
   );
 });
