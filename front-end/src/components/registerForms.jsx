@@ -92,7 +92,7 @@ export default function RegisterForms() {
         {
           client.message === 'User already exists' && (
             <span data-testid={ `${ROUTE}__element-invalid_register` }>
-              mensagem de erro
+              {client.message}
             </span>
           )
         }
