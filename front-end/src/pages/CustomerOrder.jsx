@@ -12,8 +12,8 @@ export default function CustomerOrder() {
 
   return (
     <div>
-      <NavBar name="teste" route="customer_products" />
-      <OrderCard route="customer_products" order={ orderMock } index="1" />
+      <NavBar name="teste" route="customer_order" />
+      <OrderCard route="customer_order" order={ orderMock } index="1" />
     </div>
   );
 }

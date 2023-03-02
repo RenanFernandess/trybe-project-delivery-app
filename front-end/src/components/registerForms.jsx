@@ -1,24 +1,44 @@
 import React, { useState, useEffect } from 'react';
-
-const EMAIL_REGEXP = /^\w+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
-const ROUTE = 'customer_products';
-const passwordMinLength = 6;
-const nameMinLength = 12;
+import { useHistory } from 'react-router-dom';
+import { postAPI } from '../utils';
 
 export default function RegisterForms() {
-  const [clientName, setClientName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [client, setClient] = useState({ message: '' });
+  const history = useHistory();
+
+  const EMAIL_REGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
+  const ROUTE = 'common_register';
+  const passwordMinLength = 6;
+  const nameMinLength = 12;
 
   const isAble = () => !(
     password.length >= passwordMinLength
       && (EMAIL_REGEXP.test(email))
-       && (clientName.length >= nameMinLength));
+       && (name.length >= nameMinLength));
 
   useEffect(() => {
     setDisabled(isAble());
-  }, [clientName, email, password]);
+  }, [name, email, password]);
+
+  useEffect(() => {
+    if (client.name === name) {
+      history.push('/customer/products');
+    }
+  }, [client]);
+
+  const register = async () => {
+    await postAPI(
+      '/register',
+      (data) => setClient(data),
+      { name, email, password, role: 'customer' },
+    );
+  };
+
+  console.log(client);
   return (
     <div>
       <p>Cadastro</p>
@@ -27,11 +47,11 @@ export default function RegisterForms() {
           <p>Nome</p>
           <input
             data-testid={ `${ROUTE}__input-name` }
-            name="clientName"
+            name="name"
             type="text"
             placeholder="Seu nome"
-            value={ clientName }
-            onChange={ ({ target: { value } }) => setClientName(value) }
+            value={ name }
+            onChange={ ({ target: { value } }) => setName(value) }
           />
         </div>
         <div>
@@ -57,9 +77,10 @@ export default function RegisterForms() {
         </div>
         <div>
           <button
-            type="submit"
+            type="button"
             data-testid={ `${ROUTE}__button-register` }
             disabled={ disabled }
+            onClick={ register }
           >
             Cadastrar
           </button>
@@ -67,9 +88,14 @@ export default function RegisterForms() {
       </form>
       <div>
         {/* validação - elemento oculto */}
-        <span data-testid={ `${ROUTE}__element-invalid_register` }>
-          mensagem de erro
-        </span>
+
+        {
+          client.message === 'User already exists' && (
+            <span data-testid={ `${ROUTE}__element-invalid_register` }>
+              {client.message}
+            </span>
+          )
+        }
       </div>
     </div>
   );
