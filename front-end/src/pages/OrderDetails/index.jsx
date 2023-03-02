@@ -1,23 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import { getAPI } from '../../utils';
 import CustomerBar from './CustomerBar';
 import SellerBar from './SellerBar';
+import userContext from '../../context';
+import NavBar from '../../components/navBar';
 
 const TABLE_HEADERS = ['Item', 'Descrição', 'Valor Unitário', 'Quantidade', 'Sub-total'];
-const TESTIDVALUE = ['name', 'unit-price', 'quantity', 'sub-total'];
-const DATATESTID = 'customer_order_details__element-order-table';
+const IDVALUE = ['name', 'unit-price', 'quantity', 'sub-total'];
+const CUSTOMER_TESTID = 'customer_order_details';
+const SELLER_TESTID = 'seller_order_details';
+const TABLEID = '__element-order-table';
 
 export default function OrderDetails({ match: { path, params: { id } } }) {
+  const { role, name } = useContext(userContext);
+  const history = useHistory();
+
   const [order, setOrder] = useState();
   const [total, setTotal] = useState(0);
   const [seller, setSeller] = useState({});
+  const [testId, setTestId] = useState('');
+
+  useEffect(() => {
+    if (!path.includes(role)) {
+      history.push(`/${role}/orders`);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchs = async () => {
       await getAPI(`/sales/${id}`, setOrder);
     };
     fetchs();
+    if (path.includes('customer')) setTestId(CUSTOMER_TESTID);
+    else setTestId(SELLER_TESTID);
   }, []);
 
   useEffect(() => {
@@ -32,6 +49,7 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
 
   return (
     <div>
+      <NavBar name={ name } route="customer_products" />
       {
         order && (
           <div>
@@ -54,7 +72,7 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
                 { order && order?.products.map((p, index) => (
                   <tr key={ `${index} - ${p.productName}` }>
                     <td
-                      data-testid={ `${DATATESTID}-item-number-${index}` }
+                      data-testid={ `${testId}${TABLEID}-item-number-${index}` }
                     >
                       { index + 1 }
 
@@ -63,7 +81,7 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
                       Object.values(p).map((value, ind) => (
                         <td
                           key={ `${ind} - ${value}` }
-                          data-testid={ `${DATATESTID}-${TESTIDVALUE[ind]}-${index}` }
+                          data-testid={ `${testId}${TABLEID}-${IDVALUE[ind]}-${index}` }
                         >
                           { value }
 
@@ -71,7 +89,7 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
                       ))
                     }
                     <td
-                      data-testid={ `${DATATESTID}-${TESTIDVALUE[3]}-${index}` }
+                      data-testid={ `${testId}${TABLEID}-${IDVALUE[3]}-${index}` }
                     >
                       { `R$ ${(p.price * p.quantity).toFixed(2)}` }
 

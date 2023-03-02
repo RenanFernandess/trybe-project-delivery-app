@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { patchAPI } from '../../utils';
+import { PADNUMBER } from './SellerBar';
 
 const DATATESTID = 'customer_order_details__element-order-details-label';
 const DELIVERED = 'Entregue';
@@ -8,8 +9,8 @@ const DELIVERED = 'Entregue';
 export default function CustomerBar({ order, seller }) {
   const [status, setStatus] = useState(order?.status);
 
-  const handleStatusChange = async () => {
-    setStatus(DELIVERED);
+  const handleStatusChange = async (value, setter) => {
+    setter(value);
     if (status !== DELIVERED) {
       await patchAPI(`/sales/status/${order?.id}`, console.log, { status });
     }
@@ -17,7 +18,7 @@ export default function CustomerBar({ order, seller }) {
   return (
     <div>
       <h3 data-testid={ `${DATATESTID}-order-id` }>
-        {order?.id}
+        {order?.id.toString().padStart(PADNUMBER, '0')}
       </h3>
       <p data-testid={ `${DATATESTID}-seller-name` }>
         {`P. Vend: ${seller.name}`}
@@ -30,7 +31,8 @@ export default function CustomerBar({ order, seller }) {
       </p>
       <button
         type="button"
-        onClick={ handleStatusChange }
+        value={ DELIVERED }
+        onClick={ ({ target: { value } }) => (handleStatusChange(value, setStatus)) }
         data-testid="customer_order_details__button-delivery-check"
       >
         Marcar como Entregue
