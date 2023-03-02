@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import LogoutButton from './LogoutButton';
 
 export default function navBar({ name, route }) {
   const ROUTE = route;
@@ -20,14 +21,7 @@ export default function navBar({ name, route }) {
       <div data-testid={ `${ROUTE}__element-navbar-user-full-name` }>
         {name}
       </div>
-      <Link to="/login">
-        <button
-          type="button"
-          data-testid={ `${ROUTE}__element-navbar-link-logout` }
-        >
-          sair
-        </button>
-      </Link>
+      <LogoutButton testId={ `${ROUTE}__element-navbar-link-logout` } />
     </nav>
   );
 }
