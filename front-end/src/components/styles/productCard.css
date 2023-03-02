@@ -1,0 +1,23 @@
+.card-product-container {
+  border: 1px solid #cfd5db;
+  padding: 10px 30px;
+  width: 240px;
+}
+
+.product-image {
+  width: 100%;
+}
+
+.div-product-image {
+  position: relative;
+}
+
+.product-price {
+  left: 0;
+  position: absolute;
+  top: 15px;
+}
+
+.card-quantity-input {
+  width: 30px;
+}

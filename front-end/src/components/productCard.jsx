@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import '../styles/productCard.css';
+import './styles/productCard.css';
 
 const BASE = 'customer_products';
 
@@ -18,8 +18,9 @@ class ProductCard extends Component {
     };
     return (
       <section data-testid="product" className="card-product-container">
-        <div className="product-image">
+        <div className="div-product-image">
           <img
+            className="product-image"
             data-testid={ `${BASE}__img-card-bg-image-${id}` }
             src={ thumbnail }
             alt={ title }
