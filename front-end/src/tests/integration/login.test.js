@@ -42,6 +42,21 @@ describe('Testa a tela de Login', () => {
           expect(login).toBeDisabled();
         },
       );
+
+      it(
+        `O botão deve estar desativado com um email no formato válido 
+        e senha com menos de 6 caracteres.`,
+        () => {
+          const email = screen.getByRole('textbox', { name: /login/i });
+          const password = screen.getByLabelText(/senha/i);
+          const login = screen.getByRole('button', { name: /login/i });
+
+          userEvent.type(email, 'zebirita@email.com');
+          userEvent.type(password, '12345');
+
+          expect(login).toBeDisabled();
+        },
+      );
     },
   );
 });
