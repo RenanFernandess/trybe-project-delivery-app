@@ -80,7 +80,12 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
                 ))}
               </tbody>
             </table>
-            <h3>{ `R$ ${total?.toFixed(2)}` }</h3>
+            <h3
+              data-testid="customer_order_details__element-order-total-price"
+            >
+              { `R$ ${total?.toFixed(2)}` }
+
+            </h3>
           </div>
 
         )

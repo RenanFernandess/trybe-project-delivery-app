@@ -28,7 +28,14 @@ export default function CustomerBar({ order, seller }) {
       <p data-testid={ `${DATATESTID}-delivery-status${1}` }>
         {status.toUpperCase()}
       </p>
-      <button type="button" onClick={ handleStatusChange }>Marcar como Entregue</button>
+      <button
+        type="button"
+        onClick={ handleStatusChange }
+        data-testid="customer_order_details__button-delivery-check"
+      >
+        Marcar como Entregue
+
+      </button>
     </div>
   );
 }
