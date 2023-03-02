@@ -1,7 +1,12 @@
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import LogoutButton from './LogoutButton';
+import userContext from '../context';
 
-export default function navBar({ name, route }) {
+export default function NavBar({ route }) {
+  const { name: userName } = useContext(userContext);
+
   const ROUTE = route;
   return (
     <nav>
@@ -18,21 +23,14 @@ export default function navBar({ name, route }) {
         </div>
       </Link>
       <div data-testid={ `${ROUTE}__element-navbar-user-full-name` }>
-        {name}
+        { userName }
       </div>
-      <Link to="/login">
-        <button
-          type="button"
-          data-testid={ `${ROUTE}__element-navbar-link-logout` }
-        >
-          sair
-        </button>
-      </Link>
+      <LogoutButton testId={ `${ROUTE}__element-navbar-link-logout` } />
     </nav>
   );
 }
 
-navBar.propTypes = {
+NavBar.propTypes = {
   name: PropTypes.string,
   route: PropTypes.string,
 }.isRequired;
