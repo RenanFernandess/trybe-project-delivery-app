@@ -59,7 +59,7 @@ export default function Form() {
       <button
         type="button"
         onClick={ () => history.push('/register') }
-        data-test-id="common_login__button-register"
+        data-testid="common_login__button-register"
       >
         Ainda não tenho conta
       </button>
