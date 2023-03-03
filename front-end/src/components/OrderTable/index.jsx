@@ -1,14 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Thead, { Tbody } from './components';
+import { cartContext } from '../../context';
 
 const WHICH_LOCATION = {
   '/customer/checkout': 'customer_checkout',
   '/customer/orders': 'customer_order_details',
   '/seller/orders': 'seller_order_details',
 };
-export default function OrderTable({ products = [] }) {
+export default function OrderTable() {
+  const { card: products } = useContext(cartContext);
   const { location: { pathname } } = useHistory();
   const LOCATION = WHICH_LOCATION[pathname];
   const isCheckout = (pathname === '/customer/checkout');
@@ -33,12 +34,3 @@ export default function OrderTable({ products = [] }) {
     </section>
   );
 }
-
-OrderTable.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    name: PropTypes.string.isRequired,
-    quantity: PropTypes.number.isRequired,
-    price: PropTypes.number.isRequired,
-  })).isRequired,
-};
