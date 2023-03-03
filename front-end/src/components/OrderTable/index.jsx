@@ -9,14 +9,10 @@ const WHICH_LOCATION = {
   '/seller/orders': 'seller_order_details',
 };
 export default function OrderTable() {
-  const { cart: products } = useContext(cartContext);
+  const { cart: products, totalPrice } = useContext(cartContext);
   const { location: { pathname } } = useHistory();
   const LOCATION = WHICH_LOCATION[pathname];
   const isCheckout = (pathname === '/customer/checkout');
-
-  const totalVaule = products.length ? products
-    .reduce((sum, { quantity, price }) => sum + (price * quantity), 0)
-    .toFixed(2) : 0.00;
 
   return (
     <section>
@@ -28,7 +24,7 @@ export default function OrderTable() {
         <p
           data-testid={ `${LOCATION}__element-order-total-price` }
         >
-          { `Total: R$ ${totalVaule}` }
+          { `Total: R$ ${totalPrice}` }
         </p>
       </div>
     </section>
