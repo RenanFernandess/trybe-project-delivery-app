@@ -1,22 +1,26 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import userContext from './userContext';
-import { saveToken } from '../../utils';
+import { saveUser } from '../../utils';
 
+const initialState = {
+  name: '',
+  role: '',
+  email: '',
+  token: '',
+  message: null,
+};
 export default function UserProvider({ children }) {
-  const [state, setState] = useState({
-    name: '',
-    role: '',
-    token: '',
-    message: null,
-  });
-  const { token } = state;
+  const [state, setState] = useState(initialState);
+  const { token, name, role, email } = state;
 
   const setUser = (user) => { setState((prevState) => ({ ...prevState, ...user })); };
 
-  useMemo(() => { saveToken(token); }, [token]);
+  const resetUser = () => setState(initialState);
 
-  const contextType = useMemo(() => ({ ...state, setUser }), [state]);
+  useMemo(() => { saveUser({ token, name, role, email }); }, [token, name, role, email]);
+
+  const contextType = useMemo(() => ({ ...state, setUser, resetUser }), [state]);
 
   return (
     <userContext.Provider value={ contextType }>

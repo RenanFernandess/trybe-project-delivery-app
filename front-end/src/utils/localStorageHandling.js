@@ -1,8 +1,8 @@
-const setItem = (body, key) => {
+const setItem = (key, body) => {
   localStorage.setItem(key, JSON.stringify(body));
 };
 
-const getItem = (key) => JSON.stringify(localStorage.getItem(key) || 'null');
+const getItem = (key) => JSON.parse(localStorage.getItem(key) || 'null');
 
 export default {
   setItem,

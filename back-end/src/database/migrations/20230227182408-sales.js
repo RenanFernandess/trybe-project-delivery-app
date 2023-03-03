@@ -1,13 +1,11 @@
-'use strict';
-
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     await queryInterface.createTable('sales', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       user_id: {
         allowNull: false,
@@ -47,10 +45,10 @@ module.exports = {
         type: Sequelize.STRING(50),
         defaultValue: 'Pendente',
       },
-    })
+    });
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('sales');
-  }
+  },
 };
