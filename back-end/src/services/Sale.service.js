@@ -44,9 +44,10 @@ class SaleService extends AbstractService {
   }
 
   async getByUserId(userId) {
-    return this.sale.find({
+    return this.sale.findAll({
       where: { userId },
     });
+    // return 'teste';
   }
 }
 

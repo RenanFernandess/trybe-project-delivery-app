@@ -1,18 +1,18 @@
 import getAPI from './getAPI';
-import USER_KEY, { localStorageHandling } from '.';
+import { localStorageHandling } from '.';
+// import USER_KEY from '../components';
 
-const { email } = localStorageHandling.getItem(USER_KEY);
-console.log(email);
+const email = localStorageHandling.getItem('user');
 
 const user = { id: '' };
-// const setUser = ;
 
 const getUserId = async () => {
-//   await getAPI(
-//     `/email/:${email}`,
-//     ({ id }) => { user.id = id; },
-//   );
-
+  if (email !== '') {
+    await getAPI(
+      `/login/email/${email.email}`,
+      ({ id }) => { user.id = id; },
+    );
+  }
   return user.id;
 };
 

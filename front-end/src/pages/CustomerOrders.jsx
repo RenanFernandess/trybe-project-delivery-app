@@ -15,11 +15,12 @@ export default function CustomerOrders() {
   const [orders, setOrders] = useState([]);
   const [id, setId] = useState('');
 
-  const route = `'/user/:${id}'`;
+  const route = `/sales/user/${id}'`;
 
   const getId = async () => {
     const userId = await getUserId();
     setId(userId);
+    // console.log(id);
   };
 
   const getOrders = async () => {
@@ -29,9 +30,10 @@ export default function CustomerOrders() {
     );
   };
 
-  getId();
-  console.log(id);
-  // getOrders();
+  useEffect(() => {
+    getId();
+    getOrders();
+  }, []);
 
   return (
     <div>

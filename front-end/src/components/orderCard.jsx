@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 export default function OrderCard({ route, order, index }) {
-  // const ROUTE = 'customer_orders';
   const ROUTE = route;
   return (
     <div>

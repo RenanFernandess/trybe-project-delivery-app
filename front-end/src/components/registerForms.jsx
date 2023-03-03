@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { postAPI, localStorageHandling } from '../utils';
-import id from '../constants/index';
+// import id, { USER_KEY } from '../constants/index';
 
 export default function RegisterForms() {
   const [name, setName] = useState('');
@@ -26,9 +26,9 @@ export default function RegisterForms() {
   }, [name, email, password]);
 
   useEffect(() => {
+    // CORRIGIR
     if (client.name === name) {
       history.push('/customer/products');
-      localStorageHandling.setItem(id, client.id);
     }
   }, [client]);
 
@@ -38,6 +38,7 @@ export default function RegisterForms() {
       (data) => setClient(data),
       { name, email, password, role: 'customer' },
     );
+    localStorageHandling.setItem(data, USER_KEY);
   };
 
   console.log(client);
