@@ -29,8 +29,7 @@ class ProductCard extends Component {
             data-testid={ `${BASE}__element-card-price-${id}` }
             className="product-price"
           >
-            R$
-            {price}
+            {price.replace('.', ',')}
           </span>
         </div>
 
@@ -76,7 +75,6 @@ class ProductCard extends Component {
                 ➕
               </button>
             </div>
-            )
 
           </div>
         </div>
