@@ -10,22 +10,35 @@ export default function NavBar({ route }) {
   const ROUTE = route;
   return (
     <nav>
-      { ROUTE === 'customer_products' && (
+      { ROUTE.includes('customer') && (
         <Link to="/customer/products">
-          <div data-testid={ `${ROUTE}__element-navbar-link-products` }>
+          <div data-testid="customer_products__element-navbar-link-products">
             produtos
           </div>
         </Link>
       ) }
-      <Link to="/customer/orders">
-        <div data-testid={ `${ROUTE}__element-navbar-link-orders` }>
-          {ROUTE === 'customer_products' ? 'meus pedidos' : 'pedidos'}
-        </div>
-      </Link>
-      <div data-testid={ `${ROUTE}__element-navbar-user-full-name` }>
+      {
+        (ROUTE.includes('customer') || ROUTE.includes('seller')) && (
+          <Link to={ `/${ROUTE}/orders` }>
+            <div data-testid="customer_products__element-navbar-link-orders">
+              {ROUTE.includes('customer') ? 'meus pedidos' : 'pedidos'}
+            </div>
+          </Link>
+        )
+      }
+      {
+        ROUTE.includes('admin') && (
+          <Link to="/admin/manage">
+            <div data-testid="customer_products__element-navbar-link-orders">
+              gerenciar usuários
+            </div>
+          </Link>
+        )
+      }
+      <div data-testid="customer_products__element-navbar-user-full-name">
         { userName }
       </div>
-      <LogoutButton testId={ `${ROUTE}__element-navbar-link-logout` } />
+      <LogoutButton testId="customer_products__element-navbar-link-logout" />
     </nav>
   );
 }

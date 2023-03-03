@@ -31,7 +31,7 @@ export default function Products() {
 
   return (
     <div>
-      <NavBar route="customer_products" />
+      <NavBar route="customer" />
       { loading
         ? <p>Loading...</p>
         : (

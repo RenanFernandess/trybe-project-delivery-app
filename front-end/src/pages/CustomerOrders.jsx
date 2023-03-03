@@ -31,7 +31,7 @@ export default function CustomerOrders() {
 
   return (
     <div>
-      <NavBar name="teste" route="customer_order" />
+      <NavBar name="teste" route="customer" />
       {
         orders.length > 0 && orders.map((order, index) => (
           <Link to={ `/customer/orders/${order.id}` } key={ order.id }>
