@@ -1,8 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import Thead, { Tbody } from './components';
 
-export default function OrderTable({ isCheckout, products }) {
+const WHICH_LOCATION = {
+  '/customer/checkout': 'customer_checkout',
+  '/customer/orders': 'customer_order_details',
+  '/seller/orders': 'seller_order_details',
+};
+export default function OrderTable({ products = [] }) {
+  const { location: { pathname } } = useHistory();
+  const LOCATION = WHICH_LOCATION[pathname];
+  const isCheckout = (pathname === '/customer/checkout');
+
   const totalVaule = products
     .reduce((sum, { quantity, price }) => sum + (price * quantity), 0)
     .toFixed(2);
@@ -11,22 +21,24 @@ export default function OrderTable({ isCheckout, products }) {
     <section>
       <table>
         <Thead isCheckout={ isCheckout } />
-        <Tbody isCheckout={ isCheckout } products={ products } />
+        <Tbody isCheckout={ isCheckout } location={ LOCATION } products={ products } />
       </table>
       <div>
-        <p>{ `Total: R$ ${totalVaule}` }</p>
+        <p
+          data-testid={ `${LOCATION}__element-order-total-price` }
+        >
+          { `Total: R$ ${totalVaule}` }
+        </p>
       </div>
     </section>
   );
 }
 
 OrderTable.propTypes = {
-  isCheckout: PropTypes.bool.isRequired,
-  products: PropTypes.arrayOf(PropTypes.objectOf({
+  products: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    description: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     quantity: PropTypes.number.isRequired,
     price: PropTypes.number.isRequired,
-    isCheckout: PropTypes.bool.isRequired,
   })).isRequired,
 };
