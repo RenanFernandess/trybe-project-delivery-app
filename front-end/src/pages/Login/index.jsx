@@ -6,7 +6,7 @@ import Logo, { Form } from './components';
 const REDIRECT_PATHS = {
   customer: '/customer/products',
   seller: '/seller/orders',
-  administrator: '/administrator/manage',
+  administrator: '/admin/manage',
 };
 
 export default function Login() {
