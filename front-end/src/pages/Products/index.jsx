@@ -1,33 +1,81 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar, { ProductCard } from '../../components';
-import { getAPI } from '../../utils';
+import { getAPI, localStorageHandling } from '../../utils';
+
+const { getLocalStorage, setStorageArray } = localStorageHandling;
+const CART_KEY = 'cart';
 
 export default function Products() {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
-  // const [cartList, setCartList] = useState([]);
+  const [cartList, setCartList] = useState([]);
+  const [indexToChange, setIndexToChange] = useState();
+  const [storage, setStorage] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  const setInitialValues = (localStorage) => {
+    setCartList((prev) => prev.map((item, index) => {
+      const match = localStorage.find((i) => i.id - 1 === index);
+      if (match) {
+        return match.quantity;
+      }
+      return item;
+    }));
+  };
 
   useEffect(() => {
     const getProcuctList = async () => {
       await getAPI('/products', (data) => {
         setProducts(data);
         setLoading(false);
-        console.log(products);
       });
     };
     getProcuctList();
+    setStorage(getLocalStorage(CART_KEY));
   }, []);
 
-  const handleCardBtn = ({ target }, product) => {
+  useEffect(() => {
+    const localStorage = getLocalStorage(CART_KEY);
+    setCartList(products.map(() => 0));
+    setInitialValues(localStorage);
+  }, [products]);
+
+  const handleCardBtn = ({ target }, index) => {
     const { name } = target;
     if (name === 'addButton') {
-      product.quantity += 1;
+      setCartList((prev) => prev.map((p, ind) => (ind === index ? p + 1 : p)));
     }
-    if ((name === 'minusButton') && (product.quantity > 1)) {
-      product.quantity -= 1;
+    if ((name === 'minusButton') && (cartList[index] > 0)) {
+      setCartList((prev) => prev.map((p, ind) => (ind === index ? p - 1 : p)));
     }
-    // setItem(product);
+    setIndexToChange(index);
   };
+
+  const handleChange = (value, index) => {
+    setCartList((prev) => prev.map((p, ind) => (ind === index ? +value : p)));
+    setIndexToChange(index);
+  };
+
+  const setStorageInfo = (cart, product) => {
+    const { urlImage, ...persist } = product;
+    const infoToStore = { ...persist, quantity: cartList[indexToChange] };
+    const localStorage = setStorageArray(cart, infoToStore, CART_KEY);
+    setStorage(localStorage);
+  };
+
+  useEffect(() => {
+    if (indexToChange !== undefined) {
+      const cart = getLocalStorage(CART_KEY);
+      setStorageInfo(cart, products[indexToChange]);
+    }
+  }, [cartList]);
+
+  useEffect(() => {
+    const newTotal = storage
+      .reduce((acc, { quantity, price }) => acc + (+price * quantity), 0);
+    setTotal(newTotal);
+  }, [storage]);
 
   return (
     <div>
@@ -36,18 +84,35 @@ export default function Products() {
         ? <p>Loading...</p>
         : (
           <section className="product-list-container">
-            { products.map(({ id, name, urlImage, price }) => (<ProductCard
+            { products.map(({ id, name, urlImage, price }, index) => (<ProductCard
               key={ id }
               id={ id }
               title={ name }
               thumbnail={ urlImage }
               price={ price }
-              quantity={ /* product.quantity */ 0 }
+              quantity={ cartList[index] }
               onClick={ handleCardBtn }
+              onChange={ handleChange }
+              index={ index }
             />)) }
 
           </section>
         ) }
+      <Link to="/customer/checkout">
+        <button
+          type="button"
+        >
+          <span data-testid="customer_products__button-cart">Meu Carrinho R$</span>
+          <span
+            data-testid="customer_products__checkout-bottom-value"
+          >
+            { total.toFixed(2).replace('.', ',') }
+
+          </span>
+
+        </button>
+
+      </Link>
     </div>
   );
 }
