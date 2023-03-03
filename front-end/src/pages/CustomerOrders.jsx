@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import NavBar from '../components/navBar';
 import OrderCard from '../components/orderCard';
 import { getAPI } from '../utils';

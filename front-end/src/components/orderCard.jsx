@@ -24,7 +24,7 @@ export default function OrderCard({ route, order, index }) {
       <div>
         <p>R$</p>
         <p data-testid={ `${ROUTE}__element-card-price-${order.id}` }>
-          {order.totalPrice.replace('.', ',')}
+          {order.totalPrice}
         </p>
       </div>
       {

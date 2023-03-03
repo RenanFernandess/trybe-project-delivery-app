@@ -18,8 +18,6 @@ export default function Form() {
       && (EMAIL_REGEXP.test(email))));
   }, [email, password]);
 
-  console.log(disabled);
-
   const login = () => {
     postAPI('/login', (user) => setUser(user), { email, password });
   };

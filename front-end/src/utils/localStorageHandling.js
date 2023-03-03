@@ -1,4 +1,4 @@
-const setItem = (body, key) => {
+const setItem = (key, body) => {
   localStorage.setItem(key, JSON.stringify(body));
 };
 

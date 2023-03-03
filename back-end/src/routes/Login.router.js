@@ -8,7 +8,7 @@ router.get('/:id', (req, res, next) => new LoginController(req, res, next).getBy
 router.get('/email/:email', (req, res, next) => new LoginController(req, res, next).getByEmail());
 router.get('/role/:role', (req, res, next) => new LoginController(req, res, next).getByRole());
 router.post('/', (req, res, next) => new LoginController(req, res, next).login());
-router.put('/:id', (req, res, next) => new LoginController(req, res, next).update());
+// router.put('/:id', (req, res, next) => new LoginController(req, res, next).update());
 router.delete('/:id', (req, res, next) => new LoginController(req, res, next).remove());
 
 module.exports = router;

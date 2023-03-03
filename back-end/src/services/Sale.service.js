@@ -10,7 +10,7 @@ class SaleService extends AbstractService {
   }
 
   async getById(id) {
-    const result = await this.sale.findOne({
+    const { dataValues } = await this.sale.findOne({
       where: { id },
       include: [
         { model: SaleProduct, as: 'productsSold', attributes: { exclude: ['saleId'] } },
@@ -18,12 +18,12 @@ class SaleService extends AbstractService {
     ],
     });
 
-    const products = result.products.map((item, index) => ({
+    const products = dataValues.products.map((item, index) => ({
       productName: item.name,
       price: item.price,
-      quantity: result.productsSold[index].quantity,
+      quantity: dataValues.productsSold[index].quantity,
     }));
-    const { productsSold: _, ...remain } = result.dataValues;
+    const { productsSold: _, ...remain } = dataValues;
     return { ...remain, products };
   }
 

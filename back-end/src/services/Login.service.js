@@ -12,7 +12,11 @@ class LoginService extends AbstractService {
 
   async getByRole(role) {
     const result = await this.user.findAll({ where: { role } });
-    return result;
+    const removePassword = result.map((i) => {
+      const { password: _, ...userWithoutPassword } = i.dataValues;
+      return userWithoutPassword;
+    });
+    return removePassword;
   }
 
   async getByEmail(email) {
