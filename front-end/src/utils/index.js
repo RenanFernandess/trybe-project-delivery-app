@@ -3,6 +3,7 @@ import postAPI from './postAPI';
 import localStorageHandling from './localStorageHandling';
 import saveUser, { getUser } from './saveUser';
 import getAPI from './getAPI';
+import patchAPI from './patchAPI';
 
 export default fetchAPI;
 export {
@@ -11,4 +12,5 @@ export {
   saveUser,
   getUser,
   getAPI,
+  patchAPI,
 };
