@@ -4,6 +4,7 @@ import userContext from './userContext';
 import { saveUser } from '../../utils';
 
 const initialState = {
+  id: 0,
   name: '',
   role: '',
   email: '',
