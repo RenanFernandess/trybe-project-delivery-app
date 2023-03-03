@@ -10,7 +10,6 @@ export default function LogoutButton({ testId }) {
   const logout = () => {
     resetUser();
     localStorage.clear();
-    sessionStorage.clear();
     history.push('/');
   };
 
