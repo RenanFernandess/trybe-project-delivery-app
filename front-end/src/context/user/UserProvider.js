@@ -18,7 +18,9 @@ export default function UserProvider({ children }) {
 
   const resetUser = () => setState(initialState);
 
-  useMemo(() => { saveUser({ token, name, role, email }); }, [token, name, role, email]);
+  useMemo(() => {
+    if (token) saveUser({ token, name, role, email });
+  }, [token, name, role, email]);
 
   const contextType = useMemo(() => ({ ...state, setUser, resetUser }), [state]);
 
