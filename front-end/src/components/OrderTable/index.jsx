@@ -9,14 +9,14 @@ const WHICH_LOCATION = {
   '/seller/orders': 'seller_order_details',
 };
 export default function OrderTable() {
-  const { card: products } = useContext(cartContext);
+  const { cart: products } = useContext(cartContext);
   const { location: { pathname } } = useHistory();
   const LOCATION = WHICH_LOCATION[pathname];
   const isCheckout = (pathname === '/customer/checkout');
 
-  const totalVaule = products
+  const totalVaule = products.length ? products
     .reduce((sum, { quantity, price }) => sum + (price * quantity), 0)
-    .toFixed(2);
+    .toFixed(2) : 0.00;
 
   return (
     <section>
