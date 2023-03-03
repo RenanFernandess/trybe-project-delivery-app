@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+
 const readFile = require('fs');
 
 const getToken = (payload) => {
