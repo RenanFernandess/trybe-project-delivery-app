@@ -30,7 +30,7 @@ class AbstractService {
 
   async remove(id) {
     const removed = await this.model.destroy({ where: { id } });
-    if (!removed) throw new HttpException(404, 'Not found');
+    if (!removed) throw new HttpException(404, 'Not Found');
     return removed;
   }
 }

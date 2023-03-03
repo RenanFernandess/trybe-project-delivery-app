@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Login, { Checkout, CustomerOrder, Products, Register } from './pages';
+import Login, { CustomerOrder, Products, Register, OrderDetails, Checkout } from './pages';
 
 function App() {
   return (
@@ -17,6 +17,8 @@ function App() {
         <Route exact path="/customer/products" component={ Products } />
         <Route exact path="/customer/checkout" component={ Checkout } />
         <Route exact path="/customer/orders" component={ CustomerOrder } />
+        <Route exact path="/customer/orders/:id" component={ OrderDetails } />
+        <Route exact path="/seller/orders/:id" component={ OrderDetails } />
       </Switch>
     </main>
   );

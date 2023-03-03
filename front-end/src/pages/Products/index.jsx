@@ -1,57 +1,118 @@
 import React, { useState, useEffect } from 'react';
-import NavBar from '../../components';
-import { getAPI } from '../../utils';
+import { Link } from 'react-router-dom';
+import NavBar, { ProductCard } from '../../components';
+import { getAPI, localStorageHandling } from '../../utils';
+
+const { getLocalStorage, setStorageArray } = localStorageHandling;
+const CART_KEY = 'cart';
 
 export default function Products() {
-  const [/* loading */, setLoading] = useState(true);
-  const [/* products */, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [cartList, setCartList] = useState([]);
+  const [indexToChange, setIndexToChange] = useState();
+  const [storage, setStorage] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  const setInitialValues = (localStorage) => {
+    setCartList((prev) => prev.map((item, index) => {
+      const match = localStorage.find((i) => i.id - 1 === index);
+      if (match) {
+        return match.quantity;
+      }
+      return item;
+    }));
+  };
 
   useEffect(() => {
-    getAPI('/products', (data) => {
-      setProducts(data);
-      setLoading(false);
-    });
+    const getProcuctList = async () => {
+      await getAPI('/products', (data) => {
+        setProducts(data);
+        setLoading(false);
+      });
+    };
+    getProcuctList();
+    setStorage(getLocalStorage(CART_KEY));
   }, []);
 
-  // const addProductQuantity = (product, quantity) => {
-  //   product.quantity += quantity;
-  //   setItem(product);
-  // };
+  useEffect(() => {
+    const localStorage = getLocalStorage(CART_KEY);
+    setCartList(products.map(() => 0));
+    setInitialValues(localStorage);
+  }, [products]);
 
-  // const subtractProductQuantity = (product, quantity) => {
-  //   product.quantity -= quantity;
-  //   setItem(product);
-  // };
+  const handleCardBtn = ({ target }, index) => {
+    const { name } = target;
+    if (name === 'addButton') {
+      setCartList((prev) => prev.map((p, ind) => (ind === index ? p + 1 : p)));
+    }
+    if ((name === 'minusButton') && (cartList[index] > 0)) {
+      setCartList((prev) => prev.map((p, ind) => (ind === index ? p - 1 : p)));
+    }
+    setIndexToChange(index);
+  };
 
-  // const handleCardBtn = ({ target }, product) => {
-  //   const { name } = target;
-  //   if (name === 'addButton') {
-  //     addProductQuantity(product, 1);
-  //   }
-  //   if ((name === 'minusButton') && (product.quantity > 1)) {
-  //     subtractProductQuantity(product, 1);
-  //   }
-  // };
+  const handleChange = (value, index) => {
+    setCartList((prev) => prev.map((p, ind) => (ind === index ? +value : p)));
+    setIndexToChange(index);
+  };
+
+  const setStorageInfo = (cart, product) => {
+    const { urlImage, ...persist } = product;
+    const infoToStore = { ...persist, quantity: cartList[indexToChange] };
+    const localStorage = setStorageArray(cart, infoToStore, CART_KEY);
+    setStorage(localStorage);
+  };
+
+  useEffect(() => {
+    if (indexToChange !== undefined) {
+      const cart = getLocalStorage(CART_KEY);
+      setStorageInfo(cart, products[indexToChange]);
+    }
+  }, [cartList]);
+
+  useEffect(() => {
+    const newTotal = storage
+      .reduce((acc, { quantity, price }) => acc + (+price * quantity), 0);
+    setTotal(newTotal);
+  }, [storage]);
 
   return (
     <div>
-      <NavBar name="rdeola@teste.com" route="customer_products" />
-      {/* { loading
+      <NavBar route="customer_products" />
+      { loading
         ? <p>Loading...</p>
         : (
-          <section>
-            { products.map((product) => (<ProductCard
-              key={ product.id }
-              id={ product.id }
-              title={ product.name }
-              thumbnail={ product.urlImage }
-              price={ product.price }
-              quantity={ product.quantity }
-              onClick={ () => handleCardBtn(e, product) }
+          <section className="product-list-container">
+            { products.map(({ id, name, urlImage, price }, index) => (<ProductCard
+              key={ id }
+              id={ id }
+              title={ name }
+              thumbnail={ urlImage }
+              price={ price }
+              quantity={ cartList[index] }
+              onClick={ handleCardBtn }
+              onChange={ handleChange }
+              index={ index }
             />)) }
-            {products.map((product) => product)}
+
           </section>
-        ) } */}
+        ) }
+      <Link to="/customer/checkout">
+        <button
+          type="button"
+        >
+          <span data-testid="customer_products__button-cart">Meu Carrinho R$</span>
+          <span
+            data-testid="customer_products__checkout-bottom-value"
+          >
+            { total.toFixed(2).replace('.', ',') }
+
+          </span>
+
+        </button>
+
+      </Link>
     </div>
   );
 }
