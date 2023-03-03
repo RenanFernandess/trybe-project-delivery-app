@@ -5,7 +5,13 @@ import cartContext from './cartContext';
 export default function CartProvider({ children }) {
   const [cart, setCart] = useState([]);
 
-  const contextType = useMemo(() => ({ cart, setCart }), [cart]);
+  const contextType = useMemo(() => ({
+    cart,
+    setCart,
+    totalPrice: (cart
+      .reduce((sum, { quantity, price }) => sum + (price * quantity), 0)
+      .toFixed(2)),
+  }), [cart]);
 
   return (
     <cartContext.Provider value={ contextType }>
