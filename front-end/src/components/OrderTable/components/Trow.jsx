@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RemoveButton from './RemoveButton';
 
 export default function Trow(
   { id, description, price, isCheckout, quantity, location, index },
@@ -24,11 +25,7 @@ export default function Trow(
       {
         isCheckout && (
           <td data-testid={ `customer_checkout__element-order-table-remove-${index}` }>
-            <button
-              type="button"
-            >
-              Remover
-            </button>
+            <RemoveButton id={ id } />
           </td>
         )
       }
