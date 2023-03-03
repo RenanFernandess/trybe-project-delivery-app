@@ -1,17 +1,11 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from '../components/navBar';
 import OrderCard from '../components/orderCard';
 import { getAPI } from '../utils';
 import getUserId from '../utils/getUserId';
 
 export default function CustomerOrders() {
-  // const orderMock = {
-  //   id: 8921912,
-  //   totalPrice: '100.00',
-  //   deliveryAddress: 'R. teste, 123',
-  //   saleDate: '22-10-1980',
-  //   status: 'enviado',
-  // };
   const [orders, setOrders] = useState([]);
   const [id, setId] = useState('');
 
@@ -40,12 +34,13 @@ export default function CustomerOrders() {
       <NavBar name="teste" route="customer_order" />
       {
         orders.length > 0 && orders.map((order, index) => (
-          <OrderCard
-            route="customer_order"
-            key={ order.id }
-            order={ order }
-            index={ index }
-          />
+          <Link to={ `/customer/orders/${order.id}` } key={ order.id }>
+            <OrderCard
+              route="customer_order"
+              order={ order }
+              index={ index }
+            />
+          </Link>
         ))
       }
     </div>
