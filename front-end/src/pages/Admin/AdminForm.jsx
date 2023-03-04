@@ -4,7 +4,8 @@ import { postWithTokenAPI } from '../../utils';
 
 const TESTID = 'admin_manage__';
 
-const ROLES = ['admin', 'seller', 'customer'];
+const ROLES_DB = ['admin', 'seller', 'customer'];
+const ROLES_TO_SHOW = ['Administrador', 'P. Vendedora', 'Cliente'];
 
 export default function AdminForm({ setUsers, token }) {
   const [name, setName] = useState('');
@@ -67,8 +68,8 @@ export default function AdminForm({ setUsers, token }) {
         onChange={ (e) => handleChange(e, setRole) }
       >
         {
-          ROLES.map((r) => (
-            <option key={ r } value={ r }>{r}</option>
+          ROLES_DB.map((r, index) => (
+            <option key={ r } value={ r }>{ROLES_TO_SHOW[index]}</option>
           ))
         }
       </select>
