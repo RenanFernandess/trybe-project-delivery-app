@@ -1,11 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { deleteAPI, getAPI } from '../../utils';
 
 const TABLE_HEADERS = ['Item', 'Nome', 'E-mail', 'Tipo', 'Excluir'];
 const IDVALUE = ['name', 'email', 'role', 'remove'];
 const TESTIDTABLE = 'admin_manage__element-user-table';
 
-export default function UsersTable({ users }) {
+export default function UsersTable({ users, setUsers }) {
+  const handleExcludeBtn = async (user) => {
+    const { id } = users.find((u) => u.name === user.name);
+    if (id) {
+      await deleteAPI(`/login/${id}`, console.log);
+      await getAPI('/login', setUsers);
+    }
+  };
+
   return (
     <table>
       <thead>
@@ -40,6 +49,7 @@ export default function UsersTable({ users }) {
                 }
                 <td>
                   <button
+                    onClick={ () => handleExcludeBtn(user) }
                     type="button"
                     data-testid={ `${TESTIDTABLE}-${IDVALUE[3]}-${index}` }
                   >
@@ -59,4 +69,5 @@ UsersTable.propTypes = {
   users: PropTypes.arrayOf(
     PropTypes.shape().isRequired,
   ).isRequired,
+  setUsers: PropTypes.func.isRequired,
 };

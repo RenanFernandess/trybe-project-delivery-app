@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { postAPI } from '../../utils';
+import { postWithTokenAPI } from '../../utils';
 
 const TESTID = 'admin_manage__';
 
 const ROLES = ['admin', 'seller', 'customer'];
 
-export default function AdminForm({ setUsers }) {
+export default function AdminForm({ setUsers, token }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
 
-  const handleChange = (value, setter) => {
+  const handleChange = (event, setter) => {
+    event.preventDefault(event);
+    const { target: { value } } = event;
     setter(value);
   };
 
@@ -21,7 +23,12 @@ export default function AdminForm({ setUsers }) {
   };
 
   const handleSubmit = () => {
-    postAPI('/register', resetUsers, { name, email, password, role });
+    postWithTokenAPI(
+      '/admin/register',
+      resetUsers,
+      { name, email, password, role },
+      token,
+    );
   };
 
   return (
@@ -34,7 +41,7 @@ export default function AdminForm({ setUsers }) {
         data-testid={ `${TESTID}input-name` }
         name="name"
         value={ name }
-        onChange={ ({ target: { value } }) => handleChange(value, setName) }
+        onChange={ (e) => handleChange(e, setName) }
       />
       <input
         placeholder="Email"
@@ -42,7 +49,7 @@ export default function AdminForm({ setUsers }) {
         data-testid={ `${TESTID}input-email` }
         name="email"
         value={ email }
-        onChange={ ({ target: { value } }) => handleChange(value, setEmail) }
+        onChange={ (e) => handleChange(e, setEmail) }
       />
       <input
         placeholder="Senha"
@@ -50,14 +57,14 @@ export default function AdminForm({ setUsers }) {
         data-testid={ `${TESTID}input-password` }
         name="password"
         value={ password }
-        onChange={ ({ target: { value } }) => handleChange(value, setPassword) }
+        onChange={ (e) => handleChange(e, setPassword) }
       />
       <select
         data-testid={ `${TESTID}select-role` }
         name="role"
         id="roles"
         value={ role }
-        onChange={ ({ target: { value } }) => handleChange(value, setRole) }
+        onChange={ (e) => handleChange(e, setRole) }
       >
         {
           ROLES.map((r) => (
@@ -79,4 +86,5 @@ export default function AdminForm({ setUsers }) {
 
 AdminForm.propTypes = {
   setUsers: PropTypes.func.isRequired,
+  token: PropTypes.string.isRequired,
 };
