@@ -14,7 +14,7 @@ const verifyToken = (authorization) => {
     const payload = jwt.verify(authorization, secret);
     return payload;
   } catch (error) {
-    return { isError: true };
+    throw new Error('ERROR');
   }
 };
 module.exports = { getToken, verifyToken };

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavBar, { ProductCard } from '../../components';
+import { CART_KEY } from '../../constants';
 import { getAPI, localStorageHandling } from '../../utils';
 
 const { getLocalStorage, setStorageArray } = localStorageHandling;
-const CART_KEY = 'cart';
 
 export default function Products() {
   const [loading, setLoading] = useState(true);

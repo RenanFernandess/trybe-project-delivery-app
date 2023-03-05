@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import userContext, { cartContext } from '../../../context';
-import { getAPI, postAPI } from '../../../utils';
+import { getAPI, postWithTokenAPI } from '../../../utils';
 
 export default function Form() {
-  const { id: userId } = useContext(userContext);
+  const { id: userId, token } = useContext(userContext);
   const { cart: products, totalPrice } = useContext(cartContext);
   const history = useHistory();
   const [loading, setLoadion] = useState(true);
@@ -17,21 +17,26 @@ export default function Form() {
     getAPI('/login/role/seller', (data) => {
       setLoadion(false);
       setSellers(data);
+      setSeller(data[0].id);
     });
   }, []);
 
-  const finish = () => {
+  const finish = async () => {
+    const formatProducts = products
+      .map(({ id, quantity }) => ({ productId: id, quantity }));
     const body = {
       userId,
       sellerId: seller,
-      totalPrice,
+      totalPrice: +totalPrice,
       deliveryAddress: address,
       deliveryNumber: number,
-      products,
+      products: formatProducts,
     };
-    postAPI('/sales', ({ id }) => {
-      history.push(`/customer/orders/${id}`);
-    }, body);
+    await postWithTokenAPI('/sales', (data) => {
+      console.log(data);
+      history.push(`/customer/orders/${data.id}`);
+    }, body, token);
+    localStorage.removeItem('cart');
   };
 
   return (
@@ -45,6 +50,7 @@ export default function Form() {
               name="seller"
               id="checkout-select-seller"
               value={ seller }
+              data-testid="customer_checkout__select-seller"
               onChange={ ({ target: { value } }) => { setSeller(Number(value)); } }
             >
               { sellers.map(({ id, name }) => (
@@ -58,9 +64,9 @@ export default function Form() {
               type="text"
               name="address"
               value={ address }
-              onChange={ ({ target: { value } }) => setAddress(Number(value)) }
+              onChange={ ({ target: { value } }) => setAddress(value) }
               id="checkout-input-address"
-              placeholder="Travessa Terceira da Castanheira, Bairro Muruci"
+              placeholder=""
               data-testid="customer_checkout__input-address"
             />
           </label>
@@ -78,6 +84,7 @@ export default function Form() {
           </label>
           <button
             type="button"
+            data-testid="customer_checkout__button-submit-order"
             onClick={ finish }
           >
             FINALIZAR PEDIDO
