@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { patchAPI } from '../../utils';
 
 export const SELLER_TESTID = 'seller_order_details';
@@ -22,9 +23,9 @@ export default function SellerBar({ order }) {
         {order?.id.toString().padStart(PADNUMBER, '0')}
       </h3>
       <p data-testid={ `${DATATESTID}-order-date` }>
-        {new Date(order?.saleDate.split('T')[0]).toLocaleDateString()}
+        { moment(order?.saleDate).format('DD/MM/YYYY') }
       </p>
-      <p data-testid={ `${DATATESTID}-delivery-status${order.id}` }>
+      <p data-testid={ `${DATATESTID}-delivery-status` }>
         {status.toUpperCase()}
       </p>
       <button
