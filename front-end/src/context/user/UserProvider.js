@@ -4,6 +4,7 @@ import userContext from './userContext';
 import { saveUser } from '../../utils';
 
 const initialState = {
+  id: 0,
   name: '',
   role: '',
   email: '',
@@ -16,9 +17,11 @@ export default function UserProvider({ children }) {
 
   const setUser = (user) => { setState((prevState) => ({ ...prevState, ...user })); };
 
-  const resetUser = () => setState(initialState);
+  const resetUser = async () => setState(initialState);
 
-  useMemo(() => { saveUser({ token, name, role, email }); }, [token, name, role, email]);
+  useMemo(() => {
+    if (token) saveUser({ token, name, role, email });
+  }, [token, name, role, email]);
 
   const contextType = useMemo(() => ({ ...state, setUser, resetUser }), [state]);
 
