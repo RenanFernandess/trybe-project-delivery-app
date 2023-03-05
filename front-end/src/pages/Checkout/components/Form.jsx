@@ -32,8 +32,9 @@ export default function Form() {
       deliveryNumber: number,
       products: formatProducts,
     };
-    await postWithTokenAPI('/sales', ({ id }) => {
-      history.push(`/customer/orders/${id}`);
+    await postWithTokenAPI('/sales', (data) => {
+      console.log(data);
+      history.push(`/customer/orders/${data.id}`);
     }, body, token);
     localStorage.removeItem('cart');
   };

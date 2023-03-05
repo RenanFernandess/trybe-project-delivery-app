@@ -5,7 +5,7 @@ export default async function postWithTokenAPI(path, callback, body, token) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      authorization: JSON.stringify(token),
+      authorization: token,
     },
     body: JSON.stringify(body),
   };

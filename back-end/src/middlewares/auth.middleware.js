@@ -5,7 +5,7 @@ const authMiddleware = (req, res, next) => {
   const token = req.header('authorization');
 
   if (!token) {
-    throw new HttpException(401, 'Token must be a valid token');
+    throw new HttpException(401, 'Token must exist');
   }
 
   try {
