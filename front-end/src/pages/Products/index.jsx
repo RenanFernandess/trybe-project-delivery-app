@@ -17,10 +17,7 @@ export default function Products() {
   const setInitialValues = (localStorage) => {
     setCartList((prev) => prev.map((item, index) => {
       const match = localStorage.find((i) => i.id - 1 === index);
-      if (match) {
-        return match.quantity;
-      }
-      return item;
+      return match ? match.quantity : item;
     }));
   };
 
@@ -100,9 +97,11 @@ export default function Products() {
         ) }
       <Link to="/customer/checkout">
         <button
+          data-testid="customer_products__button-cart"
           type="button"
+          disabled={ +total === 0 }
         >
-          <span data-testid="customer_products__button-cart">Meu Carrinho R$</span>
+          <span>Meu Carrinho R$</span>
           <span
             data-testid="customer_products__checkout-bottom-value"
           >
@@ -111,7 +110,6 @@ export default function Products() {
           </span>
 
         </button>
-
       </Link>
     </div>
   );
