@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import userContext, { cartContext } from '../../../context';
-import { getAPI, postAPI } from '../../../utils';
+import { getAPI, postWithTokenAPI } from '../../../utils';
 
 export default function Form() {
-  const { id: userId } = useContext(userContext);
+  const { id: userId, token } = useContext(userContext);
   const { cart: products, totalPrice } = useContext(cartContext);
   const history = useHistory();
   const [loading, setLoadion] = useState(true);
@@ -32,9 +32,9 @@ export default function Form() {
       deliveryNumber: number,
       products: formatProducts,
     };
-    await postAPI('/sales', ({ id }) => {
+    await postWithTokenAPI('/sales', ({ id }) => {
       history.push(`/customer/orders/${id}`);
-    }, body);
+    }, body, token);
     localStorage.removeItem('cart');
   };
 

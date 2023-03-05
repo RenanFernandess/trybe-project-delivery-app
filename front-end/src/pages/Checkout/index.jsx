@@ -7,13 +7,6 @@ import { localStorageHandling } from '../../utils';
 
 const { getLocalStorage } = localStorageHandling;
 
-// const p = {
-//   id: 1,
-//   name: 'xablau',
-//   price: 2.99,
-//   quantity: 3,
-// };
-
 export default function Checkout() {
   const { setCart } = useContext(cartContext);
 

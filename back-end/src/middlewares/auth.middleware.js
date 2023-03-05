@@ -2,7 +2,7 @@ const HttpException = require('../utils/HttpException');
 const { verifyToken } = require('../utils/Token');
 
 const authMiddleware = (req, res, next) => {
-  const token = req.header('Authorization');
+  const token = req.header('authorization');
 
   if (!token) {
     throw new HttpException(401, 'Token must be a valid token');
@@ -10,9 +10,6 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const decoded = verifyToken(token);
-    if (decoded.payload.role !== 'administrator') {
-      throw new HttpException(401, 'not adm');
-    }
     req.body.decoded = decoded;
     return next();
   } catch (error) {
