@@ -8,7 +8,7 @@ export default function Trow(
   return (
     <tr>
       <td data-testid={ `${location}__element-order-table-item-number-${index}` }>
-        { id }
+        { index + 1 }
       </td>
       <td data-testid={ `${location}__element-order-table-name-${index}` }>
         { description }
