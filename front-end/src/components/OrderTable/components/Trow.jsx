@@ -17,10 +17,10 @@ export default function Trow(
         { quantity }
       </td>
       <td data-testid={ `${location}__element-order-table-unit-price-${index}` }>
-        { `R$${price}` }
+        { `${price.replace('.', ',')}` }
       </td>
       <td data-testid={ `${location}__element-order-table-sub-total-${index}` }>
-        { `R$${(price * quantity).toFixed(2)}` }
+        { `R$${((price * quantity).toFixed(2)).replace('.', ',')}` }
       </td>
       {
         isCheckout && (

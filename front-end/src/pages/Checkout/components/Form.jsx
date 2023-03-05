@@ -32,6 +32,7 @@ export default function Form() {
     postAPI('/sales', ({ id }) => {
       history.push(`/customer/orders/${id}`);
     }, body);
+    localStorage.removeItem('cart');
   };
 
   return (
@@ -45,6 +46,7 @@ export default function Form() {
               name="seller"
               id="checkout-select-seller"
               value={ seller }
+              data-testid="customer_checkout__select-seller"
               onChange={ ({ target: { value } }) => { setSeller(Number(value)); } }
             >
               { sellers.map(({ id, name }) => (
@@ -78,6 +80,7 @@ export default function Form() {
           </label>
           <button
             type="button"
+            data-testid="customer_checkout__button-submit-order"
             onClick={ finish }
           >
             FINALIZAR PEDIDO
