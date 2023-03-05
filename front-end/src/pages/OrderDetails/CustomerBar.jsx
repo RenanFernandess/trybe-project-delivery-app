@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { patchAPI } from '../../utils';
 import { PADNUMBER } from './SellerBar';
 
@@ -13,7 +14,11 @@ export default function CustomerBar({ order, seller }) {
   const handleStatusChange = async (value, setter) => {
     setter(value);
     if (status !== DELIVERED) {
-      await patchAPI(`/sales/status/${order?.id}`, console.log, { status: DELIVERED });
+      await patchAPI(
+        `/sales/status/${order?.id}`,
+        console.log,
+        { status: DELIVERED },
+      );
     }
   };
   return (
@@ -25,13 +30,14 @@ export default function CustomerBar({ order, seller }) {
         {`P. Vend: ${seller.name}`}
       </p>
       <p data-testid={ `${DATATESTID}-order-date` }>
-        {new Date(order?.saleDate.split('T')[0]).toLocaleDateString()}
+        { moment(order?.saleDate).format('DD/MM/YYYY') }
       </p>
       <p data-testid={ `${DATATESTID}-delivery-status${1}` }>
-        {status.toUpperCase()}
+        { status }
       </p>
       <button
         type="button"
+        disabled={ status !== 'Em Trânsito' }
         value={ DELIVERED }
         onClick={ ({ target: { value } }) => (handleStatusChange(value, setStatus)) }
         data-testid="customer_order_details__button-delivery-check"
