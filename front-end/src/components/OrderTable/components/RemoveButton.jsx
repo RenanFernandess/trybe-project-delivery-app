@@ -14,7 +14,6 @@ export default function RemoveButton({ id: productId }) {
   };
 
   useEffect(() => {
-    console.log('cart', cart);
     setItem(CART_KEY, cart);
   }, [cart]);
 

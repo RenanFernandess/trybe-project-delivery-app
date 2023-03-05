@@ -17,19 +17,22 @@ export default function Form() {
     getAPI('/login/role/seller', (data) => {
       setLoadion(false);
       setSellers(data);
+      setSeller(data[0].id);
     });
   }, []);
 
-  const finish = () => {
+  const finish = async () => {
+    const formatProducts = products
+      .map(({ id, quantity }) => ({ productId: id, quantity }));
     const body = {
       userId,
       sellerId: seller,
-      totalPrice,
+      totalPrice: +totalPrice,
       deliveryAddress: address,
       deliveryNumber: number,
-      products,
+      products: formatProducts,
     };
-    postAPI('/sales', ({ id }) => {
+    await postAPI('/sales', ({ id }) => {
       history.push(`/customer/orders/${id}`);
     }, body);
     localStorage.removeItem('cart');
@@ -60,9 +63,9 @@ export default function Form() {
               type="text"
               name="address"
               value={ address }
-              onChange={ ({ target: { value } }) => setAddress(Number(value)) }
+              onChange={ ({ target: { value } }) => setAddress(value) }
               id="checkout-input-address"
-              placeholder="Travessa Terceira da Castanheira, Bairro Muruci"
+              placeholder=""
               data-testid="customer_checkout__input-address"
             />
           </label>
