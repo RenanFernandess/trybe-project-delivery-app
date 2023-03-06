@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { CART_KEY } from '../../../constants';
 import userContext, { cartContext } from '../../../context';
 import { getAPI, postWithTokenAPI } from '../../../utils';
 
 export default function Form() {
   const { id: userId, token } = useContext(userContext);
-  const { cart: products, totalPrice } = useContext(cartContext);
+  const { products, totalPrice } = useContext(cartContext);
   const history = useHistory();
   const [loading, setLoadion] = useState(true);
   const [sellers, setSellers] = useState([]);
@@ -35,7 +36,7 @@ export default function Form() {
     await postWithTokenAPI('/sales', (data) => {
       history.push(`/customer/orders/${data.id}`);
     }, body, token);
-    localStorage.removeItem('cart');
+    localStorage.removeItem(CART_KEY);
   };
 
   return (
