@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { postWithTokenAPI } from '../../utils';
 
@@ -11,7 +11,21 @@ export default function AdminForm({ setUsers, token }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState(ROLES_DB[2]);
+  const [disabled, setDisabled] = useState(true);
+
+  const EMAIL_REGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
+  const passwordMinLength = 6;
+  const nameMinLength = 12;
+
+  const isAble = () => !(
+    password.length >= passwordMinLength
+      && (EMAIL_REGEXP.test(email))
+       && (name.length >= nameMinLength));
+
+  useEffect(() => {
+    setDisabled(isAble());
+  }, [name, email, password]);
 
   const handleChange = (event, setter) => {
     event.preventDefault(event);
@@ -76,6 +90,7 @@ export default function AdminForm({ setUsers, token }) {
 
       <button
         type="submit"
+        disabled={ disabled }
         data-testid={ `${TESTID}button-register` }
       >
         Cadastrar
