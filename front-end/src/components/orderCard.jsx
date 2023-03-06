@@ -1,15 +1,15 @@
 import PropTypes from 'prop-types';
+import { formatNumber, formatDate } from '../utils/formatNumbers';
 
-export default function OrderCard({ route, order, index }) {
-  // const ROUTE = 'customer_orders';
+export default function OrderCard({ route, order }) {
   const ROUTE = route;
+  const FOUR = 4;
   return (
     <div>
       <div>
         pedido
         <p data-testid={ `${ROUTE}__element-order-id-${order.id}` }>
-          {index}
-          {/* numero do pedido - vai ser o index ou o id? */}
+          {formatNumber(order.id, FOUR)}
         </p>
       </div>
       <div>
@@ -20,13 +20,12 @@ export default function OrderCard({ route, order, index }) {
       <div>
         {/* data */}
         <p data-testid={ `${ROUTE}__element-order-date-${order.id}` }>
-          {order.saleDate}
+          {formatDate(order.saleDate)}
         </p>
       </div>
       <div>
-        <p>R$</p>
         <p data-testid={ `${ROUTE}__element-card-price-${order.id}` }>
-          {order.totalPrice.replace('.', ',')}
+          {`R$ ${order.totalPrice.toFixed(2).replace('.', ',')}`}
         </p>
       </div>
       {

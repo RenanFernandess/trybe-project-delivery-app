@@ -31,6 +31,16 @@ class LoginController extends AbstractController {
       this.next(error);
     }
   }
+
+  async getByEmail() {
+    const { email } = this.req.params;
+    try {
+      const result = await this.loginService.getByEmail(email);
+      return this.res.status(200).json(result);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
 
 module.exports = LoginController;

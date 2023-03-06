@@ -42,6 +42,13 @@ class SaleService extends AbstractService {
       throw new HttpException(400, error.message);
     }
   }
+
+  async getByUserId(userId) {
+    return this.sale.findAll({
+      where: { userId },
+    });
+    // return 'teste';
+  }
 }
 
 module.exports = SaleService;

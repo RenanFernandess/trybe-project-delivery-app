@@ -54,7 +54,7 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
 
   return (
     <div>
-      <NavBar name={ name } route="customer_products" />
+      <NavBar name={ name } route="customer" />
       {
         order && (
           <div>

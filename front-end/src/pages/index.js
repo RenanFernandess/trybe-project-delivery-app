@@ -1,6 +1,6 @@
 import Login from './Login';
 import Register from './Register';
-import CustomerOrder from './CustomerOrder';
+import CustomerOrders from './CustomerOrders';
 import Products from './Products';
 import Checkout from './Checkout';
 import OrderDetails from './OrderDetails';
