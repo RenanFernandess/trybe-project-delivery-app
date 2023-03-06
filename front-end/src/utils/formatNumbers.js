@@ -6,9 +6,9 @@ export function formatNumber(num, size) {
 
 export function formatDate(date) {
   const newDate = new Date(date);
-  const year = newDate.getFullYear().toString().split('');
+  const year = newDate.getFullYear().toString();
   const month = formatNumber(newDate.getMonth() + 1, 2);
   const dt = formatNumber(newDate.getDate(), 2);
 
-  return `${dt}/${month}/${year[2]}${year[3]}`;
+  return `${dt}/${month}/${year}`;
 }

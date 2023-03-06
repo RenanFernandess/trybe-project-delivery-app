@@ -33,7 +33,6 @@ export default function Form() {
       products: formatProducts,
     };
     await postWithTokenAPI('/sales', (data) => {
-      console.log(data);
       history.push(`/customer/orders/${data.id}`);
     }, body, token);
     localStorage.removeItem('cart');
