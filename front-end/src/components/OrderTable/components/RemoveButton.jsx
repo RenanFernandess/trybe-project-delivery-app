@@ -7,15 +7,15 @@ import { localStorageHandling } from '../../../utils';
 const { setItem } = localStorageHandling;
 
 export default function RemoveButton({ id: productId }) {
-  const { cart, setCart } = useContext(cartContext);
+  const { products, setProducts } = useContext(cartContext);
 
   const remove = async () => {
-    await setCart(cart.filter(({ id }) => id !== productId));
+    await setProducts(products.filter(({ id }) => id !== productId));
   };
 
   useEffect(() => {
-    setItem(CART_KEY, cart);
-  }, [cart]);
+    setItem(CART_KEY, products);
+  }, [products]);
 
   return (
     <button
