@@ -7,4 +7,4 @@ import OrderDetails from './OrderDetails';
 import AdminPage from './Admin';
 
 export default Login;
-export { Register, CustomerOrder, Products, Checkout, OrderDetails, AdminPage };
+export { Register, CustomerOrders, Products, Checkout, OrderDetails, AdminPage };

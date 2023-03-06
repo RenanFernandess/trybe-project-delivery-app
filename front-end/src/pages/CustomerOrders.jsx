@@ -14,7 +14,6 @@ export default function CustomerOrders() {
   const getId = async () => {
     const userId = await getUserId();
     setId(userId);
-    // console.log(id);
   };
 
   const getOrders = async () => {
@@ -24,9 +23,12 @@ export default function CustomerOrders() {
     );
   };
 
+  const getInfo = async () => {
+    await getId();
+    await getOrders();
+  };
   useEffect(() => {
-    getId();
-    getOrders();
+    getInfo();
   }, []);
 
   return (

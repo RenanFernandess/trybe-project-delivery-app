@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { EMAIL_REGEXP, MIN_PASSWORD_CHARACTERS } from '../../../constants';
+// import { EMAIL_REGEXP, MIN_PASSWORD_CHARACTERS } from '../../../constants';
 import userContext from '../../../context';
 import { postAPI } from '../../../utils';
 
 export default function Form() {
   const { setUser } = useContext(userContext);
   const history = useHistory();
+
+  const EMAIL_REGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
+  const MIN_PASSWORD_CHARACTERS = 6;
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
