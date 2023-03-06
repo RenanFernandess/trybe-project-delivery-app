@@ -8,17 +8,18 @@ export default function Form() {
   const { setUser } = useContext(userContext);
   const history = useHistory();
 
-  const EMAIL_REGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
-  const MIN_PASSWORD_CHARACTERS = 6;
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
 
+  const MIN_PASSWORD = 6;
+
+  const EMAILREGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
+
   useEffect(() => {
     setDisabled(!(
-      (password.length >= MIN_PASSWORD_CHARACTERS)
-      && (EMAIL_REGEXP.test(email))));
+      (password.length >= MIN_PASSWORD)
+      && (EMAILREGEXP.test(email))));
   }, [email, password]);
 
   const login = () => {

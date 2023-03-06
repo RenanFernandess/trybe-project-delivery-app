@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import userContext from '../../context';
 import Logo, { Form } from './components';
@@ -10,12 +10,16 @@ const REDIRECT_PATHS = {
 };
 
 export default function Login() {
-  const { message, role } = useContext(userContext);
+  const { message, role, token } = useContext(userContext);
   const history = useHistory();
 
-  useMemo(() => {
+  useEffect(() => {
     history.push(REDIRECT_PATHS[role]);
   }, [role, history]);
+
+  useEffect(() => {
+    if (token) history.push(REDIRECT_PATHS[role]);
+  });
 
   return (
     <div>
