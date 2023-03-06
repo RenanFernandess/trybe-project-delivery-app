@@ -103,14 +103,15 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
                 ))}
               </tbody>
             </table>
-            <h3
-              data-testid={ `${testId}__element-order-total-price` }
-            >
-              { `R$ ${total?.toFixed(2)}` }
-
+            <h3>
+              <span>R$</span>
+              <span
+                data-testid={ `${testId}__element-order-total-price` }
+              >
+                { total?.toFixed(2).replace('.', ',') }
+              </span>
             </h3>
           </div>
-
         )
       }
     </div>

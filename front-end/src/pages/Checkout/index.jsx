@@ -2,18 +2,15 @@ import React, { useContext, useEffect } from 'react';
 import NavBar, { OrderTable } from '../../components';
 import { cartContext } from '../../context';
 import Form from './components';
+import { CART_KEY } from '../../constants';
+import { localStorageHandling } from '../../utils';
 
-const p = {
-  id: 1,
-  name: 'xablau',
-  price: 2.99,
-  quantity: 3,
-};
+const { getLocalStorage } = localStorageHandling;
 
 export default function Checkout() {
   const { setCart } = useContext(cartContext);
 
-  useEffect(() => { setCart([p, { ...p, id: 2 }]); }, [setCart]);
+  useEffect(() => { setCart(getLocalStorage(CART_KEY)); }, [setCart]);
 
   return (
     <section>

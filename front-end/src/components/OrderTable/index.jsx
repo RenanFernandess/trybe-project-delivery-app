@@ -24,7 +24,7 @@ export default function OrderTable() {
         <p
           data-testid={ `${LOCATION}__element-order-total-price` }
         >
-          { `Total: R$ ${totalPrice}` }
+          { `${totalPrice.replace('.', ',')}` }
         </p>
       </div>
     </section>
