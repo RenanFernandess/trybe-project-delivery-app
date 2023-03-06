@@ -26,10 +26,11 @@ export default function SellerBar({ order }) {
         { moment(order?.saleDate).format('DD/MM/YYYY') }
       </p>
       <p data-testid={ `${DATATESTID}-delivery-status` }>
-        {status.toUpperCase()}
+        {status}
       </p>
       <button
         type="button"
+        disabled={ status !== 'Pendente' }
         value="Preparando"
         onClick={ ({ target: { value } }) => (handleStatusChange(value, setStatus)) }
         data-testid="seller_order_details__button-preparing-check"
@@ -39,9 +40,10 @@ export default function SellerBar({ order }) {
       </button>
       <button
         type="button"
+        disabled={ status !== 'Preparando' }
         value="Em Trânsito"
         onClick={ ({ target: { value } }) => (handleStatusChange(value, setStatus)) }
-        data-testid="seller_order_details__button-preparing-check"
+        data-testid="seller_order_details__button-dispatch-check"
       >
         Saiu Para Entrega
       </button>
