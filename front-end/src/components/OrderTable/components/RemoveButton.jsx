@@ -1,10 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { cartContext } from '../../../context';
-import { CART_KEY } from '../../../constants';
-import { localStorageHandling } from '../../../utils';
-
-const { setItem } = localStorageHandling;
 
 export default function RemoveButton({ id: productId }) {
   const { products, setProducts } = useContext(cartContext);
@@ -12,10 +8,6 @@ export default function RemoveButton({ id: productId }) {
   const remove = async () => {
     await setProducts(products.filter(({ id }) => id !== productId));
   };
-
-  useEffect(() => {
-    setItem(CART_KEY, products);
-  }, [products]);
 
   return (
     <button
