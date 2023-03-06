@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', (req, res, next) => new SaleController(req, res, next).getAll());
 router.get('/:id', (req, res, next) => new SaleController(req, res, next).getById());
 router.get('/user/:id', (req, res, next) => new SaleController(req, res, next).getByUserId());
+router.get('/seller/:id', (req, res, next) => new SaleController(req, res, next).getBySellerId());
 router.post(
   '/',
   authMiddleware,

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { postWithTokenAPI } from '../../utils';
 
@@ -7,11 +7,25 @@ const TESTID = 'admin_manage__';
 const ROLES_DB = ['admin', 'seller', 'customer'];
 const ROLES_TO_SHOW = ['Administrador', 'P. Vendedora', 'Cliente'];
 
-export default function AdminForm({ setUsers, token }) {
+export default function AdminForm({ setUsers, token, setFetchReturn }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState(ROLES_DB[2]);
+  const [disabled, setDisabled] = useState(true);
+
+  const EMAIL_REGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
+  const passwordMinLength = 6;
+  const nameMinLength = 12;
+
+  const isAble = () => !(
+    password.length >= passwordMinLength
+      && (EMAIL_REGEXP.test(email))
+       && (name.length >= nameMinLength));
+
+  useEffect(() => {
+    setDisabled(isAble());
+  }, [name, email, password]);
 
   const handleChange = (event, setter) => {
     event.preventDefault(event);
@@ -23,18 +37,26 @@ export default function AdminForm({ setUsers, token }) {
     setUsers((prev) => [...prev, user]);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault(event);
     postWithTokenAPI(
       '/admin/register',
-      resetUsers,
+      (data) => {
+        resetUsers(data);
+        setFetchReturn(data);
+      },
       { name, email, password, role },
       token,
     );
+    setEmail('');
+    setName('');
+    setPassword('');
+    setRole(ROLES_DB[2]);
   };
 
   return (
     <form
-      onSubmit={ handleSubmit }
+      onSubmit={ (e) => handleSubmit(e) }
     >
       <input
         placeholder="Nome"
@@ -76,6 +98,7 @@ export default function AdminForm({ setUsers, token }) {
 
       <button
         type="submit"
+        disabled={ disabled }
         data-testid={ `${TESTID}button-register` }
       >
         Cadastrar
@@ -88,4 +111,5 @@ export default function AdminForm({ setUsers, token }) {
 AdminForm.propTypes = {
   setUsers: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
+  setFetchReturn: PropTypes.func.isRequired,
 };

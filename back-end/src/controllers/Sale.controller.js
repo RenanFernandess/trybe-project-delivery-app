@@ -11,6 +11,16 @@ class SaleController extends AbstractController {
       next,
     );
   }
+
+  async getBySellerId() {
+    try {
+      const { id } = this.req.params;
+      const result = await this.service.getBySellerId(id);
+      return this.res.status(200).json(result);
+    } catch (error) {
+      this.next(error);
+    }
+  }
 }
 
 module.exports = SaleController;
