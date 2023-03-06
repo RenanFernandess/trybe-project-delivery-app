@@ -1,10 +1,11 @@
 import React, { useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import userContext from './userContext';
-import { saveUser } from '../../utils';
+import { localStorageHandling, saveUser } from '../../utils';
+import { USER_KEY } from '../../constants';
 
 const initialState = {
-  id: 0,
+  id: '',
   name: '',
   role: '',
   email: '',
@@ -12,16 +13,17 @@ const initialState = {
   message: null,
 };
 export default function UserProvider({ children }) {
-  const [state, setState] = useState(initialState);
-  const { token, name, role, email } = state;
+  const [state, setState] = useState(localStorageHandling.getItem(USER_KEY)
+  || initialState);
+  const { token, name, role, email, id } = state;
 
   const setUser = (user) => { setState((prevState) => ({ ...prevState, ...user })); };
 
   const resetUser = async () => setState(initialState);
 
   useMemo(() => {
-    if (token) saveUser({ token, name, role, email });
-  }, [token, name, role, email]);
+    if (token) saveUser({ token, name, role, email, id });
+  }, [token, name, role, email, id]);
 
   const contextType = useMemo(() => ({ ...state, setUser, resetUser }), [state]);
 

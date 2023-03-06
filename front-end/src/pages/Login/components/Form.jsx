@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { EMAIL_REGEXP, MIN_PASSWORD_CHARACTERS } from '../../../constants';
+// import { EMAIL_REGEXP, MIN_PASSWORD_CHARACTERS } from '../../../constants';
 import userContext from '../../../context';
 import { postAPI } from '../../../utils';
 
@@ -12,10 +12,14 @@ export default function Form() {
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
 
+  const MIN_PASSWORD = 6;
+
+  const EMAILREGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
+
   useEffect(() => {
     setDisabled(!(
-      (password.length >= MIN_PASSWORD_CHARACTERS)
-      && (EMAIL_REGEXP.test(email))));
+      (password.length >= MIN_PASSWORD)
+      && (EMAILREGEXP.test(email))));
   }, [email, password]);
 
   const login = () => {
