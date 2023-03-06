@@ -32,7 +32,7 @@ export default function UsersTable({ users, setUsers }) {
             .map((user, index) => (
               <tr key={ `${index} - ${user.name}` }>
                 <td
-                  data-testid={ `${TESTIDTABLE}-item-number` }
+                  data-testid={ `${TESTIDTABLE}-item-number-${index}` }
                 >
                   {index + 1}
 

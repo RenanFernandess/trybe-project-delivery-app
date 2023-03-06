@@ -7,7 +7,7 @@ const TESTID = 'admin_manage__';
 const ROLES_DB = ['admin', 'seller', 'customer'];
 const ROLES_TO_SHOW = ['Administrador', 'P. Vendedora', 'Cliente'];
 
-export default function AdminForm({ setUsers, token }) {
+export default function AdminForm({ setUsers, token, setFetchReturn }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -37,18 +37,26 @@ export default function AdminForm({ setUsers, token }) {
     setUsers((prev) => [...prev, user]);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event) => {
+    event.preventDefault(event);
     postWithTokenAPI(
       '/admin/register',
-      resetUsers,
+      (data) => {
+        resetUsers(data);
+        setFetchReturn(data);
+      },
       { name, email, password, role },
       token,
     );
+    setEmail('');
+    setName('');
+    setPassword('');
+    setRole(ROLES_DB[2]);
   };
 
   return (
     <form
-      onSubmit={ handleSubmit }
+      onSubmit={ (e) => handleSubmit(e) }
     >
       <input
         placeholder="Nome"
@@ -103,4 +111,5 @@ export default function AdminForm({ setUsers, token }) {
 AdminForm.propTypes = {
   setUsers: PropTypes.func.isRequired,
   token: PropTypes.string.isRequired,
+  setFetchReturn: PropTypes.func.isRequired,
 };
