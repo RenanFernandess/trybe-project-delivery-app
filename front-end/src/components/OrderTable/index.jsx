@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Thead, { Tbody } from './components';
 import { cartContext } from '../../context';
+import './index.css';
 
 const WHICH_LOCATION = {
   '/customer/checkout': 'customer_checkout',
