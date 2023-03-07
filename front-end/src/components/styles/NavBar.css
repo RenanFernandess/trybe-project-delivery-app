@@ -1,0 +1,38 @@
+.header {
+  align-items: stretch;
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  display: flex;
+  font-weight: 700;
+  font-size: 1.75rem;
+  justify-content: space-between;
+  max-height: 5rem;
+  min-height: 3rem;
+}
+
+.header link, a {
+  color: var(--light-text);
+}
+
+.header-child {
+  flex: 1 1;
+  align-items: stretch;
+  justify-content: stretch;
+  display: flex;
+  height: 100%;
+}
+
+.header-child p, button {
+  flex: 1 1;
+  min-height: 3rem;
+  max-height: 4rem;
+  font-weight: 700;
+  font-size: 1.75rem;
+}
+
+.header-aside button {
+  background-color: var(--fourth-color);
+  border: 1px solid var(--fourth-color);
+  color: var(--light-text);
+  max-width: 7rem;
+}

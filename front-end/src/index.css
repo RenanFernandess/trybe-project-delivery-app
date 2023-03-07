@@ -27,6 +27,11 @@
   padding: 0;
 }
 
+link, a {
+  text-decoration: none;
+  color: black;
+}
+
 .main-container {
   width: 95vw;
   margin: 0 auto;

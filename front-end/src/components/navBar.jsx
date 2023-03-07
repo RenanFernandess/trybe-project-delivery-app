@@ -3,43 +3,46 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LogoutButton from './LogoutButton';
 import userContext from '../context';
+import './styles/NavBar.css';
 
 export default function NavBar({ route }) {
   const { name: userName } = useContext(userContext);
 
   const ROUTE = route;
   return (
-    <nav>
-      { ROUTE.includes('customer') && (
-        <Link to="/customer/products">
-          <div data-testid="customer_products__element-navbar-link-products">
-            produtos
-          </div>
-        </Link>
-      ) }
-      {
-        (ROUTE.includes('customer') || ROUTE.includes('seller')) && (
-          <Link to={ `/${ROUTE}/orders` }>
-            <div data-testid="customer_products__element-navbar-link-orders">
-              {ROUTE.includes('customer') ? 'meus pedidos' : 'pedidos'}
-            </div>
+    <header className="header">
+      <nav className="header-child">
+        { ROUTE.includes('customer') && (
+          <Link to="/customer/products">
+            <p data-testid="customer_products__element-navbar-link-products">
+              produtos
+            </p>
           </Link>
-        )
-      }
-      {
-        ROUTE.includes('admin') && (
-          <Link to="/admin/manage">
-            <div data-testid="customer_products__element-navbar-link-orders">
-              gerenciar usuários
-            </div>
-          </Link>
-        )
-      }
-      <div data-testid="customer_products__element-navbar-user-full-name">
-        { userName }
-      </div>
-      <LogoutButton testId="customer_products__element-navbar-link-logout" />
-    </nav>
+        ) }
+        {
+          (ROUTE.includes('customer') || ROUTE.includes('seller')) && (
+            <Link to={ `/${ROUTE}/orders` }>
+              <p data-testid="customer_products__element-navbar-link-orders">
+                {ROUTE.includes('customer') ? 'meus pedidos' : 'pedidos'}
+              </p>
+            </Link>
+          )
+        }
+        {
+          ROUTE.includes('admin') && (
+            <Link to="/admin/manage">
+              <p data-testid="customer_products__element-navbar-link-orders">
+                gerenciar usuários
+              </p>
+            </Link>
+          )
+        }
+      </nav>
+      <aside className="header-aside header-child">
+        <p data-testid="customer_products__element-navbar-user-full-name">{ userName }</p>
+        <LogoutButton testId="customer_products__element-navbar-link-logout" />
+      </aside>
+    </header>
   );
 }
 
