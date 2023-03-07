@@ -8,9 +8,9 @@ import { localStorageHandling } from '../../utils';
 const { getLocalStorage } = localStorageHandling;
 
 export default function Checkout() {
-  const { setCart } = useContext(cartContext);
+  const { setProducts } = useContext(cartContext);
 
-  useEffect(() => { setCart(getLocalStorage(CART_KEY)); }, [setCart]);
+  useEffect(() => { setProducts(getLocalStorage(CART_KEY)); }, [setProducts]);
 
   return (
     <section>
