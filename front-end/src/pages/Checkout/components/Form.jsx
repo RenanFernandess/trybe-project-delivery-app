@@ -5,12 +5,12 @@ import { getAPI, postWithTokenAPI } from '../../../utils';
 
 export default function Form() {
   const { id: userId, token } = useContext(userContext);
-  const { cart: products, totalPrice } = useContext(cartContext);
+  const { products, totalPrice, setProducts } = useContext(cartContext);
   const history = useHistory();
   const [loading, setLoadion] = useState(true);
   const [sellers, setSellers] = useState([]);
   const [seller, setSeller] = useState(0);
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState();
   const [address, setAddress] = useState('');
 
   useEffect(() => {
@@ -34,8 +34,8 @@ export default function Form() {
     };
     await postWithTokenAPI('/sales', (data) => {
       history.push(`/customer/orders/${data.id}`);
+      setProducts([]);
     }, body, token);
-    localStorage.removeItem('cart');
   };
 
   return (
@@ -50,7 +50,7 @@ export default function Form() {
               id="checkout-select-seller"
               value={ seller }
               data-testid="customer_checkout__select-seller"
-              onChange={ ({ target: { value } }) => { setSeller(Number(value)); } }
+              onChange={ ({ target: { value } }) => { setSeller(value); } }
             >
               { sellers.map(({ id, name }) => (
                 <option value={ id } key={ id }>{ name }</option>
@@ -75,7 +75,7 @@ export default function Form() {
               type="number"
               name="number"
               value={ number }
-              onChange={ ({ target: { value } }) => setNumber(Number(value)) }
+              onChange={ ({ target: { value } }) => setNumber(value) }
               id="checkout-input-number"
               placeholder="198"
               data-testid="customer_checkout__input-address-number"

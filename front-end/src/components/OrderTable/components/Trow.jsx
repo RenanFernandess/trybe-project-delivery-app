@@ -17,7 +17,7 @@ export default function Trow(
         { quantity }
       </td>
       <td data-testid={ `${location}__element-order-table-unit-price-${index}` }>
-        { `${price.replace('.', ',')}` }
+        { price.replace('.', ',') }
       </td>
       <td data-testid={ `${location}__element-order-table-sub-total-${index}` }>
         { `R$${((price * quantity).toFixed(2)).replace('.', ',')}` }
@@ -39,6 +39,6 @@ Trow.propTypes = {
   index: PropTypes.number.isRequired,
   description: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
-  price: PropTypes.number.isRequired,
+  price: PropTypes.string.isRequired,
   isCheckout: PropTypes.bool.isRequired,
 };

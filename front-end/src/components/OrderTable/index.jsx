@@ -9,7 +9,7 @@ const WHICH_LOCATION = {
   '/seller/orders': 'seller_order_details',
 };
 export default function OrderTable() {
-  const { cart: products, totalPrice } = useContext(cartContext);
+  const { products, totalPrice } = useContext(cartContext);
   const { location: { pathname } } = useHistory();
   const LOCATION = WHICH_LOCATION[pathname];
   const isCheckout = (pathname === '/customer/checkout');
@@ -20,13 +20,14 @@ export default function OrderTable() {
         <Thead isCheckout={ isCheckout } />
         <Tbody isCheckout={ isCheckout } location={ LOCATION } products={ products } />
       </table>
-      <div>
+      <aside>
+        Total: R$
         <p
           data-testid={ `${LOCATION}__element-order-total-price` }
         >
           { `${totalPrice.replace('.', ',')}` }
         </p>
-      </div>
+      </aside>
     </section>
   );
 }
