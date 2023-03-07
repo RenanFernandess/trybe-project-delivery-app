@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import NavBar, { ProductCard } from '../../components';
 import { CART_KEY } from '../../constants';
 import { getAPI, localStorageHandling } from '../../utils';
+import './index.css';
 
 const { getLocalStorage, setStorageArray } = localStorageHandling;
 
 export default function Products() {
+  const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [cartList, setCartList] = useState([]);
@@ -80,7 +82,7 @@ export default function Products() {
       { loading
         ? <p>Loading...</p>
         : (
-          <section className="product-list-container">
+          <section className="main-container product-list-container">
             { products.map(({ id, name, urlImage, price }, index) => (<ProductCard
               key={ id }
               id={ id }
@@ -95,13 +97,14 @@ export default function Products() {
 
           </section>
         ) }
-      <Link to="/customer/checkout">
+      <footer>
         <button
           data-testid="customer_products__button-cart"
           type="button"
           disabled={ +total === 0 }
+          onClick={ () => history.push('/customer/checkout') }
         >
-          <span>Meu Carrinho R$</span>
+          Meu Carrinho R$
           <span
             data-testid="customer_products__checkout-bottom-value"
           >
@@ -110,7 +113,7 @@ export default function Products() {
           </span>
 
         </button>
-      </Link>
+      </footer>
     </div>
   );
 }

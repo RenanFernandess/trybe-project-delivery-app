@@ -1,4 +1,5 @@
 .product-list-container {
   display: flex;
-  flex-direction: row;
+  flex-flow: wrap;
+  gap: 2rem;
 }
