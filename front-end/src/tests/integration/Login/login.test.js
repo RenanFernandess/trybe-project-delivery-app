@@ -1,10 +1,8 @@
-import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import App from '../../App';
-import renderPath from '../utils/renderWithRouter';
-import { ADMIN_MOCK, SELLER_MOCK, CUSTOMER_MOCK } from './mocks/User.mock'
-import { allProductsMock } from './mocks/Products.mock';
+import renderPath from '../../utils/renderWithRouter';
+import { ADMIN_MOCK, SELLER_MOCK, CUSTOMER_MOCK } from '../mocks/User.mock';
+import { allProductsMock } from '../mocks/Products.mock';
 
 describe('Testa a tela de Login', () => {
   it('Verifica se possui um formulario de login', () => {
