@@ -1,20 +1,20 @@
 :root {
   
-  --dark-text: #001813;
+  --dark-text: rgb(0, 24, 19);
   
-  --fourth-color: #056CF9;
+  --fourth-color: rgb(5, 108, 249);
   
-  --light-text: #EAF1EF;
+  --light-text: rgb(234, 241, 239);
 
-  --secondary-background-color: #B1C2BE;
+  --secondary-background-color: rgb(177, 194, 190);
   
-  --secondary-color: #2FC18C;
+  --secondary-color: rgb(47, 193, 140);
 
-  --primary-color: #036B52;
+  --primary-color: rgb(3, 107, 82);
 
-  --tertiary-backgroud-color: #EAF1EF;
+  --tertiary-backgroud-color: rgb(234, 241, 239);
 
-  --tertiary-color: #421981;
+  --tertiary-color: rgb(66, 25, 129);
 }
 
 
@@ -28,5 +28,7 @@
 }
 
 .main-container {
-  padding: 20px;
+  width: 95vw;
+  margin: 0 auto;
+  padding: 2rem;
 }
