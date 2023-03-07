@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { postAPI, localStorageHandling } from '../utils';
-// import id, { USER_KEY } from '../constants/index';
+import './styles/style.register.css';
 
 export default function RegisterForms() {
   const [name, setName] = useState('');
@@ -43,8 +43,8 @@ export default function RegisterForms() {
 
   console.log(client);
   return (
-    <div>
-      <p>Cadastro</p>
+    <div className="container">
+      <h1>Cadastro</h1>
       <form>
         <div>
           <p>Nome</p>
