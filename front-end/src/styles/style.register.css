@@ -29,9 +29,10 @@
 
 }
 
-input {
+/* .container input {
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
-}
+  text-align: left;
+} */
 
 .container input, label {
   display: block;
@@ -69,8 +70,10 @@ button:disabled {
   border: solid 1px black;
   border-radius: 6px;
   color: #e5e5e5;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
   font-weight: 400;
   height: 70px;
+  text-align: left;
   top: 42.25px;
 }
 

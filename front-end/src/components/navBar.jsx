@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LogoutButton from './LogoutButton';
 import userContext from '../context';
-import './styles/NavBar.css';
+import '../styles/NavBar.css';
 
 export default function NavBar({ route }) {
   const { name: userName } = useContext(userContext);
