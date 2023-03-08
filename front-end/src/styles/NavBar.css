@@ -1,0 +1,53 @@
+.header {
+  align-items: stretch;
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  display: flex;
+  font-size: 1.75rem;
+  font-weight: 700;
+  justify-content: space-between;
+  max-height: 6rem;
+  min-height: 4rem;
+}
+
+.header link, a {
+  color: var(--light-text);
+}
+
+.header-child {
+  align-items: stretch;
+  display: flex;
+  flex: 1 1;
+  height: 100%;
+  justify-content: stretch;
+  max-width: 40rem;
+}
+
+.selected p {
+  background-color: var(--secondary-color);
+}
+
+.header-child p, .header-child button {
+  flex: 1 1;
+  font-size: 1.75rem;
+  font-weight: 700;
+  height: 100%;
+  padding: 1rem 2rem;
+  text-align: center;
+}
+
+.header-aside button {
+  background-color: var(--fourth-color);
+  border: none;
+  color: var(--light-text);
+  max-width: 7rem;
+  transition: 300ms;
+}
+
+.header-aside button:hover {
+  background-color: var(--fourth-color-hover);
+}
+
+.header-aside p {
+  background-color: var(--tertiary-color);
+}
