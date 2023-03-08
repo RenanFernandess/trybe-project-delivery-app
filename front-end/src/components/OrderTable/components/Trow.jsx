@@ -6,7 +6,7 @@ export default function Trow(
   { id, description, price, isCheckout, quantity, location, index },
 ) {
   return (
-    <tr>
+    <tr className="c-table__tr">
       <td data-testid={ `${location}__element-order-table-item-number-${index}` }>
         { index + 1 }
       </td>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export default function Thead({ isCheckout }) {
   return (
     <thead>
-      <tr>
+      <tr className="c-table__tr">
         <th>Item</th>
         <th>Descrição</th>
         <th>Quantidade</th>

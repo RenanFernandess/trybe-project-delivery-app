@@ -1,3 +1,28 @@
-.d {
+.c-table {
+  background-color: var(--tertiary-backgroud-color);
+  box-shadow: 2px 2px 6px rgb(115, 115, 114);
+  padding: 1rem;
+}
+
+.c-table__table {
+  margin-bottom: 2rem;
+}
+
+/* .c-table__thead__tr {
+} */
+
+.c-table__tr {
+  margin-bottom: 1rem;
+}
+
+.c-table__total-price {
+  background-color: var(--primary-color);
+  border-radius: 0.5rem;
+  color: var(--light-text);
+  font-size: 2rem;
+  font-weight: 900;
+  margin-left: auto;
+  max-width: 18rem;
+  padding: 0.5rem;
   text-align: center;
 }
