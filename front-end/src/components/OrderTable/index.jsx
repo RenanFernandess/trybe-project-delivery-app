@@ -16,7 +16,7 @@ export default function OrderTable() {
   const isCheckout = (pathname === '/customer/checkout');
 
   return (
-    <section className="c-table">
+    <section className="c-mediun c-table">
       <table className="c-table__table">
         <Thead isCheckout={ isCheckout } />
         <Tbody isCheckout={ isCheckout } location={ LOCATION } products={ products } />

@@ -4,6 +4,12 @@
   width: 95vw;
 }
 
+.c-mediun {
+  box-shadow: 2px 2px 6px rgb(115, 115, 114);
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+
 .c-list-card {
   display: flex;
   flex-flow: wrap;
@@ -13,6 +19,7 @@
 .base-btn {
   border-radius: 0.5rem;
   font-size: 1rem;
+  font-weight: 700;
   min-width: 6rem;
   padding: 1rem;
   text-align: center;
@@ -42,3 +49,16 @@
   background-color: var(--primary-color-hover);
 }
 
+.secondary-btn {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--light-text);
+}
+
+.secondary-btn:active {
+  transform: scale(1.005, 1.005);
+}
+
+.secondary-btn:hover {
+  background-color: var(--primary-color-hover);
+}

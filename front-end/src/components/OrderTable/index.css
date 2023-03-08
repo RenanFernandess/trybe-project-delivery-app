@@ -1,18 +1,53 @@
 .c-table {
-  background-color: var(--tertiary-backgroud-color);
-  box-shadow: 2px 2px 6px rgb(115, 115, 114);
-  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 
 .c-table__table {
   margin-bottom: 2rem;
+  width: 100%;
 }
 
-/* .c-table__thead__tr {
-} */
+.c-table__tbody__td, .c-table__th {
+  border: none;
+  padding: 0.6rem 1rem;
+  text-align: center;
+}
 
-.c-table__tr {
-  margin-bottom: 1rem;
+.c-table__tbody__td:nth-of-type( 1 ) {
+  background-color: var(--secondary-color);
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.c-table__tbody__td:nth-of-type( 2 ) {
+  background-color: var(--tertiary-backgroud-color);
+}
+
+.c-table__tbody__td:nth-of-type( 3 ) {
+  background-color: var(--primary-color);
+  color: var(--light-text);
+}
+
+.c-table__tbody__td:nth-of-type( 4 ) {
+  background-color: var(--tertiary-color);
+  color: var(--light-text);
+}
+
+.c-table__tbody__td:nth-of-type( 5 ) {
+  background-color: var(--fourth-color);
+  color: var(--light-text);
+}
+
+.c-table__tbody__td:nth-of-type( 6 ) {
+  padding: 0;
+}
+
+.c-table__btn {
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-size: 1.5rem;
+  height: 100%;
+  padding: 0.6rem 1rem;
+  width: 100%;
 }
 
 .c-table__total-price {
