@@ -1,54 +1,41 @@
-.App {
-  align-items: center;
-  background: #0fa36b;
-  color: #464646;
+.c-list-card {
   display: flex;
-  flex-direction: column;
-  font-family: sans-serif;
-  height: 100vh;
-  justify-content: center;
-  width: 100%;
+  flex-flow: wrap;
+  gap: 2rem;
+  margin: 0 auto;
+  padding: 2rem;
+  width: 95vw;
 }
 
-.App > .logo {
-  animation: shake 1.5s infinite ease;
-  color: aliceblue;
-  font-family: Montserrat , sans-serif;
-  font-size: 3em;
-  font-weight: 900;
+.base-btn {
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  min-width: 6rem;
+  padding: 1rem;
+  text-align: center;
+  transition: 100ms;
 }
 
-.rocksGlass {
-  animation: shake 1s infinite ease;
-  max-height: 80vh;
+.primary-btn {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  color: var(--light-text);
 }
 
-@keyframes shake {
-
-  0% {
-    transform: rotate(5deg);
-  }
-
-  50% {
-    transform: rotate(-5deg);
-  }
-
-  100% {
-    transform: rotate(5deg);
-  }
+.primary-btn:active {
+  transform: scale(1.005, 1.005);
 }
 
-@keyframes clink {
-
-  0% {
-    transform: rotate(-10deg);
-  }
-
-  50% {
-    transform: rotate(20deg);
-  }
-
-  100% {
-    transform: rotate(-10deg);
-  }
+.primary-btn:disabled {
+  background-color: var(--secondary-background-color);
+  border-color: var(--secondary-background-color);
 }
+
+.primary-btn:disabled:active {
+  background-color: rgb(206, 0, 0);
+}
+
+.primary-btn:enabled:hover {
+  background-color: var(--primary-color-hover);
+}
+

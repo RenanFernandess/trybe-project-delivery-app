@@ -77,12 +77,12 @@ export default function Products() {
   }, [storage]);
 
   return (
-    <div>
+    <div className="c-main">
       <NavBar route="customer" />
       { loading
         ? <p>Loading...</p>
         : (
-          <section className="main-container product-list-container">
+          <section className="c-list-card">
             { products.map(({ id, name, urlImage, price }, index) => (<ProductCard
               key={ id }
               id={ id }
@@ -97,23 +97,22 @@ export default function Products() {
 
           </section>
         ) }
-      <footer>
-        <button
-          data-testid="customer_products__button-cart"
-          type="button"
-          disabled={ +total === 0 }
-          onClick={ () => history.push('/customer/checkout') }
+      <button
+        data-testid="customer_products__button-cart"
+        type="button"
+        className="base-btn primary-btn c-main__cart-btn"
+        disabled={ +total === 0 }
+        onClick={ () => history.push('/customer/checkout') }
+      >
+        Ver Carrinho:
+        <span> R$ </span>
+        <span
+          data-testid="customer_products__checkout-bottom-value"
         >
-          Meu Carrinho R$
-          <span
-            data-testid="customer_products__checkout-bottom-value"
-          >
-            { total.toFixed(2).replace('.', ',') }
+          { total.toFixed(2).replace('.', ',') }
 
-          </span>
-
-        </button>
-      </footer>
+        </span>
+      </button>
     </div>
   );
 }
