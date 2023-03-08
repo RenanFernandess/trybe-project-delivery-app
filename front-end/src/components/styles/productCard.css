@@ -62,16 +62,9 @@
 }
 
 .card-quantity button {
-  background-color: var(--primary-color);
-  color: var(--light-text);
   font-size: 1.5rem;
   font-weight: 500;
   transition: 100ms;
-}
-
-.card-quantity button:hover {
-  background-color: var(--primary-color-hover);
-  transform: scale(1.02, 1.01);
 }
 
 .card-quantity :first-child {

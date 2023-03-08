@@ -27,7 +27,7 @@ function ProductCard({ id, title, price, thumbnail,
         <div className="card-quantity">
           <button
             data-testid={ `${BASE}__button-card-rm-item-${id}` }
-            className="card-minus-btn"
+            className="primary-btn"
             type="button"
             name="minusButton"
             onClick={ (e) => onClick(e, index) }
@@ -46,7 +46,7 @@ function ProductCard({ id, title, price, thumbnail,
           />
           <button
             data-testid={ `${BASE}__button-card-add-item-${id}` }
-            className="card-plus-btn"
+            className="primary-btn"
             type="button"
             name="addButton"
             onClick={ (e) => onClick(e, index) }
