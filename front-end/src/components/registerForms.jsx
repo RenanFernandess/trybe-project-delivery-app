@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { postAPI, localStorageHandling } from '../utils';
-import './styles/style.register.css';
+import '../styles/style.register.css';
 
 import { USER_KEY } from '../constants';
 
@@ -106,15 +106,15 @@ export default function RegisterForms() {
           </button>
         </div>
       </form>
-      <div className="message">
-        {
-          client.message === 'User already exists' && (
+      {
+        client.message === 'User already exists' && (
+          <div className="message">
             <span data-testid={ `${ROUTE}__element-invalid_register` }>
               {client.message}
             </span>
-          )
-        }
-      </div>
+          </div>
+        )
+      }
     </div>
   );
 }
