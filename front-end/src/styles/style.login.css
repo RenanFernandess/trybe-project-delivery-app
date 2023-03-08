@@ -60,6 +60,15 @@ input {
   vertical-align: middle;
 }
 
+.logo {
+  display: block;
+  height: fit-content;
+  left: 50%;
+  margin-left: auto;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
 .login-container h1 {
   color: #001813;
   font-size: 36px;
