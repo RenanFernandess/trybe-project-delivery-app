@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import NavBar, { ProductCard } from '../../components';
 import { CART_KEY } from '../../constants';
 import { getAPI, localStorageHandling } from '../../utils';
+import './index.css';
 
 const { getLocalStorage, setStorageArray } = localStorageHandling;
 
 export default function Products() {
+  const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [cartList, setCartList] = useState([]);
@@ -75,12 +77,12 @@ export default function Products() {
   }, [storage]);
 
   return (
-    <div>
+    <div className="c-main">
       <NavBar route="customer" />
       { loading
         ? <p>Loading...</p>
         : (
-          <section className="product-list-container">
+          <section className="c-list-card">
             { products.map(({ id, name, urlImage, price }, index) => (<ProductCard
               key={ id }
               id={ id }
@@ -95,22 +97,22 @@ export default function Products() {
 
           </section>
         ) }
-      <Link to="/customer/checkout">
-        <button
-          data-testid="customer_products__button-cart"
-          type="button"
-          disabled={ +total === 0 }
+      <button
+        data-testid="customer_products__button-cart"
+        type="button"
+        className="base-btn primary-btn c-main__cart-btn"
+        disabled={ +total === 0 }
+        onClick={ () => history.push('/customer/checkout') }
+      >
+        Ver Carrinho:
+        <span> R$ </span>
+        <span
+          data-testid="customer_products__checkout-bottom-value"
         >
-          <span>Meu Carrinho R$</span>
-          <span
-            data-testid="customer_products__checkout-bottom-value"
-          >
-            { total.toFixed(2).replace('.', ',') }
+          { total.toFixed(2).replace('.', ',') }
 
-          </span>
-
-        </button>
-      </Link>
+        </span>
+      </button>
     </div>
   );
 }

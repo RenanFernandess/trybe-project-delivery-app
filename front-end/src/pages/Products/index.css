@@ -1,0 +1,13 @@
+.c-main {
+  position: relative;
+}
+
+.c-main__cart-btn {
+  bottom: 3rem;
+  position: fixed;
+  right: 3rem;
+}
+
+.c-main .c-list-card {
+  margin-bottom: 6rem;
+}
