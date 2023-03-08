@@ -1,17 +1,24 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import cartContext from './cartContext';
+import { localStorageHandling } from '../../utils';
+import { CART_KEY } from '../../constants';
 
 export default function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [products, setProducts] = useState(localStorageHandling.getItem(CART_KEY) || []);
+
+  useEffect(() => {
+    if (products.length) localStorageHandling.setItem(CART_KEY, products);
+    if (!products.length) localStorage.removeItem(CART_KEY);
+  }, [products]);
 
   const contextType = useMemo(() => ({
-    cart,
-    setCart,
-    totalPrice: (cart
+    products,
+    setProducts,
+    totalPrice: (products
       .reduce((sum, { quantity, price }) => sum + (price * quantity), 0)
       .toFixed(2)),
-  }), [cart]);
+  }), [products]);
 
   return (
     <cartContext.Provider value={ contextType }>
