@@ -82,7 +82,7 @@ export default function Products() {
       { loading
         ? <p>Loading...</p>
         : (
-          <section className="c-list-card">
+          <section className="c-body c-list-card">
             { products.map(({ id, name, urlImage, price }, index) => (<ProductCard
               key={ id }
               id={ id }
