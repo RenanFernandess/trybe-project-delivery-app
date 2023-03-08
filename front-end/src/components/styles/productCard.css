@@ -38,10 +38,6 @@
   top: 1rem;
 }
 
-.card-quantity-input {
-  width: 30px;
-}
-
 .pro-card__title {
   color: var(--dark-text);
   font-style: normal;
