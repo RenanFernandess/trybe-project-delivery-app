@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import LogoutButton from './LogoutButton';
 import userContext from '../context';
@@ -13,28 +13,37 @@ export default function NavBar({ route }) {
     <header className="header">
       <nav className="header-child">
         { ROUTE.includes('customer') && (
-          <Link to="/customer/products">
+          <NavLink
+            to="/customer/products"
+            className={ (isActive) => (isActive ? 'selected' : '') }
+          >
             <p data-testid="customer_products__element-navbar-link-products">
               produtos
             </p>
-          </Link>
+          </NavLink>
         ) }
         {
           (ROUTE.includes('customer') || ROUTE.includes('seller')) && (
-            <Link to={ `/${ROUTE}/orders` }>
+            <NavLink
+              to={ `/${ROUTE}/orders` }
+              className={ (isActive) => (isActive ? 'selected' : '') }
+            >
               <p data-testid="customer_products__element-navbar-link-orders">
                 {ROUTE.includes('customer') ? 'meus pedidos' : 'pedidos'}
               </p>
-            </Link>
+            </NavLink>
           )
         }
         {
           ROUTE.includes('admin') && (
-            <Link to="/admin/manage">
+            <NavLink
+              to="/admin/manage"
+              className={ (isActive) => (isActive ? 'selected' : '') }
+            >
               <p data-testid="customer_products__element-navbar-link-orders">
                 gerenciar usuários
               </p>
-            </Link>
+            </NavLink>
           )
         }
       </nav>
