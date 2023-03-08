@@ -23,7 +23,7 @@
 .container .input-with-label {
   height: 112px;
   left: 749px;
-  margin: 10px  20px 20px;
+  margin: 10px  24px 20px;
   top: 359px;
   width: 371px;
 
@@ -45,16 +45,21 @@ label {
 
 .container button {
   background-color: #036b52;
+  border: 0;
   border-radius: 6px;
   color: #f2fffc;
   font-size: 28px;
   height: 60px;
   line-height: 33px;
-  margin: 15px 20px;
+  margin: 15px 24px;
   text-align: center;
   text-transform: uppercase;
   width: 371px;
+}
 
+button:disabled {
+  background-color: #ccc;
+  color: #666;
 }
 
 .container input {
@@ -73,4 +78,12 @@ label {
   height: 506px;
   margin: 0;
   width: 425px;
+}
+
+.message {
+  background-color: #cdcdcd2c;
+  height: 50px;
+  line-height: 50px;
+  margin: 20px;
+  text-align: center;
 }

@@ -3,6 +3,8 @@ import { useHistory } from 'react-router-dom';
 import { postAPI, localStorageHandling } from '../utils';
 import './styles/style.register.css';
 
+import { USER_KEY } from '../constants';
+
 import 'typeface-roboto';
 import '@fontsource/roboto';
 
@@ -40,7 +42,7 @@ export default function RegisterForms() {
       (data) => setClient(data),
       { name, email, password, role: 'customer' },
     );
-    localStorageHandling.setItem(data, USER_KEY);
+    localStorageHandling.setItem(client, USER_KEY);
   };
 
   return (
@@ -81,6 +83,7 @@ export default function RegisterForms() {
           <label htmlFor="password">
             Senha
             <input
+              placeholder="**********"
               data-testid={ `${ROUTE}__input-password` }
               name="password"
               type="password"
@@ -103,7 +106,7 @@ export default function RegisterForms() {
           </button>
         </div>
       </form>
-      <div>
+      <div className="message">
         {
           client.message === 'User already exists' && (
             <span data-testid={ `${ROUTE}__element-invalid_register` }>
