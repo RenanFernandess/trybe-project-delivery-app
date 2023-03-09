@@ -1,7 +1,7 @@
 .c-body {
   margin: 0 auto;
-  padding: 2rem;
-  width: 95vw;
+  padding: 1rem 0.5rem;
+  width: 98vw;
 }
 
 .c-mediun {
@@ -61,4 +61,13 @@
 
 .secondary-btn:hover {
   background-color: var(--primary-color-hover);
+}
+
+
+@media screen and ( min-width : 800px ) {
+
+  .c-body {
+    padding: 1rem 2rem;
+    width: 95vw;
+  }
 }
