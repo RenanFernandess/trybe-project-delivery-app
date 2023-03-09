@@ -43,6 +43,6 @@ code {
 }
 
 link, a {
-  color: black;
+  color: var(--dark-text);
   text-decoration: none;
 }
