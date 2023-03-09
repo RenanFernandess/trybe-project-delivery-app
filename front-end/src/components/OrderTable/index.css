@@ -1,16 +1,17 @@
 .c-table {
-  font-size: 1.5rem;
-  font-weight: 700;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 .c-table__table {
+  border-spacing: 0 0.6rem;
   margin-bottom: 2rem;
   width: 100%;
 }
 
 .c-table__tbody__td, .c-table__th {
   border: none;
-  padding: 0.6rem 1rem;
+  padding: 0.3rem;
   text-align: center;
 }
 
@@ -39,25 +40,62 @@
 }
 
 .c-table__tbody__td:nth-of-type( 6 ) {
+  background-color: var(--secondary-color);
+  border-radius: 0 0.5rem 0.5rem 0;
   padding: 0;
 }
 
 .c-table__btn {
   border-radius: 0 0.5rem 0.5rem 0;
-  font-size: 1.5rem;
-  height: 100%;
+  font-size: 1rem;
   padding: 0.6rem 1rem;
   width: 100%;
 }
+
 
 .c-table__total-price {
   background-color: var(--primary-color);
   border-radius: 0.5rem;
   color: var(--light-text);
-  font-size: 2rem;
-  font-weight: 900;
+  font-size: 1rem;
+  font-weight: 500;
   margin-left: auto;
   max-width: 18rem;
   padding: 0.5rem;
   text-align: center;
+}
+
+@media screen and ( min-width : 876px ) {
+
+  .c-table__tbody__td, .c-table__th {
+    padding: 0.6rem;
+  }
+
+  .c-table, .c-table__btn {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+
+  .c-table__total-price {
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+}
+
+@media screen and ( min-width : 1090px ) {
+
+  .c-table__tbody__td, .c-table__th {
+    padding: 0.6rem 1rem;
+  }
+
+  .c-table, .c-table__btn {
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .c-table__total-price {
+    font-size: 2rem;
+    font-weight: 900;
+  }
+
 }
