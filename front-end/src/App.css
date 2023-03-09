@@ -1,7 +1,8 @@
 .c-body {
   margin: 0 auto;
+  max-width: 98vw;
+  min-width: 10rem;
   padding: 1rem 0.5rem;
-  width: 98vw;
 }
 
 .c-mediun {
@@ -13,7 +14,7 @@
 .c-list-card {
   display: flex;
   flex-flow: wrap;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .base-btn {
@@ -73,7 +74,11 @@
 @media screen and ( min-width : 800px ) {
 
   .c-body {
-    padding: 1rem 2rem;
-    width: 95vw;
+    max-width: 95vw;
+    padding: 2rem;
+  }
+
+  .c-list-card {
+    gap: 2rem;
   }
 }
