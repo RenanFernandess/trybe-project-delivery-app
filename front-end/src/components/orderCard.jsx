@@ -1,36 +1,35 @@
 import PropTypes from 'prop-types';
 import { formatNumber, formatDate } from '../utils/formatNumbers';
 
+const FOUR = 4;
 export default function OrderCard({ route, order }) {
-  const ROUTE = route;
-  const FOUR = 4;
   return (
     <div>
       <div>
         pedido
-        <p data-testid={ `${ROUTE}__element-order-id-${order.id}` }>
+        <p data-testid={ `${route}__element-order-id-${order.id}` }>
           {formatNumber(order.id, FOUR)}
         </p>
       </div>
       <div>
-        <p data-testid={ `${ROUTE}__element-delivery-status-${order.id}` }>
+        <p data-testid={ `${route}__element-delivery-status-${order.id}` }>
           {order.status}
         </p>
       </div>
       <div>
         {/* data */}
-        <p data-testid={ `${ROUTE}__element-order-date-${order.id}` }>
+        <p data-testid={ `${route}__element-order-date-${order.id}` }>
           {formatDate(order.saleDate)}
         </p>
       </div>
       <div>
-        <p data-testid={ `${ROUTE}__element-card-price-${order.id}` }>
+        <p data-testid={ `${route}__element-card-price-${order.id}` }>
           {`R$ ${order.totalPrice.replace('.', ',')}`}
         </p>
       </div>
       {
-        ROUTE === 'seller_orders' && (
-          <p data-testid={ `${ROUTE}__element-card-address-${order.id}` }>
+        route === 'seller_orders' && (
+          <p data-testid={ `${route}__element-card-address-${order.id}` }>
             {order.deliveryAddress}
           </p>
         )
