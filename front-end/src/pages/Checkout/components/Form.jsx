@@ -11,7 +11,7 @@ export default function Form() {
   const [loading, setLoadion] = useState(true);
   const [sellers, setSellers] = useState([]);
   const [seller, setSeller] = useState(0);
-  const [number, setNumber] = useState();
+  const [number, setNumber] = useState('');
   const [address, setAddress] = useState('');
 
   useEffect(() => {
