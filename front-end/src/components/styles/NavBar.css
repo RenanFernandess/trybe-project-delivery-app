@@ -3,18 +3,19 @@
   background-color: var(--primary-color);
   color: var(--light-text);
   display: flex;
-  font-size: 1.75rem;
-  font-weight: 700;
+  flex-direction: column-reverse;
+  font-size: 1rem;
+  font-weight: 500;
   justify-content: space-between;
-  max-height: 6rem;
-  min-height: 4rem;
+  max-height: 15rem;
+  min-height: 3rem;
 }
 
 .header link, a {
   color: var(--light-text);
 }
 
-.header-child {
+.header__nav, .header__aside {
   align-items: stretch;
   display: flex;
   flex: 1 1;
@@ -23,31 +24,55 @@
   max-width: 40rem;
 }
 
-.selected p {
+.header__nav_p--selected {
   background-color: var(--secondary-color);
 }
 
-.header-child p, .header-child button {
+.header__nav__p, .header__nav__link, .header__aside__p, .header__logout-btn {
   flex: 1 1;
-  font-size: 1.75rem;
+  font-size: 1rem;
   font-weight: 700;
-  height: 100%;
-  padding: 1rem 2rem;
+  max-width: 40rem;
+  min-width: 6rem;
   text-align: center;
 }
 
-.header-aside button {
+.header__nav__p, .header__aside__p, .header__logout-btn {
+  padding: 1rem 0.5rem;
+}
+
+.header__logout-btn {
   background-color: var(--fourth-color);
   border: none;
   color: var(--light-text);
   max-width: 7rem;
-  transition: 300ms;
 }
 
-.header-aside button:hover {
+.header__logout-btn:hover {
   background-color: var(--fourth-color-hover);
 }
 
-.header-aside p {
+.header__aside__p {
   background-color: var(--tertiary-color);
+}
+
+@media screen and ( min-width : 520px ) {
+
+  .header {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and ( min-width : 835px ) {
+
+  .header {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
+
+  .header__nav__p, .header__aside__p, .header__logout-btn {
+    font-size: 1.75rem;
+    font-weight: 700;
+  }
 }
