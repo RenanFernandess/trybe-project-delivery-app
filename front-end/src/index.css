@@ -32,6 +32,7 @@
 }
 
 body {
+  color: var(--dark-text);
   font-size: 1rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
