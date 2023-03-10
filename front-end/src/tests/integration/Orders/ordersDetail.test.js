@@ -4,9 +4,9 @@ import userEvent from '@testing-library/user-event';
 import { CUSTOMER_MOCK, SELLER_MOCK } from '../mocks/User.mock';
 import { awaySaleMock, saleMock } from '../mocks/Sale.mock';
 import { sellersMock } from '../mocks/Sellers.mock';
-import patchAPI from '../../../utils/patchAPI';
+// import patchAPI from '../../../utils/patchAPI';
 
-jest.mock('../../../utils/patchAPI');
+// jest.mock('../../../utils/patchAPI');
 
 describe('Testes de Orders', () => {
   describe('Testes da página /customer/orders', () => {
@@ -16,19 +16,20 @@ describe('Testes de Orders', () => {
     afterEach(() => {
       jest.clearAllMocks();
       localStorage.clear();
-      patchAPI.mockClear();
+      // patchAPI.mockClear();
     });
 
     it('verifica se é possível alterar o satatus do pedido se estiver "Em Trânsito"', async () => {
       jest.spyOn(global, 'fetch');
       global.fetch.mockResolvedValue({
         json: jest.fn()
-          // .mockResolvedValueOnce(undefined)
-          .mockResolvedValue(sellersMock[0])
-          .mockResolvedValueOnce(awaySaleMock),
+          .mockResolvedValue(undefined)
+          .mockResolvedValueOnce(awaySaleMock)
+          .mockResolvedValueOnce(sellersMock[0])
       });
-      patchAPI.mockResolvedValueOnce(undefined);
-      const { history } = renderPath('/customer/orders/1');
+      // patchAPI.mockResolvedValueOnce(undefined);
+
+      renderPath('/customer/orders/1');
 
       expect(await screen.findByTestId('customer_order_details__element-order-details-label-seller-name')).toBeInTheDocument();
 
@@ -49,19 +50,19 @@ describe('Testes de Orders', () => {
     afterEach(() => {
       jest.clearAllMocks();
       localStorage.clear();
-      patchAPI.mockClear();
+      // patchAPI.mockClear();
     });
 
     it('verifica se é possível alterar o satatus do pedido de "Pendente" para "Preparando/Em Trânsito"', async () => {
       jest.spyOn(global, 'fetch');
       global.fetch.mockResolvedValue({
         json: jest.fn()
-          // .mockResolvedValueOnce(undefined)
-          .mockResolvedValue(sellersMock[0])
-          .mockResolvedValueOnce(saleMock),
+          .mockResolvedValue(undefined)
+          .mockResolvedValueOnce(saleMock)
+          .mockResolvedValueOnce(sellersMock[0])
       });
-      patchAPI.mockResolvedValueOnce(undefined);
-      const { history } = renderPath('/seller/orders/1');
+      // patchAPI.mockResolvedValueOnce(undefined);
+      renderPath('/seller/orders/1');
 
       expect(await screen.findByTestId('seller_order_details__element-order-details-label-order-id')).toBeInTheDocument();
 
@@ -75,5 +76,5 @@ describe('Testes de Orders', () => {
       userEvent.click(screen.getByRole('button', { name: /Saiu Para Entrega/i }));
       expect(screen.getByTestId('seller_order_details__element-order-details-label-delivery-status')).toHaveTextContent('Em Trânsito');
     });
-  })
-})
+  });
+});
