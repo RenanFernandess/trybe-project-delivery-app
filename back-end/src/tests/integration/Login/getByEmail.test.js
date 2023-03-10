@@ -13,14 +13,14 @@ describe('Tests LoginController getByEmail function', function () {
   beforeEach(sinon.restore);
 
   it('Successfully getByEmail', async function () {
-    sinon.stub(User, 'findOne').resolves([usersMock[1]]);
+    sinon.stub(User, 'findOne').resolves([usersMock[1].dataValues]);
 
     chaiHttpResponse = await chai
       .request(app)
       .get('/login/email/fulana@deliveryapp.com');
 
     expect(chaiHttpResponse.status).to.equal(200);
-    expect(chaiHttpResponse.body).to.deep.equal([userSeller]);
+    expect(chaiHttpResponse.body).to.deep.equal([usersMock[1].dataValues]);
   });
 
   it('tests throwing error', async function () {
