@@ -29,11 +29,6 @@
 
 }
 
-/* .container input {
-  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
-  text-align: left;
-} */
-
 .container input, label {
   display: block;
   font-size: 24px;
@@ -69,8 +64,8 @@ button:disabled {
 .container input {
   border: solid 1px black;
   border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   color: #e5e5e5;
-  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
   font-weight: 400;
   height: 70px;
   text-align: left;
@@ -80,7 +75,7 @@ button:disabled {
 .container form {
   background-color: #eaf1ef;
   border: solid 1px #b1c2be;
-  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   height: 506px;
   margin: 0;
   width: 425px;
