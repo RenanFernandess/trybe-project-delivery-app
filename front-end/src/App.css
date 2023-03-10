@@ -1,15 +1,26 @@
+.c-body {
+  margin: 0 auto;
+  max-width: 98vw;
+  min-width: 10rem;
+  padding: 1rem 0.5rem;
+}
+
+.c-mediun {
+  box-shadow: 2px 2px 6px rgb(115, 115, 114);
+  margin-bottom: 2rem;
+  padding: 0.5rem;
+}
+
 .c-list-card {
   display: flex;
   flex-flow: wrap;
-  gap: 2rem;
-  margin: 0 auto;
-  padding: 2rem;
-  width: 95vw;
+  gap: 1rem;
 }
 
 .base-btn {
   border-radius: 0.5rem;
   font-size: 1rem;
+  font-weight: 700;
   min-width: 6rem;
   padding: 1rem;
   text-align: center;
@@ -39,3 +50,35 @@
   background-color: var(--primary-color-hover);
 }
 
+.secondary-btn {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--light-text);
+}
+
+.secondary-btn:active {
+  transform: scale(1.005, 1.005);
+}
+
+.secondary-btn:hover {
+  background-color: var(--primary-color-hover);
+}
+
+@media screen and ( min-width : 450px ) {
+
+  .c-mediun {
+    padding: 1rem;
+  }
+}
+
+@media screen and ( min-width : 800px ) {
+
+  .c-body {
+    max-width: 95vw;
+    padding: 2rem;
+  }
+
+  .c-list-card {
+    gap: 2rem;
+  }
+}

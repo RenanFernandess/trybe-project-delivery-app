@@ -16,19 +16,20 @@ export default function OrderTable() {
   const isCheckout = (pathname === '/customer/checkout');
 
   return (
-    <section>
-      <table>
+    <section className="c-mediun c-table">
+      <table className="c-table__table">
         <Thead isCheckout={ isCheckout } />
         <Tbody isCheckout={ isCheckout } location={ LOCATION } products={ products } />
       </table>
-      <aside>
+      <p className="c-table__total-price">
         Total: R$
-        <p
+        { ' ' }
+        <samp
           data-testid={ `${LOCATION}__element-order-total-price` }
         >
           { `${totalPrice.replace('.', ',')}` }
-        </p>
-      </aside>
+        </samp>
+      </p>
     </section>
   );
 }

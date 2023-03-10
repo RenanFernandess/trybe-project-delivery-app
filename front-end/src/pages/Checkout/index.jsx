@@ -4,6 +4,7 @@ import { cartContext } from '../../context';
 import Form from './components';
 import { CART_KEY } from '../../constants';
 import { localStorageHandling } from '../../utils';
+import './index.css';
 
 const { getLocalStorage } = localStorageHandling;
 
@@ -14,12 +15,12 @@ export default function Checkout() {
 
   return (
     <section>
-      <NavBar route="customer_products" />
-      <div>
-        <h2>Finalizar Pedido</h2>
+      <NavBar route="customer" />
+      <div className="c-body">
+        <h2 className="checkout__h2">Finalizar Pedido</h2>
         <OrderTable />
+        <Form />
       </div>
-      <Form />
     </section>
   );
 }

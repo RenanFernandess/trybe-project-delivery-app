@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import NavBar, { ProductCard } from '../../components';
+import NavBar, { Loading, ProductCard } from '../../components';
 import { CART_KEY } from '../../constants';
 import { getAPI, localStorageHandling } from '../../utils';
 import './index.css';
@@ -80,9 +80,9 @@ export default function Products() {
     <div className="c-main">
       <NavBar route="customer" />
       { loading
-        ? <p>Loading...</p>
+        ? <Loading />
         : (
-          <section className="c-list-card">
+          <section className="c-body c-list-card">
             { products.map(({ id, name, urlImage, price }, index) => (<ProductCard
               key={ id }
               id={ id }
@@ -94,7 +94,6 @@ export default function Products() {
               onChange={ handleChange }
               index={ index }
             />)) }
-
           </section>
         ) }
       <button
@@ -110,7 +109,6 @@ export default function Products() {
           data-testid="customer_products__checkout-bottom-value"
         >
           { total.toFixed(2).replace('.', ',') }
-
         </span>
       </button>
     </div>

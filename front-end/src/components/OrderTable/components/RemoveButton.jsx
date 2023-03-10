@@ -11,6 +11,7 @@ export default function RemoveButton({ id: productId }) {
 
   return (
     <button
+      className="base-btn secondary-btn c-table__btn"
       type="button"
       onClick={ remove }
     >

@@ -7,27 +7,30 @@ const BASE = 'customer_products';
 function ProductCard({ id, title, price, thumbnail,
   quantity, onClick, index, onChange }) {
   return (
-    <section data-testid="product" className="card-product-container">
+    <section data-testid="product" className="pro-card">
       <img
-        className="product-image"
+        className="pro-card__img"
         data-testid={ `${BASE}__img-card-bg-image-${id}` }
         src={ thumbnail }
         alt={ title }
       />
       <h2
         data-testid={ `${BASE}__element-card-price-${id}` }
-        className="product-price"
+        className="pro-card__price"
       >
         {price.replace('.', ',')}
       </h2>
-      <footer className="product-description">
-        <p data-testid={ `${BASE}__element-card-title-${id}` }>
+      <footer className="pro-card__footer">
+        <h4
+          className="pro-card__title"
+          data-testid={ `${BASE}__element-card-title-${id}` }
+        >
           {title}
-        </p>
-        <div className="card-quantity">
+        </h4>
+        <div className="pro-card__div">
           <button
             data-testid={ `${BASE}__button-card-rm-item-${id}` }
-            className="primary-btn"
+            className="pro-card__button primary-btn"
             type="button"
             name="minusButton"
             onClick={ (e) => onClick(e, index) }
@@ -37,7 +40,7 @@ function ProductCard({ id, title, price, thumbnail,
           <input
             type="text"
             data-testid={ `${BASE}__input-card-quantity-${id}` }
-            className="card-quantity-input"
+            className="pro-card__input"
             name="quantity"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -46,7 +49,7 @@ function ProductCard({ id, title, price, thumbnail,
           />
           <button
             data-testid={ `${BASE}__button-card-add-item-${id}` }
-            className="primary-btn"
+            className="pro-card__button primary-btn"
             type="button"
             name="addButton"
             onClick={ (e) => onClick(e, index) }
