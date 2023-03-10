@@ -10,15 +10,9 @@ export default function CustomerOrders() {
   const { location: { pathname } } = useHistory();
   const { id } = useContext(userContext);
   const [orders, setOrders] = useState([]);
-  // const [id, setId] = useState('');
 
   const route = pathname
     .includes('customer') ? `/sales/user/${id}'` : `/sales/seller/${id}'`;
-
-  // const getId = async () => {
-  //   const userId = await getUserId();
-  //   setId(userId);
-  // };
 
   const getOrders = async () => {
     await getAPI(
@@ -28,7 +22,6 @@ export default function CustomerOrders() {
   };
 
   useEffect(() => {
-    // getId();
     getOrders();
   }, []);
 

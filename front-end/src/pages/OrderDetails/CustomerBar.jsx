@@ -22,17 +22,17 @@ export default function CustomerBar({ order, seller }) {
     }
   };
   return (
-    <div>
-      <h3 data-testid={ `${DATATESTID}-order-id` }>
-        {order?.id.toString().padStart(PADNUMBER, '0')}
+    <div className="customer-bar-container">
+      <h3 data-testid={ `${DATATESTID}-order-id` } className="order-id">
+        { `Pedido ${order?.id.toString().padStart(PADNUMBER, '0')}`}
       </h3>
-      <p data-testid={ `${DATATESTID}-seller-name` }>
+      <p data-testid={ `${DATATESTID}-seller-name` } className="order-name">
         {`P. Vend: ${seller.name}`}
       </p>
-      <p data-testid={ `${DATATESTID}-order-date` }>
+      <p data-testid={ `${DATATESTID}-order-date` } className="order-date">
         { moment(order?.saleDate).format('DD/MM/YYYY') }
       </p>
-      <p data-testid={ `${DATATESTID}-delivery-status${1}` }>
+      <p data-testid={ `${DATATESTID}-delivery-status${1}` } className="order-status">
         { status }
       </p>
       <button
@@ -41,6 +41,7 @@ export default function CustomerBar({ order, seller }) {
         value={ DELIVERED }
         onClick={ ({ target: { value } }) => (handleStatusChange(value, setStatus)) }
         data-testid="customer_order_details__button-delivery-check"
+        className="order-btn"
       >
         Marcar como Entregue
 
