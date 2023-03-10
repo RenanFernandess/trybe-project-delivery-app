@@ -1,16 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Loading } from '../../../components';
 import userContext, { cartContext } from '../../../context';
 import { getAPI, postWithTokenAPI } from '../../../utils';
+import './styles/Form.css';
 
 export default function Form() {
   const { id: userId, token } = useContext(userContext);
-  const { cart: products, totalPrice } = useContext(cartContext);
+  const { products, totalPrice, setProducts } = useContext(cartContext);
   const history = useHistory();
   const [loading, setLoadion] = useState(true);
   const [sellers, setSellers] = useState([]);
   const [seller, setSeller] = useState(0);
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState('');
   const [address, setAddress] = useState('');
 
   useEffect(() => {
@@ -34,54 +36,58 @@ export default function Form() {
     };
     await postWithTokenAPI('/sales', (data) => {
       history.push(`/customer/orders/${data.id}`);
+      setProducts([]);
     }, body, token);
-    localStorage.removeItem('cart');
   };
 
   return (
-    loading ? <p>Loading...</p> : (
+    loading ? <Loading /> : (
       <div>
-        <h2>Detalhes e Endereço para Entrega</h2>
-        <form>
-          <label htmlFor="checkout-select-seller">
+        <h2 className="checkout__h2">Detalhes e Endereço para Entrega</h2>
+        <form className="c-mediun form">
+          <label className="form__label" htmlFor="checkout-select-seller">
             P. Vendedora Responsável:
             <select
+              className="form__select"
               name="seller"
               id="checkout-select-seller"
               value={ seller }
               data-testid="customer_checkout__select-seller"
-              onChange={ ({ target: { value } }) => { setSeller(Number(value)); } }
+              onChange={ ({ target: { value } }) => { setSeller(value); } }
             >
               { sellers.map(({ id, name }) => (
                 <option value={ id } key={ id }>{ name }</option>
               )) }
             </select>
           </label>
-          <label htmlFor="checkout-input-address">
+          <label className="form__label" htmlFor="checkout-input-address">
             Endereço
             <input
+              className="form__input"
               type="text"
               name="address"
               value={ address }
               onChange={ ({ target: { value } }) => setAddress(value) }
               id="checkout-input-address"
-              placeholder=""
+              placeholder="Travessa Terceira da Castanheira, Bairro Muruci"
               data-testid="customer_checkout__input-address"
             />
           </label>
-          <label htmlFor="checkout-input-number">
+          <label className="form__label" htmlFor="checkout-input-number">
             Número
             <input
+              className="form__input"
               type="number"
               name="number"
               value={ number }
-              onChange={ ({ target: { value } }) => setNumber(Number(value)) }
+              onChange={ ({ target: { value } }) => setNumber(value) }
               id="checkout-input-number"
               placeholder="198"
               data-testid="customer_checkout__input-address-number"
             />
           </label>
           <button
+            className="base-btn primary-btn form_btn"
             type="button"
             data-testid="customer_checkout__button-submit-order"
             onClick={ finish }

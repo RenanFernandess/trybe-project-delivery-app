@@ -10,24 +10,26 @@ const WHICH_LOCATION = {
   '/seller/orders': 'seller_order_details',
 };
 export default function OrderTable() {
-  const { cart: products, totalPrice } = useContext(cartContext);
+  const { products, totalPrice } = useContext(cartContext);
   const { location: { pathname } } = useHistory();
   const LOCATION = WHICH_LOCATION[pathname];
   const isCheckout = (pathname === '/customer/checkout');
 
   return (
-    <section>
-      <table>
+    <section className="c-mediun c-table">
+      <table className="c-table__table">
         <Thead isCheckout={ isCheckout } />
         <Tbody isCheckout={ isCheckout } location={ LOCATION } products={ products } />
       </table>
-      <div>
-        <p
+      <p className="c-table__total-price">
+        Total: R$
+        { ' ' }
+        <samp
           data-testid={ `${LOCATION}__element-order-total-price` }
         >
           { `${totalPrice.replace('.', ',')}` }
-        </p>
-      </div>
+        </samp>
+      </p>
     </section>
   );
 }
