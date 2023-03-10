@@ -21,7 +21,7 @@
 @keyframes is-loading {
 
   to {
-    transform: rotate(1turn);
+    transform: rotate(2turn);
   }
 
   0% { border-top-color: var(--primary-color); }
