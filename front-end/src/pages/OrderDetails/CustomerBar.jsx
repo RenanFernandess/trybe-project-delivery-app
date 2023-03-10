@@ -32,7 +32,11 @@ export default function CustomerBar({ order, seller }) {
       <p data-testid={ `${DATATESTID}-order-date` } className="order-date">
         { moment(order?.saleDate).format('DD/MM/YYYY') }
       </p>
-      <p data-testid={ `${DATATESTID}-delivery-status${1}` } className="order-status">
+      <p
+        data-testid={ `${DATATESTID}-delivery-status${1}` }
+        className="order-status"
+        style={ { backgroundColor: colorChange(status) } }
+      >
         { status }
       </p>
       <button
