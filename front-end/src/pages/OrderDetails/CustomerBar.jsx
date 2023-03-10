@@ -37,7 +37,7 @@ export default function CustomerBar({ order, seller }) {
       </p>
       <button
         type="button"
-        disabled={ status === 'Entregue' }
+        disabled={ status !== 'Em Trânsito' }
         value={ DELIVERED }
         onClick={ ({ target: { value } }) => (handleStatusChange(value, setStatus)) }
         data-testid="customer_order_details__button-delivery-check"

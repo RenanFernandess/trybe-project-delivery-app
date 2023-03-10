@@ -65,7 +65,7 @@
   width: 1640px;
 }
 
-.customer-bar-container {
+.bar-container {
   align-items: center;
   background-color: rgba(234, 241, 239, 1);
   display: flex;
@@ -80,6 +80,25 @@
   line-height: 42px;
   text-align: center;
   width: 250px;
+}
+
+.seller-order-id {
+  display: inline-block;
+  font-weight: 700;
+  line-height: 42px;
+  text-align: center;
+  width: 277px;
+}
+
+.seller-order-date {
+  background-color: rgba(242, 255, 252, 0.75);
+  border-radius: 10px;
+  display: inline-block;
+  font-weight: 700;
+  height: 52px;
+  line-height: 55px;
+  text-align: center;
+  width: 216px;
 }
 
 
@@ -154,4 +173,28 @@
   text-align: center;
   top: 980px;
   width: 513px;
+}
+
+.preparing-btn {
+  border-radius: 10px;
+  font-size: 28px;
+  font-weight: 500;
+  height: 52px;
+  line-height: 33px;
+  text-align: center;
+  width: 332px;
+}
+
+.in-transit-btn {
+  height: 52px;
+  width: 332px;
+  left: 1422px;
+  top: 226px;
+  border-radius: 10px;
+font-size: 24px;
+font-weight: 500;
+line-height: 28px;
+letter-spacing: 0em;
+text-align: center;
+
 }
