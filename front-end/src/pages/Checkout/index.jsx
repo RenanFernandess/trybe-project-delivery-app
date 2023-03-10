@@ -14,7 +14,7 @@ export default function Checkout() {
 
   return (
     <section>
-      <NavBar route="customer_products" />
+      <NavBar route="customer" />
       <div>
         <h2>Finalizar Pedido</h2>
         <OrderTable />

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { postAPI, localStorageHandling } from '../utils';
-// import id, { USER_KEY } from '../constants/index';
+import { USER_KEY } from '../constants/index';
 
 export default function RegisterForms() {
   const [name, setName] = useState('');
@@ -35,10 +35,12 @@ export default function RegisterForms() {
   const register = async () => {
     await postAPI(
       '/register',
-      (data) => setClient(data),
+      (data) => {
+        localStorageHandling.setItem(USER_KEY, data);
+        setClient(data);
+      },
       { name, email, password, role: 'customer' },
     );
-    localStorageHandling.setItem(data, USER_KEY);
   };
 
   console.log(client);

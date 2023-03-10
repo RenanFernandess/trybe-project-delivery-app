@@ -54,4 +54,37 @@ describe('Tests LoginController getSales function', function () {
     expect(chaiHttpResponse.status).to.equal(500);
     expect(chaiHttpResponse.body.message).to.deep.equal('Failure test');
   });
+
+  it('Successfully getBySellerId', async function () {
+    sinon.stub(Sale, 'findAll').resolves(getAllSalesMock);
+
+    chaiHttpResponse = await chai
+      .request(app)
+      .get('/sales/seller/2');
+
+    expect(chaiHttpResponse.status).to.equal(200);
+    expect(chaiHttpResponse.body).to.deep.equal(getAllSalesMock);
+  });
+
+  it('Fails getBySellerId', async function () {
+    sinon.stub(Sale, 'findAll').throws(new Error('Failure test'));
+
+    chaiHttpResponse = await chai
+      .request(app)
+      .get('/sales/seller/2');
+
+    expect(chaiHttpResponse.status).to.equal(500);
+    expect(chaiHttpResponse.body.message).to.deep.equal('Failure test');
+  });
+
+  it('Successfully getBySellerId', async function () {
+    sinon.stub(Sale, 'findAll').resolves(getAllSalesMock);
+
+    chaiHttpResponse = await chai
+      .request(app)
+      .get('/sales/user/3');
+
+    expect(chaiHttpResponse.status).to.equal(200);
+    expect(chaiHttpResponse.body).to.deep.equal(getAllSalesMock);
+  });
 });
