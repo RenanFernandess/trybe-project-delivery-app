@@ -202,10 +202,6 @@
   background-color: rgb(41, 168, 122);
 }
 
-.in-transit-btn:hover {
-  background-color: rgb(2, 88, 68);
-}
-
 .in-transit-btn {
   background-color: rgba(3, 107, 82, 1);
   border: 0;
@@ -219,4 +215,8 @@
   text-align: center;
   top: 226px;
   width: 332px;
+}
+
+.in-transit-btn:hover {
+  background-color: rgb(2, 88, 68);
 }
