@@ -9,6 +9,14 @@ const REDIRECT_PATHS = {
   administrator: '/admin/manage',
 };
 
+const style = {
+  left: '50%',
+  position: 'absolute',
+  top: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '425px',
+};
+
 export default function Login() {
   const { message, role, token } = useContext(userContext);
   const history = useHistory();
@@ -22,12 +30,17 @@ export default function Login() {
   });
 
   return (
-    <div>
+    <div className="login-container" style={ style }>
       <Logo />
       <Form />
       {
         message
-        && <p data-testid="common_login__element-invalid-email">{ message }</p>
+        && (
+          <div className="message">
+            <span data-testid="common_login__element-invalid-email">
+              { message }
+            </span>
+          </div>)
       }
     </div>
   );

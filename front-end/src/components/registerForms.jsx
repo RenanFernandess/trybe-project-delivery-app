@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { postAPI, localStorageHandling } from '../utils';
-import './styles/style.register.css';
+import '../styles/style.register.css';
+
+import { USER_KEY } from '../constants';
+
+import 'typeface-roboto';
+import '@fontsource/roboto';
 
 export default function RegisterForms() {
   const [name, setName] = useState('');
@@ -26,7 +31,6 @@ export default function RegisterForms() {
   }, [name, email, password]);
 
   useEffect(() => {
-    // CORRIGIR
     if (client.name === name) {
       history.push('/customer/products');
     }
@@ -38,48 +42,61 @@ export default function RegisterForms() {
       (data) => setClient(data),
       { name, email, password, role: 'customer' },
     );
-    localStorageHandling.setItem(data, USER_KEY);
+    localStorageHandling.setItem(client, USER_KEY);
   };
 
-  console.log(client);
   return (
     <div className="container">
       <h1>Cadastro</h1>
       <form>
-        <div>
-          <p>Nome</p>
-          <input
-            data-testid={ `${ROUTE}__input-name` }
-            name="name"
-            type="text"
-            placeholder="Seu nome"
-            value={ name }
-            onChange={ ({ target: { value } }) => setName(value) }
-          />
+        <div className="input-with-label">
+          <label htmlFor="name">
+            Nome
+            <input
+              data-testid={ `${ROUTE}__input-name` }
+              name="name"
+              type="text"
+              id="name"
+              placeholder="Seu nome"
+              value={ name }
+              onChange={ ({ target: { value } }) => setName(value) }
+              required
+            />
+          </label>
         </div>
-        <div>
-          <p>Email</p>
-          <input
-            name="email"
-            data-testid={ `${ROUTE}__input-email` }
-            type="email"
-            placeholder="seu-email@site.com.br"
-            value={ email }
-            onChange={ ({ target: { value } }) => setEmail(value) }
-          />
+        <div className="input-with-label">
+          <label htmlFor="id">
+            Email
+            <input
+              name="email"
+              data-testid={ `${ROUTE}__input-email` }
+              type="email"
+              id="email"
+              placeholder="seu-email@site.com.br"
+              value={ email }
+              onChange={ ({ target: { value } }) => setEmail(value) }
+              required
+            />
+          </label>
         </div>
-        <div>
-          <p>senha</p>
-          <input
-            data-testid={ `${ROUTE}__input-password` }
-            name="password"
-            type="password"
-            value={ password }
-            onChange={ ({ target: { value } }) => setPassword(value) }
-          />
+        <div className="input-with-label">
+          <label htmlFor="password">
+            Senha
+            <input
+              placeholder="**********"
+              data-testid={ `${ROUTE}__input-password` }
+              name="password"
+              type="password"
+              id="password"
+              value={ password }
+              onChange={ ({ target: { value } }) => setPassword(value) }
+              required
+            />
+          </label>
         </div>
         <div>
           <button
+            className="btn"
             type="button"
             data-testid={ `${ROUTE}__button-register` }
             disabled={ disabled }
@@ -89,17 +106,15 @@ export default function RegisterForms() {
           </button>
         </div>
       </form>
-      <div>
-        {/* validação - elemento oculto */}
-
-        {
-          client.message === 'User already exists' && (
+      {
+        client.message === 'User already exists' && (
+          <div className="message">
             <span data-testid={ `${ROUTE}__element-invalid_register` }>
               {client.message}
             </span>
-          )
-        }
-      </div>
+          </div>
+        )
+      }
     </div>
   );
 }
