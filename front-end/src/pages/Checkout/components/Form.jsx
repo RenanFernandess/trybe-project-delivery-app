@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { Loading } from '../../../components';
 import userContext, { cartContext } from '../../../context';
 import { getAPI, postWithTokenAPI } from '../../../utils';
 import './styles/Form.css';
@@ -40,7 +41,7 @@ export default function Form() {
   };
 
   return (
-    loading ? <p>Loading...</p> : (
+    loading ? <Loading /> : (
       <div>
         <h2 className="checkout__h2">Detalhes e Endereço para Entrega</h2>
         <form className="c-mediun form">
