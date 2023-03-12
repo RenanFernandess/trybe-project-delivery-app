@@ -5,6 +5,8 @@ import { getAPI, localStorageHandling } from '../../utils';
 import AdminForm from './AdminForm';
 import UsersTable from './UsersTable';
 
+import '../../styles/style.adm.css';
+
 const { getLocalStorage } = localStorageHandling;
 
 export default function AdminPage() {
@@ -25,25 +27,34 @@ export default function AdminPage() {
   }, []);
 
   return (
-    <div>
-      <NavBar route={ pathname } />
-      { fetchReturn && (
-        <p data-testid="admin_manage__element-invalid-register">
-          ERRO
-        </p>
-      ) }
-      <AdminForm
-        setUsers={ setUsers }
-        token={ currentUser.token }
-        setFetchReturn={ setFetchReturn }
-      />
-      {
-        users.length > 0 && <UsersTable
-          setUsers={ setUsers }
-          users={ users
-            .filter((u) => u.role !== 'administrator') }
-        />
-      }
+    <div className="main-container-adm">
+
+      <div>
+        <NavBar route={ pathname } />
+        { fetchReturn && (
+          <p data-testid="admin_manage__element-invalid-register">
+            ERRO
+          </p>
+        ) }
+        <div className="main-container-form">
+          <h3> Cadastrar novo usuário</h3>
+          <AdminForm
+            setUsers={ setUsers }
+            token={ currentUser.token }
+            setFetchReturn={ setFetchReturn }
+          />
+        </div>
+        <div className="main-container-adm-table">
+          <h3>Listas de Usuários</h3>
+          {
+            users.length > 0 && <UsersTable
+              setUsers={ setUsers }
+              users={ users
+                .filter((u) => u.role !== 'administrator') }
+            />
+          }
+        </div>
+      </div>
     </div>
   );
 }
