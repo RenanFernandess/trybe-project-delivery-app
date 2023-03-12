@@ -35,7 +35,7 @@ export default function SellerBar({ order }) {
       </p>
       <button
         type="button"
-        // disabled={ status !== 'Pendente' }
+        disabled={ status !== 'Pendente' }
         value="Preparando"
         onClick={ ({ target: { value } }) => (handleStatusChange(value, setStatus)) }
         data-testid="seller_order_details__button-preparing-check"
@@ -46,7 +46,7 @@ export default function SellerBar({ order }) {
       </button>
       <button
         type="button"
-        // disabled={ status !== 'Preparando' }
+        disabled={ status !== 'Preparando' }
         value="Em Trânsito"
         onClick={ ({ target: { value } }) => (handleStatusChange(value, setStatus)) }
         data-testid="seller_order_details__button-dispatch-check"
