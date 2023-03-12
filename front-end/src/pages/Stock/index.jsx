@@ -23,14 +23,15 @@ export default function Stock() {
     }
   }, []);
 
+  const getProcuctList = async () => {
+    await getAPI('/products', (data) => {
+      setProducts(data);
+      setLoading(false);
+      setStockList(data.map(() => 0));
+    });
+  };
+
   useEffect(() => {
-    const getProcuctList = async () => {
-      await getAPI('/products', (data) => {
-        setProducts(data);
-        setLoading(false);
-        setStockList(data.map(() => 0));
-      });
-    };
     getProcuctList();
   }, []);
 
@@ -74,6 +75,7 @@ export default function Stock() {
       timer();
     } else {
       await patchProduct(index, id);
+      await getProcuctList();
     }
   };
 
@@ -84,12 +86,13 @@ export default function Stock() {
         ? <p>Loading...</p>
         : (
           <section className="product-list-container">
-            { products.map(({ id, name, urlImage, price }, index) => (
+            { products.map(({ id, name, urlImage, price, stockQty }, index) => (
               <div key={ id }>
                 <ProductCard
                   id={ id }
                   title={ name }
                   thumbnail={ urlImage }
+                  stockQty={ stockQty }
                   price={ price }
                   quantity={ stockList[index] }
                   onClick={ handleCardBtn }

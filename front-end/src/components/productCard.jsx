@@ -5,7 +5,7 @@ import './styles/productCard.css';
 const BASE = 'customer_products';
 
 function ProductCard({ id, title, price, thumbnail,
-  quantity, onClick, index, onChange }) {
+  quantity, onClick, index, onChange, stockQty }) {
   return (
     <section data-testid="product" className="card-product-container">
       <div className="div-product-image">
@@ -30,6 +30,9 @@ function ProductCard({ id, title, price, thumbnail,
             {title}
           </p>
 
+        </div>
+        <div>
+          <p>{ `Em estoque: ${stockQty}` }</p>
         </div>
         <div className="card-price-quantity">
           <div className="card-quantity">
@@ -90,6 +93,7 @@ ProductCard.propTypes = {
   price: PropTypes.string.isRequired,
   thumbnail: PropTypes.string.isRequired,
   quantity: PropTypes.number.isRequired,
+  stockQty: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
