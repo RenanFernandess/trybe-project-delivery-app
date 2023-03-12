@@ -7,6 +7,7 @@ class SaleService extends AbstractService {
     super(Sale);
     this.sale = Sale;
     this.saleProduct = SaleProduct;
+    this.product = Product;
   }
 
   async getById(id) {
@@ -34,7 +35,11 @@ class SaleService extends AbstractService {
         const { dataValues: { id } } = await this.sale.create({ ...saleData }, { transaction: t });
         const mapped = products
           .map((p) => this.saleProduct.create({ ...p, saleId: id }, { transaction: t }));
-        await Promise.all(mapped);
+        // await Promise.all(mapped);
+        const mappedProducts = products
+          .map(({ productId, quantity }) => this.product
+            .decrement('stockQty', { by: quantity, where: { id: productId }, transaction: t }));
+            await Promise.all([...mapped, ...mappedProducts]);
         return id;
       });
       return this.getById(newSaleId);
