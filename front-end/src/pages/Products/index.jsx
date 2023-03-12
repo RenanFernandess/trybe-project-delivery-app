@@ -81,17 +81,19 @@ export default function Products() {
         ? <p>Loading...</p>
         : (
           <section className="product-list-container">
-            { products.map(({ id, name, urlImage, price }, index) => (<ProductCard
-              key={ id }
-              id={ id }
-              title={ name }
-              thumbnail={ urlImage }
-              price={ price }
-              quantity={ cartList[index] }
-              onClick={ handleCardBtn }
-              onChange={ handleChange }
-              index={ index }
-            />)) }
+            { products
+              .map(({ id, name, urlImage, price, stockQty }, index) => (<ProductCard
+                key={ id }
+                id={ id }
+                title={ name }
+                stockQty={ stockQty }
+                thumbnail={ urlImage }
+                price={ price }
+                quantity={ cartList[index] }
+                onClick={ handleCardBtn }
+                onChange={ handleChange }
+                index={ index }
+              />)) }
 
           </section>
         ) }
