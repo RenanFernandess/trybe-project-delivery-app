@@ -8,6 +8,7 @@ import Login, {
   OrderDetails,
   Checkout,
   AdminPage,
+  Stock,
 } from './pages';
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route exact path="/customer/orders/:id" component={ OrderDetails } />
         <Route exact path="/seller/orders/:id" component={ OrderDetails } />
         <Route exact path="/admin/manage" component={ AdminPage } />
+        <Route exact path="/seller/products" component={ Stock } />
       </Switch>
     </main>
   );
