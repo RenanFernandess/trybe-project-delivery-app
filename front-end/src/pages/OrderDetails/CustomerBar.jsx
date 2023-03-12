@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { patchAPI } from '../../utils';
 import { PADNUMBER } from './SellerBar';
+import colorChange from '../../utils/colorChange';
 
 export const CUSTOMER_TESTID = 'customer_order_details';
 const DATATESTID = `${CUSTOMER_TESTID}__element-order-details-label`;
