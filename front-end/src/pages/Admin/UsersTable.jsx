@@ -16,52 +16,56 @@ export default function UsersTable({ users, setUsers }) {
   };
 
   return (
-    <table>
-      <thead>
-        <tr>
+    <div className="table-adm">
+      <table>
+        <thead>
+          <tr>
+            {
+              TABLE_HEADERS.map((head) => <th key={ head }>{head}</th>)
+            }
+          </tr>
+        </thead>
+        <tbody>
           {
-            TABLE_HEADERS.map((head) => <th key={ head }>{head}</th>)
-          }
-        </tr>
-      </thead>
-      <tbody>
-        {
-          users
-            .map(({ name, email, role }) => (
-              { name, email, role: role === 'customer' ? 'Cliente' : 'P. Vendedora' }))
-            .map((user, index) => (
-              <tr key={ `${index} - ${user.name}` }>
-                <td
-                  data-testid={ `${TESTIDTABLE}-item-number-${index}` }
-                >
-                  {index + 1}
-
-                </td>
-                {
-                  Object.values(user).map((value, ind) => (
-                    <td
-                      key={ `${ind} - ${value}` }
-                      data-testid={ `${TESTIDTABLE}-${IDVALUE[ind]}-${index}` }
-                    >
-                      {value}
-                    </td>
-                  ))
-                }
-                <td>
-                  <button
-                    onClick={ () => handleExcludeBtn(user) }
-                    type="button"
-                    data-testid={ `${TESTIDTABLE}-${IDVALUE[3]}-${index}` }
+            users
+              .map(({ name, email, role }) => (
+                { name, email, role: role === 'customer' ? 'Cliente' : 'P. Vendedora' }))
+              .map((user, index) => (
+                <tr key={ `${index} - ${user.name}` }>
+                  <td
+                    data-testid={ `${TESTIDTABLE}-item-number-${index}` }
+                    className="item-number"
                   >
-                    Excluir
+                    {index + 1}
 
-                  </button>
-                </td>
-              </tr>
-            ))
-        }
-      </tbody>
-    </table>
+                  </td>
+                  {
+                    Object.values(user).map((value, ind) => (
+                      <td
+                        key={ `${ind} - ${value}` }
+                        data-testid={ `${TESTIDTABLE}-${IDVALUE[ind]}-${index}` }
+                        className={ `${IDVALUE[ind]}` }
+                      >
+                        {value}
+                      </td>
+                    ))
+                  }
+                  <td className="delete-btn">
+                    <button
+                      onClick={ () => handleExcludeBtn(user) }
+                      type="button"
+                      data-testid={ `${TESTIDTABLE}-${IDVALUE[3]}-${index}` }
+                    >
+                      Excluir
+
+                    </button>
+                  </td>
+                </tr>
+              ))
+          }
+        </tbody>
+      </table>
+    </div>
   );
 }
 

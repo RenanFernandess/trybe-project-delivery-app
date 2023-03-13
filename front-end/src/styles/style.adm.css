@@ -1,0 +1,137 @@
+.main-container-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container-form h3 {
+  width: 1640px;
+}
+
+.adm-form {
+  align-content: center;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: 161px;
+  justify-content: center;
+  padding: 20px;
+  width: 1640px;
+}
+
+
+.adm-form input, .adm-form select {
+  background-color: white;
+  border: 1px solid rgba(0, 24, 19, 1);
+  border-radius: 5px;
+  color: rgba(130, 130, 130, 1);
+  font-size: 24px;
+  font-weight: 400;
+  height: 70px;
+  line-height: 28px;
+  text-align: left;
+  text-indent: 20px;
+  width: 325px;
+}
+
+.adm-form button {
+  background-color: rgba(3, 107, 82, 1);
+  border: 0;
+  border-radius: 5px;
+  color: rgba(242, 255, 252, 1);
+  font-size: 28px;
+  font-weight: 400;
+  height: 59px;
+  line-height: 33px;
+  margin: auto;
+  text-align: center;
+  width: 200px;
+
+}
+
+.main-container-adm-table {
+  height: 639px;
+  margin: auto;
+  width: 1640px;
+}
+
+.main-container-adm h3 {
+  font-size: 36px;
+  font-weight: 500;
+  height: 41px;
+  line-height: 42px;
+  margin: 50px 0 20px;
+  text-align: left;
+}
+
+.table-adm {
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  height: 583px;
+  width: 1640px;
+}
+
+.table-adm table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+  font-size: 24px;
+  margin: auto;
+  text-align: center;
+  width: 1600px;
+}
+
+.table-adm th, .table-adm td {
+  height: 63px;
+  padding: 0;
+}
+
+.table-adm .item-number {
+  width: 90px;
+}
+
+.table-adm .name {
+  background-color: #eaf1ef;
+  height: 63px;
+  left: 89px;
+  width: 420px;
+}
+
+.email {
+  background-color: rgba(3, 107, 82, 1);
+  color: white;
+  height: 63px;
+  width: 417px;
+
+}
+
+.role {
+  background-color: rgba(66, 25, 129, 1);
+  color: white;
+  left: 1097px;
+  top: 0;
+  width: 417px;
+}
+
+.delete-btn {
+  background: rgba(5, 108, 249, 1);
+  border-radius: 0 6px 6px 0;
+  color: white;
+  height: 63px;
+  width: 235px;
+}
+
+.delete-btn button {
+  background: rgba(5, 108, 249, 1);
+  border: 0;
+  color: white;
+  font-size: 24px;
+  height: 63px;
+  width: 235px;
+}
+
+.delete-btn button:hover {
+  background: rgb(28, 112, 231);
+}
+
+.register-btn:hover {
+  background-color: rgb(4, 94, 73);
+}
+

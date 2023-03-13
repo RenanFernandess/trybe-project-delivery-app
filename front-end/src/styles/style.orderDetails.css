@@ -87,7 +87,7 @@
   font-weight: 700;
   line-height: 42px;
   text-align: center;
-  width: 277px;
+  width: 250px;
 }
 
 .seller-order-date {
@@ -103,7 +103,16 @@
 
 
 .order-status {
-  background-color: #00cc9b;
+  border-radius: 10px;
+  display: inline-block;
+  font-weight: 700;
+  height: 53px;
+  line-height: 55px;
+  text-align: center;
+  width: 295px;
+}
+
+.seller-order-status {
   border-radius: 10px;
   display: inline-block;
   font-weight: 700;
@@ -176,25 +185,38 @@
 }
 
 .preparing-btn {
+  background-color: rgba(47, 193, 140, 1);
+  border: 0;
   border-radius: 10px;
+  color: rgba(242, 255, 252, 1);
   font-size: 28px;
   font-weight: 500;
   height: 52px;
   line-height: 33px;
+  margin-left: 100px;
   text-align: center;
   width: 332px;
 }
 
-/* .in-transit-btn {
-  height: 52px;
-  width: 332px;
-  left: 1422px;
-  top: 226px;
-  border-radius: 10px;
-font-size: 24px;
-font-weight: 500;
-line-height: 28px;
-letter-spacing: 0em;
-text-align: center;
+.preparing-btn:hover {
+  background-color: rgb(41, 168, 122);
+}
 
-} */
+.in-transit-btn {
+  background-color: rgba(3, 107, 82, 1);
+  border: 0;
+  border-radius: 10px;
+  color: rgba(242, 255, 252, 1);
+  font-size: 24px;
+  font-weight: 500;
+  height: 52px;
+  line-height: 28px;
+  margin-right: 10px;
+  text-align: center;
+  top: 226px;
+  width: 332px;
+}
+
+.in-transit-btn:hover {
+  background-color: rgb(2, 88, 68);
+}

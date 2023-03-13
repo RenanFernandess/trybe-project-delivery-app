@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { patchAPI } from '../../utils';
+import colorChange from '../../utils/colorChange';
 
 export const SELLER_TESTID = 'seller_order_details';
 export const PADNUMBER = 4;
@@ -25,7 +26,11 @@ export default function SellerBar({ order }) {
       <p data-testid={ `${DATATESTID}-order-date` } className="seller-order-date">
         { moment(order?.saleDate).format('DD/MM/YYYY') }
       </p>
-      <p data-testid={ `${DATATESTID}-delivery-status` } className="order-status">
+      <p
+        data-testid={ `${DATATESTID}-delivery-status` }
+        className="seller-order-status"
+        style={ { backgroundColor: colorChange(status) } }
+      >
         {status}
       </p>
       <button
