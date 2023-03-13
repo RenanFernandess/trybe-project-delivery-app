@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { patchAPI } from '../../utils';
 import { PADNUMBER } from './SellerBar';
+import colorChange from '../../utils/colorChange';
 
 export const CUSTOMER_TESTID = 'customer_order_details';
 const DATATESTID = `${CUSTOMER_TESTID}__element-order-details-label`;
@@ -32,7 +33,11 @@ export default function CustomerBar({ order, seller }) {
       <p data-testid={ `${DATATESTID}-order-date` } className="order-date">
         { moment(order?.saleDate).format('DD/MM/YYYY') }
       </p>
-      <p data-testid={ `${DATATESTID}-delivery-status${1}` } className="order-status">
+      <p
+        data-testid={ `${DATATESTID}-delivery-status${1}` }
+        className="order-status"
+        style={ { backgroundColor: colorChange(status) } }
+      >
         { status }
       </p>
       <button

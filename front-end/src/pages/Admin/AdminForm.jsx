@@ -57,49 +57,62 @@ export default function AdminForm({ setUsers, token, setFetchReturn }) {
   return (
     <form
       onSubmit={ (e) => handleSubmit(e) }
+      className="adm-form"
     >
-      <input
-        placeholder="Nome"
-        type="text"
-        data-testid={ `${TESTID}input-name` }
-        name="name"
-        value={ name }
-        onChange={ (e) => handleChange(e, setName) }
-      />
-      <input
-        placeholder="Email"
-        type="text"
-        data-testid={ `${TESTID}input-email` }
-        name="email"
-        value={ email }
-        onChange={ (e) => handleChange(e, setEmail) }
-      />
-      <input
-        placeholder="Senha"
-        type="text"
-        data-testid={ `${TESTID}input-password` }
-        name="password"
-        value={ password }
-        onChange={ (e) => handleChange(e, setPassword) }
-      />
-      <select
-        data-testid={ `${TESTID}select-role` }
-        name="role"
-        id="roles"
-        value={ role }
-        onChange={ (e) => handleChange(e, setRole) }
-      >
-        {
-          ROLES_DB.map((r, index) => (
-            <option key={ r } value={ r }>{ROLES_TO_SHOW[index]}</option>
-          ))
-        }
-      </select>
-
+      <label htmlFor="name">
+        Nome
+        <input
+          placeholder="Nome e sobrenome"
+          type="text"
+          data-testid={ `${TESTID}input-name` }
+          name="name"
+          value={ name }
+          onChange={ (e) => handleChange(e, setName) }
+        />
+      </label>
+      <label htmlFor="email">
+        Email
+        <input
+          placeholder="Email"
+          type="text"
+          data-testid={ `${TESTID}input-email` }
+          name="email"
+          value={ email }
+          onChange={ (e) => handleChange(e, setEmail) }
+        />
+      </label>
+      <label htmlFor="password">
+        Senha
+        <input
+          placeholder="Senha"
+          type="text"
+          data-testid={ `${TESTID}input-password` }
+          name="password"
+          value={ password }
+          onChange={ (e) => handleChange(e, setPassword) }
+        />
+      </label>
+      <label htmlFor="role">
+        Tipo
+        <select
+          data-testid={ `${TESTID}select-role` }
+          name="role"
+          id="roles"
+          value={ role }
+          onChange={ (e) => handleChange(e, setRole) }
+        >
+          {
+            ROLES_DB.map((r, index) => (
+              <option key={ r } value={ r }>{ROLES_TO_SHOW[index]}</option>
+            ))
+          }
+        </select>
+      </label>
       <button
         type="submit"
         disabled={ disabled }
         data-testid={ `${TESTID}button-register` }
+        className="register-btn"
       >
         Cadastrar
 
