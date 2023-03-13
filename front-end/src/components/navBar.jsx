@@ -21,7 +21,16 @@ export default function NavBar({ route }) {
         (ROUTE.includes('customer') || ROUTE.includes('seller')) && (
           <Link to={ `/${ROUTE}/orders` }>
             <div data-testid="customer_products__element-navbar-link-orders">
-              {ROUTE.includes('customer') ? 'meus pedidos' : 'pedidos'}
+              {ROUTE.includes('customer') ? 'Meus pedidos' : 'Pedidos'}
+            </div>
+          </Link>
+        )
+      }
+      {
+        ROUTE.includes('seller') && (
+          <Link to={ `/${ROUTE}/products` }>
+            <div>
+              Estoque
             </div>
           </Link>
         )

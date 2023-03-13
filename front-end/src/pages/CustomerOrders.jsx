@@ -8,7 +8,7 @@ import userContext from '../context';
 
 export default function CustomerOrders() {
   const { location: { pathname } } = useHistory();
-  const { id } = useContext(userContext);
+  const { id, role } = useContext(userContext);
   const [orders, setOrders] = useState([]);
   // const [id, setId] = useState('');
 
@@ -34,7 +34,7 @@ export default function CustomerOrders() {
 
   return (
     <div>
-      <NavBar name="teste" route="customer" />
+      <NavBar name="teste" route={ role } />
       {
         orders.length > 0 && orders.map((order, index) => (
           <Link

@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import './styles/productCard.css';
 
 const BASE = 'customer_products';
 
 function ProductCard({ id, title, price, thumbnail,
-  quantity, onClick, index, onChange, stockQty }) {
+  quantity, onClick, index, onChange, stockQty, saveButton }) {
+  const { location: { pathname } } = useHistory();
+
+  const [disabled, setDisabled] = useState(false);
+
+  useEffect(() => {
+    const firstCheck = pathname.includes('customer') && stockQty === 0;
+    const secondCheck = pathname.includes('customer') && quantity === stockQty;
+    if (firstCheck || secondCheck) setDisabled(true);
+    if (!firstCheck && !secondCheck) setDisabled(false);
+  }, [quantity]);
+
   return (
     <section data-testid="product" className="card-product-container">
       <div className="div-product-image">
@@ -42,6 +54,7 @@ function ProductCard({ id, title, price, thumbnail,
               type="button"
               name="minusButton"
               onClick={ (e) => onClick(e, index) }
+              disabled={ pathname.includes('customer') && quantity === 0 }
             >
               {/* <img src="minus.svg" alt="" /> */}
               ➖
@@ -56,6 +69,7 @@ function ProductCard({ id, title, price, thumbnail,
               pattern="[0-9]*"
               value={ quantity }
               onChange={ ({ target: { value } }) => onChange(value, index) }
+              disabled={ disabled }
             />
 
             <button
@@ -64,6 +78,7 @@ function ProductCard({ id, title, price, thumbnail,
               type="button"
               name="addButton"
               onClick={ (e) => onClick(e, index) }
+              disabled={ disabled }
             >
               {/* <img src="plus.svg" alt="" /> */}
               ➕
@@ -72,17 +87,17 @@ function ProductCard({ id, title, price, thumbnail,
 
         </div>
       </div>
-      {/* <div className="card-buttons">
+      {
+        pathname.includes('seller') && (
           <button
-            className="card-delete-btn"
-            data-testid="remove-product"
             type="button"
-            name="removeButton"
-            onClick={ (e) => onClick(e, product) }
+            onClick={ () => saveButton(index, id) }
           >
-            ❌
+            Salvar
+
           </button>
-        </div> */}
+        )
+      }
     </section>
   );
 }
@@ -97,6 +112,7 @@ ProductCard.propTypes = {
   index: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  saveButton: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

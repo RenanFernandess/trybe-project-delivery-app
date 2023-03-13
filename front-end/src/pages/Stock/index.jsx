@@ -98,14 +98,15 @@ export default function Stock() {
                   onClick={ handleCardBtn }
                   onChange={ handleChange }
                   index={ index }
+                  saveButton={ saveButton }
                 />
-                <button
+                {/* <button
                   type="button"
                   onClick={ () => saveButton(index, id) }
                 >
                   Salvar
 
-                </button>
+                </button> */}
                 {
                   id === response?.id && (
                     response?.message

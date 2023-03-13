@@ -12,6 +12,7 @@ export default function Form() {
   const [seller, setSeller] = useState(0);
   const [number, setNumber] = useState();
   const [address, setAddress] = useState('');
+  const [disabled, setDisabled] = useState(true);
 
   useEffect(() => {
     getAPI('/login/role/seller', (data) => {
@@ -20,6 +21,11 @@ export default function Form() {
       setSeller(data[0].id);
     });
   }, []);
+
+  useEffect(() => {
+    if (number && address) setDisabled(false);
+    else setDisabled(true);
+  }, [number, address]);
 
   const finish = async () => {
     const formatProducts = products
@@ -85,6 +91,7 @@ export default function Form() {
             type="button"
             data-testid="customer_checkout__button-submit-order"
             onClick={ finish }
+            disabled={ disabled }
           >
             FINALIZAR PEDIDO
           </button>
