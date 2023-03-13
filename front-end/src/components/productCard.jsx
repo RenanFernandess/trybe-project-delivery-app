@@ -6,7 +6,7 @@ import './styles/productCard.css';
 const BASE = 'customer_products';
 
 function ProductCard({ id, title, price, thumbnail,
-  quantity, onClick, index, onChange, stockQty }) {
+  quantity, onClick, index, onChange, stockQty, saveButton }) {
   const { location: { pathname } } = useHistory();
 
   const [disabled, setDisabled] = useState(false);
@@ -87,17 +87,17 @@ function ProductCard({ id, title, price, thumbnail,
 
         </div>
       </div>
-      {/* <div className="card-buttons">
+      {
+        pathname.includes('seller') && (
           <button
-            className="card-delete-btn"
-            data-testid="remove-product"
             type="button"
-            name="removeButton"
-            onClick={ (e) => onClick(e, product) }
+            onClick={ () => saveButton(index, id) }
           >
-            ❌
+            Salvar
+
           </button>
-        </div> */}
+        )
+      }
     </section>
   );
 }
@@ -112,6 +112,7 @@ ProductCard.propTypes = {
   index: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
+  saveButton: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
