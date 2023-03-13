@@ -50,7 +50,12 @@ export default function Products() {
   };
 
   const handleChange = (value, index) => {
-    setCartList((prev) => prev.map((p, ind) => (ind === index ? +value : p)));
+    setCartList((prev) => prev.map((p, ind) => {
+      if (ind === index) {
+        return value >= products[index].stockQty ? products[index].stockQty : value;
+      }
+      return p;
+    }));
     setIndexToChange(index);
   };
 
