@@ -55,10 +55,11 @@
   max-height: 680px;
   overflow-x: hidden;
   overflow-y: auto;
+  scrollbar-color: pink;
 }
 
-.table-wrapper:-webkit-scrollbar-track {
-  background: orange;        /* color of the tracking area */
+.table-wrapper table:-webkit-scrollbar-track {
+  background: rgb(0, 38, 255);        /* color of the tracking area */
 }
 
 .order-table th, .order-table td {
@@ -178,11 +179,10 @@
   border: 1px rgba(3, 107, 82, 1) solid;
 }
 
-.order-btn[ disabled ]:hover {
-  background-color: rgb(103, 2, 2);
-  border: 1px rgb(103, 2, 2) solid;
-  color: #eaf1ef;
-}
+/* .order-btn[ disabled ] {
+  background-color: rgb(160, 159, 159);
+  color: #6a6a6a;
+} */
 
 .total-details {
   align-items: center;
@@ -214,6 +214,11 @@
   margin-left: 100px;
   text-align: center;
   width: 332px;
+}
+
+.main-container-orderDetails button:disabled {
+  background-color: rgb(160, 159, 159);
+  color: #6a6a6a;
 }
 
 .preparing-btn:hover {
