@@ -6,6 +6,7 @@ import '../styles/orderCard.css';
 const STATUS = {
   Pendente: 'pending',
   Preparando: 'preparing',
+  'Em Trânsito': 'transit',
   Entregue: 'delivered',
 };
 export default function OrderCard({ pathname, order }) {

@@ -1,48 +1,48 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, useCallback, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
-import { postAPI, localStorageHandling } from '../utils';
+import { postAPI } from '../utils';
 import '../styles/style.register.css';
-
-import { USER_KEY } from '../constants';
-
 import 'typeface-roboto';
 import '@fontsource/roboto';
+import userContext from '../context';
 
 export default function RegisterForms() {
+  const { setUser, ...client } = useContext(userContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true);
-  const [client, setClient] = useState({ message: '' });
   const history = useHistory();
 
-  const EMAIL_REGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
-  const ROUTE = 'common_register';
+  const EMAIL_REGEXP = useMemo(() => /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi, []);
+  const ROUTE = useMemo(() => 'common_register', []);
   const passwordMinLength = 6;
   const nameMinLength = 12;
 
-  const isAble = () => !(
-    password.length >= passwordMinLength
+  const isAble = useCallback(
+    () => !(
+      password.length >= passwordMinLength
       && (EMAIL_REGEXP.test(email))
-       && (name.length >= nameMinLength));
+       && (name.length >= nameMinLength)),
+    [EMAIL_REGEXP, passwordMinLength, nameMinLength, email, password, name],
+  );
 
   useEffect(() => {
     setDisabled(isAble());
-  }, [name, email, password]);
+  }, [name, email, password, isAble]);
 
   useEffect(() => {
-    if (client.name === name) {
-      history.push('/customer/products');
-    }
-  }, [client]);
+    if (client.name) history.push('/customer/products');
+  }, [client, history]);
 
   const register = async () => {
     await postAPI(
       '/register',
-      (data) => setClient(data),
+      (data) => {
+        setUser(data);
+      },
       { name, email, password, role: 'customer' },
     );
-    localStorageHandling.setItem(client, USER_KEY);
   };
 
   return (
