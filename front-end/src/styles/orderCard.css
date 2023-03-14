@@ -73,6 +73,10 @@
   background-color: var(--preparing-color);
 }
 
+.order-card__status--transit {
+  background-color: var(--transit-color);
+}
+
 .order-card__status--delivered {
   background-color: var(--delivered-color);
 }

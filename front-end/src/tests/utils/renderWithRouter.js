@@ -3,19 +3,37 @@ import { Router } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 import { render } from '@testing-library/react';
 import { UserProvider, CartProvider } from '../../context';
+import App from '../../App';
 
-export default function renderWithRouter(component) {
+const renderPath = (path) => {
   const history = createMemoryHistory();
-  return {
-    ...render(
+  history.push(path);
+  const { ...resources } = render(
+    <Router history={ history }>
       <UserProvider>
         <CartProvider>
-          <Router history={ history }>
-            { component }
-          </Router>
+          <App />
         </CartProvider>
-      </UserProvider>,
-    ),
-    history,
-  };
-}
+      </UserProvider>
+    </Router>,
+  );
+  return { ...resources, history };
+};
+
+export default renderPath;
+
+// export default function renderWithRouter(component) {
+//   const history = createMemoryHistory();
+//   return {
+//     ...render(
+//       <UserProvider>
+//         <CartProvider>
+//           <Router history={ history }>
+//             { component }
+//           </Router>
+//         </CartProvider>
+//       </UserProvider>,
+//     ),
+//     history,
+//   };
+// }

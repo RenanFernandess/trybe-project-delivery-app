@@ -4,6 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     price: DataTypes.FLOAT,
     urlImage: DataTypes.STRING,
+    stockQty: DataTypes.INTEGER,
   },
   {
     timestamps: false,

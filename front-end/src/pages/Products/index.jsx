@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import NavBar, { Loading, ProductCard } from '../../components';
 import { CART_KEY } from '../../constants';
@@ -52,23 +52,28 @@ export default function Products() {
   };
 
   const handleChange = (value, index) => {
-    setCartList((prev) => prev.map((p, ind) => (ind === index ? +value : p)));
+    setCartList((prev) => prev.map((p, ind) => {
+      if (ind === index) {
+        return value >= products[index].stockQty ? products[index].stockQty : value;
+      }
+      return p;
+    }));
     setIndexToChange(index);
   };
 
-  const setStorageInfo = (cart, product) => {
+  const setStorageInfo = useCallback((cart, product) => {
     const { urlImage, ...persist } = product;
     const infoToStore = { ...persist, quantity: cartList[indexToChange] };
     const localStorage = setStorageArray(cart, infoToStore, CART_KEY);
     setStorage(localStorage);
-  };
+  }, [cartList, indexToChange]);
 
   useEffect(() => {
     if (indexToChange !== undefined) {
       const cart = getLocalStorage(CART_KEY);
       setStorageInfo(cart, products[indexToChange]);
     }
-  }, [cartList]);
+  }, [cartList, products, indexToChange, setStorageInfo]);
 
   useEffect(() => {
     const newTotal = storage
@@ -83,17 +88,21 @@ export default function Products() {
         ? <Loading />
         : (
           <section className="c-body c-list-card">
-            { products.map(({ id, name, urlImage, price }, index) => (<ProductCard
-              key={ id }
-              id={ id }
-              title={ name }
-              thumbnail={ urlImage }
-              price={ price }
-              quantity={ cartList[index] }
-              onClick={ handleCardBtn }
-              onChange={ handleChange }
-              index={ index }
-            />)) }
+            { products
+              .map(({ id, name, urlImage, price, stockQty }, index) => (<ProductCard
+                key={ id }
+                id={ id }
+                title={ name }
+                stockQty={ stockQty }
+                thumbnail={ urlImage }
+                price={ price }
+                quantity={ cartList[index] }
+                onClick={ handleCardBtn }
+                onChange={ handleChange }
+                index={ index }
+                saveButton={ () => {} }
+              />)) }
+
           </section>
         ) }
       <button

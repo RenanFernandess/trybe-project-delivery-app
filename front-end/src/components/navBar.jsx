@@ -13,9 +13,9 @@ export default function NavBar({ route }) {
   return (
     <header className="header">
       <nav className="header__nav">
-        { ROUTE.includes('customer') && (
+        { (ROUTE === 'customer' || ROUTE === 'seller') && (
           <NavLink
-            to="/customer/products"
+            to={ `/${ROUTE}/products` }
             className={
               (isActive) => `header__nav__link ${(isActive ? selected : '')}`
             }

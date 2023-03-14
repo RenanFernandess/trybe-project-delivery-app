@@ -8,12 +8,11 @@ import { Loading } from '../components';
 
 export default function CustomerOrders() {
   const { location: { pathname } } = useHistory();
-  const { id } = useContext(userContext);
+  const { id, role } = useContext(userContext);
   const [loadin, setLoadin] = useState(true);
   const [orders, setOrders] = useState([]);
 
-  const route = pathname
-    .includes('customer') ? `/sales/user/${id}'` : `/sales/seller/${id}'`;
+  const route = role === 'customer' ? `/sales/user/${id}'` : `/sales/seller/${id}'`;
 
   const getOrders = useCallback(async () => {
     await getAPI(
@@ -31,13 +30,7 @@ export default function CustomerOrders() {
 
   return (
     <div>
-      <NavBar
-        name="teste"
-        route={
-          pathname
-            .includes('customer') ? 'customer' : 'seller'
-        }
-      />
+      <NavBar route={ role } />
       {
         loadin ? <Loading /> : (
           <section className="c-body c-list-card">
