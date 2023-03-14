@@ -73,47 +73,52 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
                     : <SellerBar order={ order } />
                 }
               </div>
-              <table className="order-table">
-                <thead>
-                  <tr>
-                    {
-                      TABLE_HEADERS.map((head) => <th key={ head }>{head}</th>)
-                    }
-                  </tr>
-                </thead>
-                <tbody>
-                  { order && order?.products.map((p, index) => (
-                    <tr key={ `${index} - ${p.productName}` }>
-                      <td
-                        className="item-number"
-                        data-testid={ `${testId}${TABLEID}-item-number-${index}` }
-                      >
-                        { index + 1 }
-
-                      </td>
+              <div className="table-wrapper">
+                <table className="order-table">
+                  <thead>
+                    <tr>
                       {
-                        Object.values(p).map((value, ind) => (
-                          <td
-                            key={ `${ind} - ${value}` }
-                            data-testid={ `${testId}${TABLEID}-${IDVALUE[ind]}-${index}` }
-                            className={ IDVALUE[ind] }
-                          >
-                            { IDVALUE[ind] === 'unit-price' ? `R$ ${value}` : value }
-
-                          </td>
-                        ))
+                        TABLE_HEADERS.map((head) => <th key={ head }>{head}</th>)
                       }
-                      <td
-                        data-testid={ `${testId}${TABLEID}-${IDVALUE[3]}-${index}` }
-                        className="sub-total"
-                      >
-                        { `R$ ${(p.price * p.quantity).toFixed(2)}` }
-
-                      </td>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    { order && order?.products.map((p, index) => (
+                      <tr key={ `${index} - ${p.productName}` }>
+                        <td
+                          className="item-number"
+                          data-testid={ `${testId}${TABLEID}-item-number-${index}` }
+                        >
+                          { index + 1 }
+
+                        </td>
+                        {
+                          Object.values(p).map((value, ind) => (
+                            <td
+                              key={ `${ind} - ${value}` }
+                              data-testid={
+                                `${testId}${TABLEID}-${IDVALUE[ind]}-${index}`
+                              }
+                              className={ IDVALUE[ind] }
+                            >
+                              { IDVALUE[ind] === 'unit-price' ? `R$ ${value}` : value }
+
+                            </td>
+                          ))
+                        }
+                        <td
+                          data-testid={ `${testId}${TABLEID}-${IDVALUE[3]}-${index}` }
+                          className="sub-total"
+                        >
+                          { `R$ ${(p.price * p.quantity).toFixed(2)}` }
+
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
               <h3 className="total-details">
                 <span>Total: R$</span>
                 <span
