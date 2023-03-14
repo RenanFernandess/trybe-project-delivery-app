@@ -63,7 +63,7 @@
   border: solid 1px black;
   border-radius: 6px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  color: #e5e5e5;
+  color: rgba(130, 130, 130, 1);
   font-weight: 400;
   height: 70px;
   text-align: left;

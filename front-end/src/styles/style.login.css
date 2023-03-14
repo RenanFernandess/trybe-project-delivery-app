@@ -67,6 +67,7 @@
 .logo {
   height: auto;
   width: 100px;
+
   /* display: block;
   height: fit-content;
   left: 50%;
@@ -76,11 +77,10 @@
 }
 
 .logo-container {
-  height: 200px;
-  /* border: 1px purple solid; */
+  align-items: center;
   display: flex;
   flex-direction: column;
+  height: 200px;
   justify-content: center;
-  align-items: center;
 }
 
