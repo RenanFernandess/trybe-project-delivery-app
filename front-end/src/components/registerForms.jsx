@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useContext, useMemo } from 'react';
 import { useHistory } from 'react-router-dom';
 import { postAPI } from '../utils';
 import '../styles/style.register.css';
@@ -14,22 +14,15 @@ export default function RegisterForms() {
   const [disabled, setDisabled] = useState(true);
   const history = useHistory();
 
-  const EMAIL_REGEXP = useMemo(() => /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi, []);
   const ROUTE = useMemo(() => 'common_register', []);
-  const passwordMinLength = 6;
-  const nameMinLength = 12;
-
-  const isAble = useCallback(
-    () => !(
-      password.length >= passwordMinLength
-      && (EMAIL_REGEXP.test(email))
-       && (name.length >= nameMinLength)),
-    [EMAIL_REGEXP, passwordMinLength, nameMinLength, email, password, name],
-  );
 
   useEffect(() => {
-    setDisabled(isAble());
-  }, [name, email, password, isAble]);
+    const MIN_PASSWORD_CHARACTERS = 6;
+    const EMAIL_REGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
+    setDisabled(!(
+      (password.length >= MIN_PASSWORD_CHARACTERS)
+      && (EMAIL_REGEXP.test(email))));
+  }, [email, password]);
 
   useEffect(() => {
     if (client.name) history.push('/customer/products');
