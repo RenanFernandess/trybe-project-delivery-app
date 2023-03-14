@@ -3,9 +3,9 @@
 }
 
 .c-main__cart-btn {
-  bottom: 3rem;
+  bottom: 3vh;
   position: fixed;
-  right: 3rem;
+  right: 5vw;
 }
 
 .c-main .c-list-card {

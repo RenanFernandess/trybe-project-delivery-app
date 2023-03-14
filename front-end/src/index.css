@@ -1,7 +1,11 @@
 /* stylelint-disable font-family-name-quotes */
 :root {
 
+  --border-color: rgb(177, 194, 190);
+
   --dark-text: rgb(0, 24, 19);
+
+  --delivered-color: rgba(0, 204, 156, 0.75);
 
   --fourth-color: rgb(5, 108, 249);
 
@@ -9,17 +13,22 @@
 
   --light-text: rgb(234, 241, 239);
 
-  --secondary-background-color: rgb(177, 194, 190);
+  --secondary-background-color: rgb(234, 241, 239);
 
   --secondary-color: rgb(47, 193, 140);
+
+  --pending-color: rgba(204, 184, 0, 0.75);
+
+  --preparing-color: rgba(102, 204, 0, 0.75);
 
   --primary-color: rgb(3, 107, 82);
 
   --primary-color-hover: rgb(25, 131, 106);
 
-  --tertiary-backgroud-color: rgb(234, 241, 239);
+  --tertiary-backgroud-color: rgb(242, 255, 252);
 
   --tertiary-color: rgb(66, 25, 129);
+
 }
 
 
