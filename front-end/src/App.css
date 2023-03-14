@@ -6,19 +6,27 @@
 }
 
 .c-mediun {
-  box-shadow: 2px 2px 6px rgb(115, 115, 114);
+  box-shadow: 2px 2px 6px var(--secondary-background-color);
   margin-bottom: 2rem;
   padding: 0.5rem;
 }
 
 .c-list-card {
+  box-sizing: border-box;
   display: flex;
   flex-flow: wrap;
   gap: 1rem;
 }
 
+.c-centralize {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .base-btn {
   border-radius: 0.5rem;
+  cursor: pointer;
   font-size: 1rem;
   font-weight: 700;
   min-width: 6rem;
@@ -31,6 +39,7 @@
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color);
   color: var(--light-text);
+  cursor: pointer;
 }
 
 .primary-btn:active {
@@ -40,6 +49,7 @@
 .primary-btn:disabled {
   background-color: var(--secondary-background-color);
   border-color: var(--secondary-background-color);
+  color: var(--border-color);
 }
 
 .primary-btn:disabled:active {

@@ -11,7 +11,7 @@
   min-height: 3rem;
 }
 
-.header link, a {
+.header link, .header a {
   color: var(--light-text);
 }
 

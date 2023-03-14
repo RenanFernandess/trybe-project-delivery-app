@@ -1,8 +1,8 @@
 .pro-card {
   align-items: center;
-  border: 1px solid var(--secondary-background-color);
+  border: 1px solid var(--border-color);
   border-radius: 3px;
-  box-shadow: 2px 2px 4px rgb(115, 115, 114);
+  box-shadow: 2px 2px 4px var(--secondary-background-color);
   display: flex;
   flex: 1 1;
   flex-direction: column;
