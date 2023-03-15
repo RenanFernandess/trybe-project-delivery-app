@@ -17,9 +17,9 @@ export default function RegisterForms() {
   const ROUTE = useMemo(() => 'common_register', []);
 
   useEffect(() => {
-    const MIN_PASSWORD_CHARACTERS = 12;
+    const MIN_PASSWORD_CHARACTERS = 6;
     const EMAIL_REGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
-    const MIN_NAME_CHAR = 6;
+    const MIN_NAME_CHAR = 12;
     setDisabled(!(
       (password.length >= MIN_PASSWORD_CHARACTERS)
       && (EMAIL_REGEXP.test(email))
