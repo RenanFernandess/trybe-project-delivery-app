@@ -17,12 +17,14 @@ export default function RegisterForms() {
   const ROUTE = useMemo(() => 'common_register', []);
 
   useEffect(() => {
-    const MIN_PASSWORD_CHARACTERS = 6;
+    const MIN_PASSWORD_CHARACTERS = 12;
     const EMAIL_REGEXP = /^[\w.]+@[a-zA-Z]+(\.[a-zA-Z]+)+$/gi;
+    const MIN_NAME_CHAR = 6;
     setDisabled(!(
       (password.length >= MIN_PASSWORD_CHARACTERS)
-      && (EMAIL_REGEXP.test(email))));
-  }, [email, password]);
+      && (EMAIL_REGEXP.test(email))
+      && (name.length >= MIN_NAME_CHAR)));
+  }, [email, name, password]);
 
   useEffect(() => {
     if (client.name) history.push('/customer/products');
