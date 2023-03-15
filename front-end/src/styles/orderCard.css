@@ -113,6 +113,15 @@
 
 }
 
+@media screen and ( min-width : 1650px ) {
+
+  .order-card {
+    max-width: 45.5vw;
+    min-width: 44.5vw;
+  }
+
+}
+
 @media screen and ( min-width : 4000px ) {
 
   .order-card {

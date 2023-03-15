@@ -54,24 +54,33 @@
   color: #036b52;
 }
 
-.logo, .login-container h1 {
+.login-container h1 {
+  color: #001813;
+  font-size: 36px;
   height: 96px;
+  line-height: 100px;
   margin: 0;
+  text-align: center;
   vertical-align: middle;
 }
 
 .logo {
-  display: block;
+  height: auto;
+  width: 100px;
+
+  /* display: block;
   height: fit-content;
   left: 50%;
   margin-left: auto;
   position: absolute;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
 }
 
-.login-container h1 {
-  color: #001813;
-  font-size: 36px;
-  line-height: 100px;
-  text-align: center;
+.logo-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
 }
+

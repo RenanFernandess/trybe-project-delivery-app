@@ -101,7 +101,8 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
                               }
                               className={ IDVALUE[ind] }
                             >
-                              { IDVALUE[ind] === 'unit-price' ? `R$ ${value}` : value }
+                              { IDVALUE[ind] === 'unit-price'
+                                ? `R$ ${value.replace('.', ',')}` : value }
 
                             </td>
                           ))
@@ -110,7 +111,7 @@ export default function OrderDetails({ match: { path, params: { id } } }) {
                           data-testid={ `${testId}${TABLEID}-${IDVALUE[3]}-${index}` }
                           className="sub-total"
                         >
-                          { `R$ ${(p.price * p.quantity).toFixed(2)}` }
+                          { `R$ ${(p.price * p.quantity).toFixed(2).replace('.', ',')}` }
 
                         </td>
                       </tr>
