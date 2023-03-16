@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import userContext from '../context';
 
-export default function LogoutButton({ testId }) {
+export default function LogoutButton({ testId, className }) {
   const { resetUser } = useContext(userContext);
   const history = useHistory();
 
@@ -15,6 +15,7 @@ export default function LogoutButton({ testId }) {
 
   return (
     <button
+      className={ className }
       type="button"
       onClick={ logout }
       data-testid={ testId }
@@ -26,4 +27,5 @@ export default function LogoutButton({ testId }) {
 
 LogoutButton.propTypes = {
   testId: PropTypes.string.isRequired,
+  className: PropTypes.string.isRequired,
 };

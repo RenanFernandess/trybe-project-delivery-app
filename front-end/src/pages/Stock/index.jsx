@@ -1,11 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { ProductCard } from '../../components';
+import { Loading, ProductCard } from '../../components';
 import NavBar from '../../components/navBar';
 import userContext from '../../context';
 import { getAPI, patchAPI } from '../../utils';
 
-const HIDE_TIMER = 1500;
+const HIDE_TIMER = 2000;
 
 export default function Stock() {
   const history = useHistory();
@@ -14,14 +14,14 @@ export default function Stock() {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [stockList, setStockList] = useState([]);
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState({ id: 0, message: '', stockQty: 0 });
   const [hideMessage, setHideMessage] = useState(true);
 
   useEffect(() => {
     if (role !== 'seller' && role !== 'administrator') {
       history.push('/');
     }
-  }, []);
+  }, [history, role]);
 
   const getProcuctList = async () => {
     await getAPI('/products', (data) => {
@@ -60,7 +60,7 @@ export default function Stock() {
     await patchAPI(
       `/products/stock/${id}`,
       (data) => {
-        setResponse({ id, ...data });
+        setResponse({ id, message: '', ...data });
         setStockList((prev) => prev.map(() => 0));
         timer();
       },
@@ -71,7 +71,8 @@ export default function Stock() {
 
   const saveButton = async (index, id) => {
     if (stockList[index] === 0) {
-      setResponse({ id, message: 'Impossivel adicionar valor zero ao estoque' });
+      setResponse((prevState) => ({
+        ...prevState, id, message: 'Impossivel adicionar valor zero ao estoque' }));
       timer();
     } else {
       await patchProduct(index, id);
@@ -83,39 +84,25 @@ export default function Stock() {
     <div>
       <NavBar route={ role } />
       { loading
-        ? <p>Loading...</p>
+        ? <Loading />
         : (
-          <section className="product-list-container">
+          <section className="c-body c-list-card">
             { products.map(({ id, name, urlImage, price, stockQty }, index) => (
-              <div key={ id }>
-                <ProductCard
-                  id={ id }
-                  title={ name }
-                  thumbnail={ urlImage }
-                  stockQty={ stockQty }
-                  price={ price }
-                  quantity={ stockList[index] }
-                  onClick={ handleCardBtn }
-                  onChange={ handleChange }
-                  index={ index }
-                  saveButton={ saveButton }
-                />
-                {/* <button
-                  type="button"
-                  onClick={ () => saveButton(index, id) }
-                >
-                  Salvar
-
-                </button> */}
-                {
-                  id === response?.id && (
-                    response?.message
-                      ? <span hidden={ hideMessage }>{response.message}</span>
-                      : response?.stockQty && <span hidden={ hideMessage }>Salvo</span>
-
-                  )
-                }
-              </div>
+              <ProductCard
+                key={ id }
+                id={ id }
+                title={ name }
+                thumbnail={ urlImage }
+                stockQty={ stockQty }
+                price={ price }
+                quantity={ stockList[index] || 0 }
+                onClick={ handleCardBtn }
+                onChange={ handleChange }
+                index={ index }
+                saveButton={ saveButton }
+                response={ response }
+                hideMessage={ hideMessage }
+              />
             )) }
 
           </section>
