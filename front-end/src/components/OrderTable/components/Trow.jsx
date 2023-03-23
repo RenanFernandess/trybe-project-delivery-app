@@ -6,25 +6,43 @@ export default function Trow(
   { id, description, price, isCheckout, quantity, location, index },
 ) {
   return (
-    <tr>
-      <td data-testid={ `${location}__element-order-table-item-number-${index}` }>
+    <tr className="c-table__tr">
+      <td
+        className="c-table__tbody__td"
+        data-testid={ `${location}__element-order-table-item-number-${index}` }
+      >
         { index + 1 }
       </td>
-      <td data-testid={ `${location}__element-order-table-name-${index}` }>
+      <td
+        className="c-table__tbody__td"
+        data-testid={ `${location}__element-order-table-name-${index}` }
+      >
         { description }
       </td>
-      <td data-testid={ `${location}__element-order-table-quantity-${index}` }>
+      <td
+        className="c-table__tbody__td"
+        data-testid={ `${location}__element-order-table-quantity-${index}` }
+      >
         { quantity }
       </td>
-      <td data-testid={ `${location}__element-order-table-unit-price-${index}` }>
+      <td
+        className="c-table__tbody__td"
+        data-testid={ `${location}__element-order-table-unit-price-${index}` }
+      >
         { price.replace('.', ',') }
       </td>
-      <td data-testid={ `${location}__element-order-table-sub-total-${index}` }>
+      <td
+        className="c-table__tbody__td"
+        data-testid={ `${location}__element-order-table-sub-total-${index}` }
+      >
         { `R$${((price * quantity).toFixed(2)).replace('.', ',')}` }
       </td>
       {
         isCheckout && (
-          <td data-testid={ `customer_checkout__element-order-table-remove-${index}` }>
+          <td
+            className="c-table__tbody__td"
+            data-testid={ `customer_checkout__element-order-table-remove-${index}` }
+          >
             <RemoveButton id={ id } />
           </td>
         )

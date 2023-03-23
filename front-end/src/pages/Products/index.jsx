@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import NavBar, { ProductCard } from '../../components';
+import React, { useState, useEffect, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+import NavBar, { Loading, ProductCard } from '../../components';
 import { CART_KEY } from '../../constants';
 import { getAPI, localStorageHandling } from '../../utils';
+import './index.css';
 
 const { getLocalStorage, setStorageArray } = localStorageHandling;
 
 export default function Products() {
+  const history = useHistory();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [cartList, setCartList] = useState([]);
@@ -50,23 +52,28 @@ export default function Products() {
   };
 
   const handleChange = (value, index) => {
-    setCartList((prev) => prev.map((p, ind) => (ind === index ? +value : p)));
+    setCartList((prev) => prev.map((p, ind) => {
+      if (ind === index) {
+        return value >= products[index].stockQty ? products[index].stockQty : value;
+      }
+      return p;
+    }));
     setIndexToChange(index);
   };
 
-  const setStorageInfo = (cart, product) => {
+  const setStorageInfo = useCallback((cart, product) => {
     const { urlImage, ...persist } = product;
     const infoToStore = { ...persist, quantity: cartList[indexToChange] };
     const localStorage = setStorageArray(cart, infoToStore, CART_KEY);
     setStorage(localStorage);
-  };
+  }, [cartList, indexToChange]);
 
   useEffect(() => {
     if (indexToChange !== undefined) {
       const cart = getLocalStorage(CART_KEY);
       setStorageInfo(cart, products[indexToChange]);
     }
-  }, [cartList]);
+  }, [cartList, products, indexToChange, setStorageInfo]);
 
   useEffect(() => {
     const newTotal = storage
@@ -75,42 +82,44 @@ export default function Products() {
   }, [storage]);
 
   return (
-    <div>
+    <div className="c-main">
       <NavBar route="customer" />
       { loading
-        ? <p>Loading...</p>
+        ? <Loading />
         : (
-          <section className="product-list-container">
-            { products.map(({ id, name, urlImage, price }, index) => (<ProductCard
-              key={ id }
-              id={ id }
-              title={ name }
-              thumbnail={ urlImage }
-              price={ price }
-              quantity={ cartList[index] }
-              onClick={ handleCardBtn }
-              onChange={ handleChange }
-              index={ index }
-            />)) }
+          <section className="c-body c-list-card">
+            { products
+              .map(({ id, name, urlImage, price, stockQty }, index) => (<ProductCard
+                key={ id }
+                id={ id }
+                title={ name }
+                stockQty={ stockQty }
+                thumbnail={ urlImage }
+                price={ price }
+                quantity={ cartList[index] }
+                onClick={ handleCardBtn }
+                onChange={ handleChange }
+                index={ index }
+                saveButton={ () => {} }
+              />)) }
 
           </section>
         ) }
-      <Link to="/customer/checkout">
-        <button
-          data-testid="customer_products__button-cart"
-          type="button"
-          disabled={ +total === 0 }
+      <button
+        data-testid="customer_products__button-cart"
+        type="button"
+        className="base-btn primary-btn c-main__cart-btn"
+        disabled={ +total === 0 }
+        onClick={ () => history.push('/customer/checkout') }
+      >
+        Ver Carrinho:
+        <span> R$ </span>
+        <span
+          data-testid="customer_products__checkout-bottom-value"
         >
-          <span>Meu Carrinho R$</span>
-          <span
-            data-testid="customer_products__checkout-bottom-value"
-          >
-            { total.toFixed(2).replace('.', ',') }
-
-          </span>
-
-        </button>
-      </Link>
+          { total.toFixed(2).replace('.', ',') }
+        </span>
+      </button>
     </div>
   );
 }

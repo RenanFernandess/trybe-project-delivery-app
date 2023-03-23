@@ -1,0 +1,86 @@
+.login-container form {
+  background-color: #eaf1ef;
+  border: 1px solid #b1c2be;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  height: 444px;
+}
+
+.login-container .input-with-label {
+  height: 112px;
+  margin: 10px  24px 0;
+}
+
+.login-container input, .login-container label {
+  display: block;
+  font-size: 24px;
+  padding: 0;
+  text-indent: 19px;
+  width: 371px;
+}
+
+.login-container input {
+  border: solid 1px black;
+  border-radius: 6px;
+  color: #828282;
+  font-size: 24px;
+  font-weight: 400;
+  height: 59px;
+  top: 42.25px;
+}
+
+.login-buttons button:disabled {
+  background-color: #ccc;
+  border: 0;
+  color: #666;
+}
+
+.login-container .login-buttons button {
+  border-radius: 6px;
+  display: block;
+  font-size: 28px;
+  height: 60px;
+  margin: 28px 24px;
+  width: 371px;
+}
+
+.login-buttons .login-btn {
+  background-color: #036b52;
+  border: #036b52 solid 1px;
+  color: #f2fffc;
+}
+
+.login-buttons .register-btn {
+  border: #036b52 solid 1px;
+  color: #036b52;
+}
+
+.login-container h1 {
+  color: #001813;
+  font-size: 36px;
+  height: 96px;
+  line-height: 100px;
+  margin: 0;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.logo {
+  height: auto;
+  width: 100px;
+
+  /* display: block;
+  height: fit-content;
+  left: 50%;
+  margin-left: auto;
+  position: absolute;
+  transform: translate(-50%, -50%); */
+}
+
+.logo-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 200px;
+  justify-content: center;
+}
+
