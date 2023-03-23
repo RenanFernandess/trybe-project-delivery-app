@@ -19,9 +19,12 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 
 ## Construido Com
 
- * [<img src="" />]()
- * [<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />](https://www.w3schools.com/css/)
+ ### Front-end
  * [<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+ * ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+ * ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
+ * [<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />](https://www.w3schools.com/css/)
+  
  
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
@@ -60,10 +63,10 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 
 ## Contato
 
-* Renan Fernandes - [Linkedin](https://www.linkedin.com/in/orenanfernandes/) - renzinestuods@gmail.com
-* Gabriel Raeder - [Linkedin](https://www.linkedin.com/in/gabrielraedergoncalves/) - [GitHub](https://github.com/gabrielraeder)
-* Rubens Deola - [Linkedin](https://www.linkedin.com/in/rubens-deola/) - [GitHub](https://github.com/RDeola)
 * Fabiana Moraes - [Linkedin](https://www.linkedin.com/in/fabiana-mrs/) - [GitHub](https://github.com/Fabianamrs)
+* Gabriel Raeder - [Linkedin](https://www.linkedin.com/in/gabrielraedergoncalves/) - [GitHub](https://github.com/gabrielraeder)
+* Renan Fernandes - [Linkedin](https://www.linkedin.com/in/orenanfernandes/) - [GitHub](https://github.com/RenanFernandess) - renzinestuods@gmail.com
+* Rubens Deola - [Linkedin](https://www.linkedin.com/in/rubens-deola/) - [GitHub](https://github.com/RDeola)
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
