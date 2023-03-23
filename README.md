@@ -11,3 +11,18 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
+## Contato
+
+* Renan Fernandes - [Linkedin](https://www.linkedin.com/in/orenanfernandes/) - renzinestuods@gmail.com
+* Gabriel Raeder - [Linkedin](https://www.linkedin.com/in/gabrielraedergoncalves/) - [GitHub](https://github.com/gabrielraeder)
+* Rubens Deola - [Linkedin](https://www.linkedin.com/in/rubens-deola/) - [GitHub](https://github.com/RDeola)
+* Fabiana Moraes - [Linkedin](https://www.linkedin.com/in/fabiana-mrs/) - [GitHub](https://github.com/Fabianamrs)
+
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
+
+## Agradecimentos
+
+* [Trybe](https://www.betrybe.com/)
+* [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+
+<p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
