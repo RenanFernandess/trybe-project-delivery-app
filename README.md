@@ -19,13 +19,13 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 
 ## Construido Com
 
- ### Front-end
+### Front-end
  * [<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
  * ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
  * ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
  * [<img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" />](https://www.w3schools.com/css/)
   
- ### Back-end
+### Back-end
  * [<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
  * ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
  * ![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
@@ -66,6 +66,11 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
  
 ## Uso
 
+### Front-end
+
+### Back-end
+
+### Scripts
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
