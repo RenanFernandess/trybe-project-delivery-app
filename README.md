@@ -73,6 +73,12 @@ Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora 
   
     npm install
 
+### Configurando
+
+#### Database
+
+#### Ambiente
+
 ### Executando
   
   1. iniciar o aplicativo
