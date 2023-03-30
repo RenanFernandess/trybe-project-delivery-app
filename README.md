@@ -13,6 +13,24 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
 ## Sobre o Projeto
+Nesse projeto, Meu grupo foi responsável por criar e integrar tanto o back-end quanto o front-end, criando uma plataforma de delivery de cerveja. 🍹
+
+> O projeto não foi só codar, mas também é trabalhar em equipe, aprender e se divertir muito!
+
+### O aplicativo contém:
+
+**Acesso via login:** <br>
+Tanto `clientes` como pessoas `vendedoras`, assim como `admin`, que administra o sistema, tem acesso ao aplicativo via login, porém para funções diferentes:
+
+   * A pessoa `cliente`, que compra da lista de produtos;
+   * A pessoa `vendedora`, que aprova, prepara e entrega;
+   * A pessoa `administradora`, que gerencia quem usa o aplicativo;
+
+**Faz a comunicação entre clientes e pessoas vendedoras:** <br>
+A pessoa cliente faz o pedido via "carrinho de compras" e a pessoa vendedora aprova, prepara e envia esse pedido. Quando o produto é recebido por quem o comprou, essa pessoa marca o pedido como "recebido". Ambos possuem detalhes sobre seus pedidos;
+
+Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora em seu dash de pedidos após a atualização da página. A pessoa cliente, pode ver as informações sobre seu pedido quando sua página for atualizada, ou seja, ter informações se o pedido está sendo preparado ou se já saiu pra entrega;
+
 
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
