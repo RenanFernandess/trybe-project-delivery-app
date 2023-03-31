@@ -75,8 +75,17 @@ Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora 
 
 ### Configurando
 
-#### Database
+   1. Entrar na pasta do back-end
+    
+    cd back-end
 
+#### Docker
+O Docker está sendo utilizado para criar um container para o banco de dados MySQL.
+
+  1. Iniciar o Docker compose
+
+    docker-compose up -d
+    
 #### Ambiente
 
 ### Executando
@@ -96,6 +105,12 @@ Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora 
 ## Uso
 
 ### Front-end
+
+#### Customer
+
+#### Seller
+
+#### Admin
 
 ### Back-end
 
