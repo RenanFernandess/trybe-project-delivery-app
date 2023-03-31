@@ -97,7 +97,7 @@ Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora 
 
     git clone git@github.com:RenanFernandess/trybe-project-delivery-app.git
 
-  2. Entrar na pasta project-pixels-art-2.0
+  2. Entrar na pasta project-delivery-app
   
     cd ./trybe-project-delivery-app
     
