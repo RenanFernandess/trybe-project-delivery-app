@@ -11,6 +11,11 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos por você; 
 - quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
+
+<details>
+  <summary><strong></strong></summary><br />
+
+</details>
 -->
 
 <details>
@@ -114,6 +119,21 @@ O Docker está sendo utilizado para criar um container para o banco de dados MyS
     docker-compose up -d
     
 #### Ambiente
+  1. Criar arquivo .env
+
+    touch .env
+    
+  2. Configurar as variáveis
+
+    NODE_ENV=development
+    API_PORT=3001
+    MYSQL_HOST=localhost
+    MYSQL_PORT=3306
+    MYSQL_USER=root
+    MYSQL_PASSWORD=password
+    MYSQL_DB_NAME=delivery-app
+    EVAL_ALWAYS_RESTORE_DEV_DB=true
+
 
 ### Executando
   
