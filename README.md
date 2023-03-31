@@ -12,6 +12,31 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 - quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
 - quais arquivos/pastas foram desenvolvidos pela Trybe.
 -->
+
+<details>
+  <summary>Índice</summary>
+  <ol>
+    <li>
+      <a href="#sobre-o-projeto">Sobre o Projeto</a>
+      <ul>
+        <li><a href="#o-aplicativo-contém">O aplicativo contém</a></li>
+        <li><a href="#construido-com">Construido Com</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#começando">Começando</a>
+      <ul>
+        <li><a href="#instalação">Instalação</a></li>
+        <li><a href="#configurando">Configurando</a></li>
+        <li><a href="#executando">Executando</a></li>
+      </ul>
+    </li>
+    <li><a href="#uso">Uso</a></li>
+    <li><a href="#contato">Contato</a></li>
+    <li><a href="#agradecimentos">Agradecimentos</a></li>
+  </ol>
+</details>
+
 ## Sobre o Projeto
 Nesse projeto, Meu grupo foi responsável por criar e integrar tanto o back-end quanto o front-end, criando uma plataforma de delivery de cerveja. 🍹
 
@@ -35,9 +60,9 @@ Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora 
 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
 
-## Construido Com
+### Construido Com
 
-  ### Front-end
+  #### Front-end
   * [<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
   * ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
   * ![React Router](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)
@@ -46,7 +71,7 @@ Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora 
   * ![Testing-Library](https://img.shields.io/badge/-TestingLibrary-%23E33332?style=for-the-badge&logo=testing-library&logoColor=white)
   * ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
   
-  ### Back-end
+  #### Back-end
   * [<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" />](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
   * ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
   * ![Sequelize](https://img.shields.io/badge/Sequelize-52B0E7?style=for-the-badge&logo=Sequelize&logoColor=white)
@@ -58,6 +83,8 @@ Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora 
  
  
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
+
+## Começando
 
 ### Instalação
 
@@ -82,7 +109,7 @@ Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora 
 #### Docker
 O Docker está sendo utilizado para criar um container para o banco de dados MySQL.
 
-  1. Iniciar o Docker compose
+  1. Iniciar o Docker Compose
 
     docker-compose up -d
     
