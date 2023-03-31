@@ -119,6 +119,8 @@ O Docker está sendo utilizado para criar um container para o banco de dados MyS
     docker-compose up -d
     
 #### Ambiente
+  Para que a API funcione é necessário configurar as variáveis de ambiente.
+
   1. Criar arquivo .env
 
     touch .env
@@ -134,6 +136,7 @@ O Docker está sendo utilizado para criar um container para o banco de dados MyS
     MYSQL_DB_NAME=delivery-app
     EVAL_ALWAYS_RESTORE_DEV_DB=true
 
+> Você pode seguir como exemplo o arquivo `.env.example`  na pasta back-end.
 
 ### Executando
   
