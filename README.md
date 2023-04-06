@@ -140,7 +140,12 @@ O Docker está sendo utilizado para criar um container para o banco de dados MyS
 
 ### Executando
   
-  1. iniciar o aplicativo
+  1. voltar para pasta raiz do projeto
+  
+    cd ..
+  
+  > pasta `trybe-project-delivery-app`
+  2. iniciar o aplicativo
     
     npm start
 
