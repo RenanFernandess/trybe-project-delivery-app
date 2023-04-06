@@ -84,6 +84,8 @@ Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora 
   * ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
   * ![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
   * ![Mocha](https://img.shields.io/badge/-mocha-%238D6748?style=for-the-badge&logo=mocha&logoColor=white)
+  * ![chai](https://img.shields.io/badge/-chai-%23C21325?style=for-the-badge&logo=chai&logoColor=white)
+  * ![sinon.js](https://img.shields.io/badge/-sinon.js-%238D6748?style=for-the-badge&logo=sinon.js&logoColor=white)
  
  
  
