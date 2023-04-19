@@ -95,68 +95,66 @@ Se a pessoa cliente faz o pedido, o mesmo deve aparecer para a pessoa vendedora 
 
 ### Instalação
 
-  1. Clonar o repositorio
+1. Clonar o repositorio
 
-    git clone git@github.com:RenanFernandess/trybe-project-delivery-app.git
+        git clone git@github.com:RenanFernandess/trybe-project-delivery-app.git
 
-  2. Entrar na pasta project-delivery-app
+2. Entrar na pasta project-delivery-app
   
-    cd ./trybe-project-delivery-app
+        cd ./trybe-project-delivery-app
     
-  3. Instalar pacotes NPM
+3. Instalar pacotes NPM
   
-    npm install
+        npm install
 
 ### Configurando
 
-   1. Entrar na pasta do back-end
+1. Entrar na pasta do back-end
     
-    cd back-end
+        cd back-end
 
 #### Docker
 O Docker está sendo utilizado para criar um container para o banco de dados MySQL.
 
-  1. Iniciar o Docker Compose
+1. Iniciar o Docker Compose
 
-    docker-compose up -d
+        docker-compose up -d
     
 #### Ambiente
-  Para que a API funcione é necessário configurar as variáveis de ambiente.
+Para que a API funcione é necessário configurar as variáveis de ambiente.
 
-  1. Criar arquivo .env
+1. Criar arquivo .env
 
-    touch .env
+        touch .env
     
-  2. Configurar as variáveis
+2. Configurar as variáveis
 
-    NODE_ENV=development
-    API_PORT=3001
-    MYSQL_HOST=localhost
-    MYSQL_PORT=3306
-    MYSQL_USER=root
-    MYSQL_PASSWORD=password
-    MYSQL_DB_NAME=delivery-app
-    EVAL_ALWAYS_RESTORE_DEV_DB=true
+        NODE_ENV=development
+        API_PORT=3001
+        MYSQL_HOST=localhost
+        MYSQL_PORT=3306
+        MYSQL_USER=root
+        MYSQL_PASSWORD=password
+        MYSQL_DB_NAME=delivery-app
+        EVAL_ALWAYS_RESTORE_DEV_DB=true
 
-> Você pode seguir como exemplo o arquivo `.env.example`  na pasta back-end.
+    > Você pode seguir como exemplo o arquivo `.env.example`  na pasta back-end.
 
 ### Executando
   
-  1. voltar para pasta raiz do projeto
+1. voltar para pasta raiz do projeto
   
-    cd ..
+        cd ..
   
-  > pasta `trybe-project-delivery-app`
-  2. iniciar o aplicativo
+    > pasta `trybe-project-delivery-app`
+2. iniciar o aplicativo
     
-    npm start
+        npm start
 
    após o start por padrão você será redirecionado para uma página do seu navegador com a seguinte URL:
    
-    http://127.0.0.1:3000/
+        http://127.0.0.1:3000/
 
-  
- 
 <p align="right">(<a href="#readme-top">voltar ao topo</a>)</p>
  
 ## Uso
