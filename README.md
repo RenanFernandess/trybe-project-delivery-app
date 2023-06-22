@@ -43,7 +43,7 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 </details>
 
 ## Sobre o Projeto
-Nesse projeto, Meu grupo foi responsável por criar e integrar tanto o back-end quanto o front-end, criando uma plataforma de delivery de Bebidas. 🍹
+Nesse projeto, Meu grupo foi responsável por criar e integrar tanto o back-end quanto o front-end, criando uma plataforma de delivery de bebidas. 🍹
 
 > O projeto não foi só codar, mas também é trabalhar em equipe, aprender e se divertir muito!
 
